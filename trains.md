@@ -38,7 +38,8 @@ utile d'expliquer que mettre et où trouver vos informations pour ajouter un tra
   retraite. <br> [Liste des VB2N](https://fr.wikipedia.org/wiki/Liste_des_VB2N).
 
 
-- MI79/MI84 (RER B) → Les MI84 ont déjà été en partie radiés mais le reste le sera à partir de 2027. <br> [Liste des MI79/MI84](https://fr.wikipedia.org/wiki/Liste_des_Z_8100).
+- MI79/MI84 (RER B) → Les MI84 ont déjà été en partie radiés mais le reste le sera à partir de
+  \2027. <br> [Liste des MI79/MI84](https://fr.wikipedia.org/wiki/Liste_des_Z_8100).
 
 ## Documentation des champs :
 
@@ -48,7 +49,6 @@ utile d'expliquer que mettre et où trouver vos informations pour ajouter un tra
 |------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | **Numéro du train**                      | Z 50 001/2                                                  | Numéro unique d'identification du train                                                   |
 | **Nom de la série**                      | Z 20500, Z50 000, MI09…                                     | Nom de la série à laquelle appartient le train                                            |
-| **Type de train**                        | Transilien, RER, métro…                                     | Catégorie du train selon son usage                                                        |
 | **Propriétaire**                         | SNCF Voyageurs, Île-de-France Mobilités, RATP               | Acheteur du train (Les trains livrés ou renovés après 1990 appartiennent à IDFM d'office) |
 | **Livrée appliquée**                     | Carmillon, Île-de-France Mobilités, STIF/RATP               | Design extérieur du train                                                                 |
 | **Constructeur**                         | Alstom, Bombardier, Siemens                                 | Entreprise qui a fabriqué le train                                                        |
@@ -84,8 +84,8 @@ utile d'expliquer que mettre et où trouver vos informations pour ajouter un tra
 
 ### **Gestion et maintenance :**
 
-| **Attribut**                      | **Exemple**                            | **Explication**                                                                                                                                                                                      |
-|-----------------------------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Incidents majeurs répertoriés** | déraillements, pannes, modernisations  | Incidents importants survenus au train (si connu)                                                                                                                                                    |
-| **Système de conduite**           | Conducteur, Conducteur + ATO, ATO seul | Système de conduite du train (conduite à vue ou automatique, semi-automatique)                                                                                                                       |
-| **Niveau d'automatisation**       | GOA0, GOA1, 2, ...                     | Niveau d'automatisation du train (de 0 à 4) [Tableau des niveaux](https://fr.wikipedia.org/wiki/Transports_guid%C3%A9s_urbains_automatiques#Tableau_r%C3%A9capitulatif_des_niveaux_d'automatisation) |
+| **Attribut**                      | **Exemple**                           | **Explication**                                                                                                                                                                                      |
+|-----------------------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Incidents majeurs répertoriés** | déraillements, pannes, modernisations | Incidents importants survenus au train (si connu)                                                                                                                                                    |
+| **Système de conduite**           | Conducteur, SACEM, NExTEO, KVB        | Système de conduite du train (conduite à vue ou automatique, semi-automatique)                                                                                                                       |
+| **Niveau d'automatisation**       | GOA0, GOA1, 2, ...                    | Niveau d'automatisation du train (de 0 à 4) [Tableau des niveaux](https://fr.wikipedia.org/wiki/Transports_guid%C3%A9s_urbains_automatiques#Tableau_r%C3%A9capitulatif_des_niveaux_d'automatisation) |
