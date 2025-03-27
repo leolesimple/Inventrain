@@ -15,4 +15,9 @@ En cours de design. <br>
 > [!WARNING]  
 > Les données existantes présentes dans le projet proviennent de sources officielles et sont publiques. <br>
 > Les données confidentielles appartenant aux exploitants ne sont pas autorisées à être publiées. <br>
-> Merci de votre compréhension.
+
+## Licenses
+Le projet est sous licence AGPL-3.0. <br>
+### Licenses des polices :
+- **Meshed Display** : [License Propriétaire](legal/licenses/License_Meshed_Display.pdf)
+- **PT Sans** : [SIL Open Font License](legal/licenses/OFL.txt)
