@@ -1,0 +1,80 @@
+/*
+    Meshed Display
+    License : legal/licenses/License_Meshed_Display.pdf
+*/
+
+@font-face {
+    font-family: 'Meshed Display';
+    src: url('../fonts/meshed_display/MeshedDisplay-Regular.woff2') format('woff2'),
+         url('../fonts/meshed_display/MeshedDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Meshed Display';
+    src: url('../fonts/meshed_display/MeshedDisplay-SemiBold.woff2') format('woff2'),
+    url('../fonts/meshed_display/MeshedDisplay-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Meshed Display';
+    src: url('../fonts/meshed_display/MeshedDisplay-Bold.woff2') format('woff2'),
+    url('../fonts/meshed_display/MeshedDisplay-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Meshed Display';
+    src: url('../fonts/meshed_display/MeshedDisplay-ExtraBold.woff2') format('woff2'),
+    url('../fonts/meshed_display/MeshedDisplay-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Meshed Display';
+    src: url('../fonts/meshed_display/MeshedDisplay-Black.woff2') format('woff2'),
+    url('../fonts/meshed_display/MeshedDisplay-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/*
+    PT Sans
+    License : legal/licenses/OFL.txt
+*/
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../fonts/pt_sans/PTSans-Regular.woff2') format('woff2'),
+         url('../fonts/pt_sans/PTSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../fonts/pt_sans/PTSans-Bold.woff2') format('woff2'),
+         url('../fonts/pt_sans/PTSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../fonts/pt_sans/PTSans-Italic.woff2') format('woff2'),
+         url('../fonts/pt_sans/PTSans-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../fonts/pt_sans/PTSans-BoldItalic.woff2') format('woff2'),
+         url('../fonts/pt_sans/PTSans-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}

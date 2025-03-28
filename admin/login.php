@@ -3,19 +3,21 @@ ini_set('session.cookie_secure', 1);
 ini_set('session.cookie_httponly', 1);
 session_start();
 
+$alert = '';
+
 $passwd_enc = '$2y$10$kPWJDzrgO2iTr85l4eElEucUdXUjwPOQpM3dMqAWqN/bdcn0FV1oy';
 $passwd_plus = 'admin';
 
 function loginUser($passwd)
 {
-    global $passwd_enc;
+    global $passwd_enc,$alert;
     if (isset($_POST['passwd']) && password_verify($_POST['passwd'], $passwd_enc)) {
         session_regenerate_id(true);
         $_SESSION['login'] = true;
         header('Location: index.php');
         exit();
     } else {
-        echo '<script>alert("Invalid password")</script>';
+        $alert = 'Mot de passe incorrect.';
     }
 }
 
@@ -52,27 +54,29 @@ if (isset($_GET['logout'])) {
 
     <!--Favicon-->
 
-    <!--CSS-->
     <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
 
-    <!--Title-->
     <title>Se Connecter - L'Inventrain</title>
 
-    <!--Fonts-->
-
     <!--Scripts-->
+    <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
 </head>
-<body>
-<div id="loginView">
+<body class="loginPage">
+<main id="loginView">
     <h1>
         Espace Sécurisé
     </h1>
-    <form action="" method="post">
-        <label for="passwd">Mot de Passe</label>
-        <input type="password" id="passwd" name="passwd" placeholder="Mot de passe" required>
+    <form action="" class="loginForm" method="post">
+        <div>
+            <label class="max" for="passwd">Mot de Passe</label>
+            <input type="password" id="passwd" name="passwd" placeholder="" required>
+            <?php echo '<p class="alertText"><small>' . $alert . '</small></p>' ?>
+        </div>
         <input type="submit" name="submit" value="Se connecter">
     </form>
-</div>
-
+</main>
+<script src="../js/app.js"></script>
 </body>
 </html>
