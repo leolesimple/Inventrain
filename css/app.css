@@ -1,0 +1,139 @@
+/*
+    PAS DE FONT-SIZE EN PX, QUE DU REM
+    ---
+    L'utilisation de l'IA est toujours annoncé par un commentaire suivi de la mention en commentaires :
+     IA : [Modèle]
+     Prompt : [Prompt]
+*/
+
+@import "texts.css";
+@import "fonts.css";
+
+:root {
+    --bg-primary: #F2F2F2;
+    --txt-color: #202124;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+}
+
+html {
+    background: #000;
+}
+
+body {
+    font-size: 1rem;
+    background-color: var(--bg-primary);
+    color: var(--txt-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* Accessibilité */
+
+.sr-only {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+}
+
+.skip-link {
+    position: absolute;
+    top: -1000px;
+    left: 0;
+    background: var(--txt-color);
+    color: var(--bg-primary);
+    padding: 16px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Navbar */
+
+nav {
+    display: flex;
+    padding: 0.9375rem 0.625rem;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    background: linear-gradient(180deg, #F2F2F2 0%, rgba(242, 242, 242, 0.59) 53%, #F2F2F2 100%);
+}
+
+/*
+    IA : GPT-4o et Figma
+    Figma propose le fallback sRGB et le display-p3.
+    GPT-4o m'a corrigé en proposant d'utiliser le @supports (que je connais déjà).
+*/
+@supports (color: color(display-p3 1 1 1)) {
+    nav {
+        background: linear-gradient(180deg, color(display-p3 0.949 0.949 0.949) 0%, color(display-p3 0.949 0.949 0.949 / 0.59) 53%, color(display-p3 0.949 0.949 0.949 / 0.00) 100%);
+    }
+}
+
+nav > ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    width: 200px;
+}
+
+nav > ul.nav-right {
+    justify-content: flex-end;
+}
+
+li {
+    margin-right: 0.625rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--txt-color);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.logoDetail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iconNav {
+    height: 40px;
+}
+
+@media (width < 920px) {
+    .wordmark {
+        display: none;
+    }
+
+    nav > ul {
+        padding: 0;
+    }
+}
+
+/* Main */
+main {
+    display: flex;
+    min-height: 56.25rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3125rem;
+    align-self: stretch;
+    max-width: 1140px;
+    padding: 4.375rem 1.25rem 1.5rem 1.25rem;
+}

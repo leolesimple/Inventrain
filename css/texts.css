@@ -4,52 +4,62 @@ body {
     line-height: 1.6;
 }
 
-h1 {
-    font-family: 'Merriweather', serif;
-    font-size: 2.5rem;
-    font-weight: bold;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
 }
+
+h1 {
+    font-family: 'Meshed Display', serif;
+    font-size: 2.25rem;
+}
+
+/* Revoir les font sizes.*/
 
 h2 {
-    font-family: 'Merriweather', serif;
-    font-size: 2rem;
-    font-weight: bold;
+    font-family: 'Meshed Display', serif;
+    font-size: 1.75rem;
 }
 
-h3 {
-    font-family: 'Merriweather', serif;
+/*h3 {
+    font-family: 'Meshed Display', serif;
     font-size: 1.75rem;
-    font-weight: normal;
 }
 
 h4 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Meshed Display', serif;
     font-size: 1.5rem;
-    font-weight: normal;
 }
 
 h5 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Meshed Display', serif;
     font-size: 1.25rem;
-    font-weight: normal;
 }
 
 h6 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Meshed Display', serif;
     font-size: 1rem;
-    font-weight: normal;
 }
+*/
 
 p {
     font-family: 'PT Sans', sans-serif;
     font-size: 1rem;
+    margin: 0;
+}
+
+p.alertText {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #910000;
 }
 
 a, .button {
     font-family: 'PT Sans', sans-serif;
     font-size: 1rem;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
 .menu-link {
@@ -60,4 +70,14 @@ a, .button {
 .caption {
     font-family: 'PT Sans', sans-serif;
     font-size: 0.75rem;
+}
+
+label {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.1rem;
+}
+
+label.max {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.25rem;
 }

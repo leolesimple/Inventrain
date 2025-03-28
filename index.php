@@ -8,7 +8,7 @@ if (!isset($_SESSION['login'])) {
     exit();
 }
 
-$ext = '../';
+$ext = './';
 ?>
 
 <!doctype html>
@@ -20,31 +20,28 @@ $ext = '../';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Ajouter un train à L'Inventrain via l'espace sécurisé.">
     <meta name="author" content="Léo LESIMPLE">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#F2F2F2">
     <meta name="msapplication-navbutton-color" content="#F2F2F2">
     <meta name="apple-mobile-web-app-status-bar-style" content="#F2F2F2">
 
     <!--Favicon-->
 
-    <link rel="stylesheet" href="../css/app.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/admin.css">
     <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
 
-    <title>Ajouter un train - L'Inventrain</title>
+    <title>Accueil - L'Inventrain</title>
 
     <!--Scripts-->
     <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
 </head>
 <body>
 <?php
-include "../assets/nav.php";
+include "./assets/nav.php";
 ?>
 <main id="content">
-    <h1>
-        Ajouter un train
-    </h1>
 </main>
-<script src="../js/app.js"></script>
+<script src="./js/app.js"></script>
 </body>
 </html>
