@@ -20,7 +20,7 @@ $ext = '../';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Ajouter un train à L'Inventrain via l'espace sécurisé.">
     <meta name="author" content="Léo LESIMPLE">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#F2F2F2">
     <meta name="msapplication-navbutton-color" content="#F2F2F2">
     <meta name="apple-mobile-web-app-status-bar-style" content="#F2F2F2">
@@ -41,30 +41,27 @@ $ext = '../';
     <link rel="manifest" href="<?php echo $ext; ?>img/favicon/manifest.json">
     <meta name="msapplication-TileImage" content="<?php echo $ext; ?>img/favicon/ms-icon-144x144.png">
 
-    <link rel="stylesheet" href="../css/app.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="<?php echo $ext; ?>css/app.css">
+    <link rel="stylesheet" href="<?php echo $ext; ?>css/admin.css">
     <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
 
-    <title>Ajouter un train - L'Inventrain</title>
+    <title>Comment ajouter un train ? - L'Inventrain</title>
 
     <!--Scripts-->
     <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
 </head>
 <body>
 <?php
-include "../assets/nav.php";
+include $ext . "assets/nav.php";
 ?>
 <main id="content">
-    <div class="titleContainer">
+    <div class="docTitle">
         <h1>
-            Ajouter un train
+            Comment ajouter un train ?
         </h1>
-        <p>
-            Besoin d'aide ? Consultez la <a target="_blank" href="<?php echo $ext; ?>docs/add_trains.php">documentation associée.</a>
-        </p>
+        <p class="locator"><span class="sr-only">Vous êtes dans la</span> Documentation</p>
     </div>
-
 </main>
-<script src="../js/app.js"></script>
+<script src="<?php echo $ext; ?>js/app.js"></script>
 </body>
 </html>
