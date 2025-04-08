@@ -52,14 +52,14 @@ if (!isset($ext)) {
         <ul class="nav-right">
             <li>
                 <a href="<?php echo $ext; ?>search.php" id="search">
-                    <img class="iconNav" src="<?php echo $ext; ?>img/icons/magnifying_glass.svg" alt="">
+                    <img class="iconNav" src="<?php echo $ext; ?>img/icons/magnifying_glass_fill.svg" alt="">
                     <span class="sr-only">
                         Rechercher un train
                     </span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo $ext; ?>admin/index.php">
+                <a href="<?php echo $ext; ?>admin/">
                     <img class="iconNav" src="<?php echo $ext; ?>img/icons/plus_fill.svg"
                          alt="">
                     <span class="sr-only">

@@ -11,16 +11,20 @@
 
 :root {
     --bg-primary: #F2F2F2;
-    --txt-color: #202124;
+    --bg-secondary: #F7F7F7;
+
+    --txt-color: #202324;
+    --txt-secondary: #818181;
+
+    --link-color: #007AEA;
 }
 
 * {
     box-sizing: border-box;
     font-family: 'PT Sans', sans-serif;
-}
-
-html {
-    background: #000;
+    /*
+    border: 1px solid red;
+    */
 }
 
 body {
@@ -29,6 +33,7 @@ body {
     color: var(--txt-color);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
 }
 
 /* Accessibilité */
@@ -99,11 +104,20 @@ li {
 
 a {
     text-decoration: none;
-    color: var(--txt-color);
-    font-size: 1.5rem;
+    color: var(--link-color);
     font-style: normal;
     font-weight: 700;
     line-height: 1.2;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+nav > ul > li > a {
+    font-size: 1.5rem;
+    color: var(--txt-color);
+    transition: all 0.3s ease-in-out;
 }
 
 .logoDetail {
@@ -129,11 +143,258 @@ a {
 /* Main */
 main {
     display: flex;
-    min-height: 56.25rem;
+    /*min-height: 56.25rem;*/
     flex-direction: column;
     align-items: center;
     gap: 0.3125rem;
     align-self: stretch;
+    position: relative;
     max-width: 1140px;
     padding: 4.375rem 1.25rem 1.5rem 1.25rem;
+    margin: 0 auto;
+}
+
+main.noCenter {
+    align-items: flex-start;
+    padding: 1.5rem 0.625rem;
+}
+
+/* Docs */
+.locator {
+    color: var(--txt-secondary);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.docTitle > h1, .docTitle > p, .titleContainer > h1, .titleContainer > * {
+    line-height: 1;
+}
+
+.mapView {
+    width: 100vw;
+    height: 500px;
+}
+
+.mapView > * {
+    height: 500px;
+}
+
+.mapboxgl-ctrl-attrib-inner {
+    display: none;
+}
+
+/* Form */
+form.homeSearch {
+    width: 100%;
+}
+
+h1 > label {
+    font-family: 'Meshed Display', serif;
+    font-size: 2.25rem;
+}
+
+.bigSearch {
+    padding: 1.25rem 1.5625rem;
+    border-radius: 1.25rem;
+    border: 2px solid #E5E5E5;
+    background: #FDFDFD;
+    color: var(--txt-color);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5rem;
+    padding-left: 3rem;
+    width: 100%;
+}
+
+.bigSearch::placeholder {
+    color: #c3c3c3;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.iconSearch {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url("../img/icons/magnifying_glass.svg");
+    background-size: cover;
+    pointer-events: none;
+}
+
+/* Last Trains */
+.lastTrainsHero {
+    gap: 0.625rem;
+    padding: 2.5rem 0;
+    width: 100%;
+}
+
+.tilesContainer {
+    display: flex;
+    gap: 0.625rem;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.tile {
+    border-radius: 1.25rem;
+    background: var(--bg-secondary);
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex: 1;
+    padding: 1.375rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    align-self: stretch;
+    z-index: 1000;
+    transition: all 1s cubic-bezier(0.43, -1, 0, 1.63);
+}
+
+.tile:hover, .tile:focus {
+    transform: translateY(-1rem);
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
+.tile:focus-visible {
+    outline: 4px solid var(--link-color);
+    outline-offset: 2px;
+}
+
+.rameInfo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+}
+
+.rameIcon {
+    width: 4.54975rem;
+    align-self: stretch;
+    aspect-ratio: 72.80/47.00;
+}
+
+.rameInfo > * > h3 {
+    color: var(--txt-color);
+    font-family: "PT Sans", sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    margin-bottom: 0.3125rem;
+}
+
+.badgesContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.3125rem;
+}
+
+
+.dateContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+    align-self: stretch;
+}
+
+.dateContainer > div {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.date {
+    color: var(--txt-color);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.infosSupp {
+    display: flex;
+    padding-top: 0.625rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.iconLigne {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.3125rem;
+    align-self: stretch;
+}
+
+
+.iconLigne > img, .iconLigne > svg {
+    width: 1.875rem;
+    height: 1.875rem;
+    aspect-ratio: 1/1;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-direction: column;
+    align-self: stretch;
+    padding-top: .75rem;
+    padding-bottom: 0.625rem;
+}
+
+.seeMoreBtn {
+    position: relative;
+}
+
+.seeMoreBtn > .hoverOnly {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    opacity: 0;
+    transform: translateY(-50%) scale(0);
+    margin-top: .05rem;
+    transition: all 0.5s cubic-bezier(0.78, -0.57, 0.2, 1.52);
+}
+
+.seeMoreBtn:hover > .hoverOnly {
+    right: -15px;
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+}
+
+/* Badges */
+
+.badge {
+    display: flex;
+    padding: 0.3125rem 0.625rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 3.32rem;
+    background: var(--bg-primary);
+    color: var(--txt-color);
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.blueBadge {
+    background: #ACE2FC;
+    color: #004A6C;
 }
