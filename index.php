@@ -44,6 +44,7 @@ $ext = "./"
     <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
 </head>
 <body>
+<div id="overlay"></div>
 <?php
 include "./assets/nav.php";
 ?>
