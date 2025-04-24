@@ -1,0 +1,7 @@
+# Redirige tout en HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Index désactivé
+Options -Indexes
