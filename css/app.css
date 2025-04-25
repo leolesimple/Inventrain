@@ -454,6 +454,7 @@ h1 > label {
     width: 1.875rem;
     height: 1.875rem;
     aspect-ratio: 1/1;
+    margin-top: auto;
 }
 
 .tileResult > * > .iconLigne {
@@ -464,6 +465,7 @@ h1 > label {
     width: 2.25rem;
     height: 2.25rem;
     aspect-ratio: 1/1;
+    margin-top: 50%;
 }
 
 
@@ -575,6 +577,41 @@ h1 > label {
 .yellowBadge {
     background: #F9ECB7;
     color: #694D0F;
+}
+
+.grayBadge {
+    background: #FDFDFD;
+    color: #4F4F4F;
+}
+
+.transilienBadge {
+    background: #9cb0f1;
+    color: #00196c;
+}
+
+.redBerryBadge {
+    background: #ffccd7;
+    color: #902d42;
+}
+
+.ratpBadge {
+    background: #d1fff9;
+    color: #007a68;
+}
+
+.idfmLegerBadge {
+    background: rgb(38,41,58);
+    color: rgb(211, 208, 205);
+}
+
+.stifRatpBadge {
+    color: #f7f7f7;
+    background: #007a68;
+}
+
+.stifCarmillonRatpBadge {
+    background: linear-gradient(to right, #902d42, #007a68 );
+    color: #f7f7f7;
 }
 
 /*

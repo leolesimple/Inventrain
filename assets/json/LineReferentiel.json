@@ -1,0 +1,72 @@
+{
+  "STIF:Line::C01742:": {
+    "code": "C01742",
+    "letter": "A",
+    "icon": "rer-a.svg"
+  },
+  "STIF:Line::C01743:": {
+    "code": "C01743",
+    "letter": "B",
+    "icon": "rer-b.svg"
+  },
+  "STIF:Line::C01727:": {
+    "code": "C01727",
+    "letter": "C",
+    "icon": "rer-c.svg"
+  },
+  "STIF:Line::C01728:": {
+    "code": "C01728",
+    "letter": "D",
+    "icon": "rer-d.svg"
+  },
+  "STIF:Line::C01729:": {
+    "code": "C01729",
+    "letter": "E",
+    "icon": "rer-e.svg"
+  },
+  "STIF:Line::C01737:": {
+    "code": "C01737",
+    "letter": "H",
+    "icon": "train-h.svg"
+  },
+  "STIF:Line::C01739:": {
+    "code": "C01739",
+    "letter": "J",
+    "icon": "train-j.svg"
+  },
+  "STIF:Line::C01738:": {
+    "code": "C01738",
+    "letter": "K",
+    "icon": "train-k.svg"
+  },
+  "STIF:Line::C01740:": {
+    "code": "C01740",
+    "letter": "L",
+    "icon": "train-l.svg"
+  },
+  "STIF:Line::C01736:": {
+    "code": "C01736",
+    "letter": "N",
+    "icon": "train-n.svg"
+  },
+  "STIF:Line::C01730:": {
+    "code": "C01730",
+    "letter": "P",
+    "icon": "train-p.svg"
+  },
+  "STIF:Line::C01731:": {
+    "code": "C01731",
+    "letter": "R",
+    "icon": "train-r.svg"
+  },
+  "STIF:Line::C01741:": {
+    "code": "C01741",
+    "letter": "U",
+    "icon": "train-u.svg"
+  },
+  "STIF:Line::C02711:": {
+    "code": "C02711",
+    "letter": "V",
+    "icon": "train-v.svg"
+  }
+}

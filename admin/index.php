@@ -1,16 +1,3 @@
-<?php
-ini_set('session.cookie_secure', 1);
-ini_set('session.cookie_httponly', 1);
-session_start();
-
-if (!isset($_SESSION['login'])) {
-    header('Location: login.php');
-    exit();
-}
-
-$ext = '../';
-?>
-
 <!doctype html>
 <html lang="fr">
 <head>
