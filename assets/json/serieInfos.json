@@ -1,0 +1,98 @@
+{
+  "vb2n&bb27300_transilien": {
+    "src": "vb2n.svg"
+  },
+  "z5600_idf": {
+    "src": "z2n_idf.svg"
+  },
+  "z5600_transilien": {
+    "src": "z2n_transilien.svg"
+  },
+  "z5600_carmillon": {
+    "src": "z2n_carmillon.svg"
+  },
+  "z5600_idfm": {
+    "src": "z2n_idfm.svg"
+  },
+  "z8800_idf": {
+    "src": "z2n_idf.svg"
+  },
+  "z8800_transilien": {
+    "src": "z2n_transilien.svg"
+  },
+  "z8800_carmillon": {
+    "src": "z2n_carmillon.svg"
+  },
+  "z8800_idfm": {
+    "src": "z2n_idfm.svg"
+  },
+  "z20500_IDF": {
+    "src": "z2n_idf.svg"
+  },
+  "z20500_Transilien": {
+    "src": "z2n_transilien.svg"
+  },
+  "z20500_Carmillon": {
+    "src": "z2n_carmillon.svg"
+  },
+  "z20500_IDFM": {
+    "src": "z2n_idfm.svg"
+  },
+  "z20900_idf": {
+    "src": "z2n_idf.svg"
+  },
+  "z20900_transilien": {
+    "src": "z2n_transilien.svg"
+  },
+  "z20900_carmillon": {
+    "src": "z2n_carmillon.svg"
+  },
+  "z20900_idfm": {
+    "src": "z2n_idfm.svg"
+  },
+  "mi09_stif/ratp": {
+    "src": "mi09.svg"
+  },
+  "mi2n_idf": {
+    "src": "mi2n_alteo.svg"
+  },
+  "mi2n_idfm": {
+    "src": "mi2n_idfm.svg"
+  },
+  "z22500_idf": {
+    "src": "mi2n_eole.svg"
+  },
+  "mi84_*": {
+    "src": "mi84_79.svg"
+  },
+  "mi79_*": {
+    "src": "mi84_79.svg"
+  },
+  "z50000_idfm": {
+    "src": "z50000_idfm.svg"
+  },
+  "z57000_idfm": {
+    "src": "z57000.svg"
+  },
+  "z58000_IDFM": {
+    "src": "z58000.svg"
+  },
+  "z58500_IDFM": {
+    "src": "z58000.svg"
+  },
+  "B 82500": {
+    "src": "z50000_carmillon.svg"
+  },
+  "U52600": {
+    "src": "dualis_idfm.svg"
+  },
+  "U53600": {
+    "src": "dualis_carmillon.svg"
+  },
+  "U53700" : {
+    "src": "dualis_idfm.svg"
+  },
+  "U53800" : {
+    "src": "dualis_idfm.svg"
+  }
+}

@@ -1,14 +1,5 @@
 <?php
-ini_set('session.cookie_secure', 1);
-ini_set('session.cookie_httponly', 1);
-session_start();
-
-if (!isset($_SESSION['login'])) {
-    header('Location: login.php');
-    exit();
-}
-
-$ext = '../';
+$ext = "./"
 ?>
 
 <!doctype html>
@@ -20,7 +11,7 @@ $ext = '../';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Ajouter un train à L'Inventrain via l'espace sécurisé.">
     <meta name="author" content="Léo LESIMPLE">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#F2F2F2">
     <meta name="msapplication-navbutton-color" content="#F2F2F2">
     <meta name="apple-mobile-web-app-status-bar-style" content="#F2F2F2">
@@ -41,34 +32,29 @@ $ext = '../';
     <link rel="manifest" href="<?php echo $ext; ?>img/favicon/manifest.json">
     <meta name="msapplication-TileImage" content="<?php echo $ext; ?>img/favicon/ms-icon-144x144.png">
 
-    <link rel="stylesheet" href="../css/app.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="./css/app.css">
     <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
 
-    <title>Admin Plus - L'Inventrain</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+
+    <title>Accueil - L'Inventrain</title>
 
     <!--Scripts-->
     <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
 </head>
 <body>
+<div id="overlay"></div>
 <?php
-include "../assets/nav.php";
+include "./assets/nav.php";
 ?>
-<main id="content">
-    <div class="titleContainer">
-        <h1>
-            Panneau d'administration
-        </h1>
+<main class="noCenter" id="content">
+    <div class="fil-ariane">
+        <a href="./index.php">Accueil</a> > <a href="./detailsTrain.php?">Détails du train</a>
     </div>
-    <script>
-        Toast({
-            message: "Bienvenue dans le panneau d'administration de L'Inventrain !",
-            type: "success",
-            duration: 5000,
-            position: "top-right"
-        });
-    </script>
 </main>
-<script src="../js/app.js"></script>
+<?php
+include "./assets/footer.php"
+?>
 </body>
 </html>
