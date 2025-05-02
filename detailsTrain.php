@@ -35,9 +35,6 @@ $ext = "./"
     <link rel="stylesheet" href="./css/app.css">
     <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
 
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
-
     <title>Accueil - L'Inventrain</title>
 
     <!--Scripts-->
