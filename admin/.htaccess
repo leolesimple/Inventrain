@@ -9,7 +9,7 @@ Options -Indexes
 # Basic authentication
 AuthType Basic
 AuthName "Restricted Area"
-AuthUserFile ${APACHE_DOCUMENT_ROOT}/.htpasswd
+AuthUserFile /home/lesimple/public_html/sae203/admin/.htpasswd
 Require valid-user
 
 # Deny access to the .htpasswd file
