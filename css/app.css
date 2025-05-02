@@ -14,9 +14,9 @@
     --bg-secondary: #F7F7F7;
 
     --txt-color: #202324;
-    --txt-secondary: #818181;
+    --txt-secondary: #404040;
 
-    --link-color: #007AEA;
+    --link-color: #006cd1;
 }
 
 * {
@@ -59,7 +59,7 @@ body {
     padding: 0;
     min-height: 100vh;
     width: 100vw;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
 }
 
 /* Accessibilité */
@@ -559,6 +559,12 @@ h1 > label {
     line-height: 100%;
 }
 
+.detailsBadge {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+}
+
 .blueBadge {
     background: #ACE2FC;
     color: #004A6C;
@@ -653,6 +659,106 @@ h1 > label {
 
 .TriBtn span > svg {
     width: 0.825rem;
+}
+
+.trainInfo {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    align-self: stretch;
+    padding: 3rem 0;
+}
+
+.imgTrainBig {
+    height: 9.5625rem;
+    aspect-ratio: 79/51;
+}
+
+.trainInfosDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.3125rem;
+}
+
+.tableContainer {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 1.5625rem;
+    align-self: stretch;
+}
+
+.tableContainer > * {
+    display: flex;
+    padding: 0.875rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    flex: 1 0 0;
+}
+
+.tableWrapper {
+    border: 1px solid #CBCBCB;
+    border-radius: 15px;
+    width: 100%;
+    overflow: hidden;
+}
+
+table {
+    background: #F2F2F2;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    border-collapse: collapse;
+    border-radius: 15px;
+}
+
+thead {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.tableTitle {
+    padding: 10px 12px;
+}
+
+.tableContent {
+    padding: 8px;
+}
+
+table th:first-child {
+    border-top-left-radius: 15px;
+    border-left: none;
+    border-top: none;
+}
+
+table th:last-child {
+    border-top-right-radius: 15px;
+    border-top: none;
+    border-right: none;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+    border-bottom: none;
+    border-left: none;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+    border-bottom:none;
+    border-right: none;
+}
+
+th:first-child, td:first-child {
+    border-right: 1px solid #CBCBCB;
+    border-bottom: 1px solid #CBCBCB;
+}
+
+th:last-child, td:last-child {
+    border-left: 1px solid #CBCBCB;
+    border-bottom: 1px solid #CBCBCB;
 }
 
 /*

@@ -1,3 +1,7 @@
+<?php
+    $ext = "../";
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
