@@ -2,11 +2,10 @@
 global $conn;
 $ext = "../";
 
-include "../assets/conn.php";
+include "../assets/includes/conn.php";
 
 // If add button is clicked
 if (isset($_POST['add'])) {
-    include "../assets/conn.php";
 
     $serie = $_POST['serie'];
     $num = $_POST['num'];
@@ -109,8 +108,7 @@ if (isset($_POST['add'])) {
 </head>
 <body>
 <?php
-include "../assets/nav.php";
-include "../assets/conn.php";
+include "../assets/includes/nav.php";
 ?>
 <main id="content">
     <div class="titleContainer adminTitle">
@@ -254,6 +252,9 @@ include "../assets/conn.php";
         <input type="submit" name="add" value="Envoyer">
     </form>
 </main>
+<?php
+include "../assets/includes/footer.php";
+?>
 <script src="../js/app.js"></script>
 </body>
 </html>

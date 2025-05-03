@@ -44,7 +44,7 @@ $ext = "../"
 <body>
 <div id="overlay"></div>
 <?php
-include $ext . "assets/nav.php";
+include $ext . "assets/includes/nav.php";
 ?>
 <main class="noCenter" id="content">
     <div class="fil-ariane">

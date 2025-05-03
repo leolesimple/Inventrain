@@ -92,7 +92,7 @@ body {
 }
 
 /* Navbar */
-header {
+header.navHeader {
     position: sticky;
     top: 0;
     background: linear-gradient(180deg, #F2F2F2 0%, #F2F2F250 52%, #F2F2F200 100%);
