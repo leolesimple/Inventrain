@@ -92,6 +92,13 @@ body {
 }
 
 /* Navbar */
+header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(180deg, #F2F2F2 0%, #F2F2F250 52%, #F2F2F200 100%);
+    z-index: 1005 !important;
+
+}
 
 nav {
     display: flex;
@@ -99,18 +106,6 @@ nav {
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    background: linear-gradient(180deg, #F2F2F2 0%, rgba(242, 242, 242, 0.59) 53%, #F2F2F2 100%);
-}
-
-/*
-    IA : GPT-4o et Figma
-    Figma propose le fallback sRGB et le display-p3.
-    GPT-4o m'a corrigé en proposant d'utiliser le @supports (que je connais déjà).
-*/
-@supports (color: color(display-p3 1 1 1)) {
-    nav {
-        background: linear-gradient(180deg, color(display-p3 0.949 0.949 0.949) 0%, color(display-p3 0.949 0.949 0.949 / 0.59) 53%, color(display-p3 0.949 0.949 0.949 / 0.00) 100%);
-    }
 }
 
 nav > ul {
@@ -238,6 +233,21 @@ body:has(.bigSearch:focus) {
 
 /* Form */
 form.homeSearch {
+    width: 100%;
+}
+
+form.adminSearch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    align-self: stretch;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.inputContainer {
     width: 100%;
 }
 
@@ -438,7 +448,6 @@ h1 > label {
     justify-content: center;
     align-items: flex-end;
     gap: 0.3125rem;
-    align-self: stretch;
 }
 
 .tileResult > .infosSupp {
@@ -454,7 +463,6 @@ h1 > label {
     width: 1.875rem;
     height: 1.875rem;
     aspect-ratio: 1/1;
-    margin-top: auto;
 }
 
 .tileResult > * > .iconLigne {
@@ -465,7 +473,6 @@ h1 > label {
     width: 2.25rem;
     height: 2.25rem;
     aspect-ratio: 1/1;
-    margin-top: 50%;
 }
 
 
@@ -785,4 +792,61 @@ th:last-child, td:last-child {
     .rame {
         flex-wrap: wrap;
     }
+}
+
+/*
+    Pub
+*/
+
+.pubContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-direction: column;
+    align-self: stretch;
+    padding: 1.5rem 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.pub {
+    display: flex;
+    width: 34.9375rem;
+    padding: 1.375rem 2.6875rem;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1.25rem;
+    background: #F7F7F7;
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+
+.pub:hover, .pub:focus {
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
+    transform: translateY(-.5rem);
+    z-index: 1001;
+}
+
+.pub > * {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.infostationIcon {
+    width: 4.4375rem;
+    height: 2.75rem;
+}
+
+.infostationLogo {
+    height: 2.2rem;
+}
+
+.infostationTagLine {
+    color: #818181;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0.6rem;
+    margin-bottom: .5rem;
 }

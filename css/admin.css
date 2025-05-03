@@ -1,48 +1,82 @@
-form {
-    max-width: 600px;
-}
+/*
+    Inputs
+*/
 
-body.loginPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-}
-
-form.loginForm {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-form div {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
+.adminTitle {
     width: 100%;
+    max-width: 800px;
+    padding: 0 0 2rem 0;
 }
 
-input:not([type="submit"]) {
-    padding: 10px 15px;
-    border: 2px solid #ccc;
-    border-radius: 9px;
-    font-size: 1.25rem;
+label {
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--txt-color);
+    margin-bottom: 1.625rem;
+    margin-left: 0.625rem;
+}
+
+input:not([type="checkbox"]),
+select,
+textarea {
+    width: 100%;
+    padding: .8rem 1rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5rem;
+    font-family: 'PT Sans', sans-serif;
+    color: var(--txt-color);
+    background: #FDFDFD;
+    border: 2px solid #E5E5E5;
+    border-radius: 12px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    border-radius: 12px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #c3c3c3;
+}
+
+select {
+    appearance: none;
+    padding-right: 1.2rem;
+    background: #FDFDFD;
+    cursor: pointer;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 6rem;
 }
 
 input[type="submit"] {
-    padding: 10px 15px;
-    border-radius: 9px;
-    font-size: 1.1rem;
-    background-color: #aed1f4;
-    border: 0;
-    color: #143b63;
+    background: #b3d8fb;
+    color: #094175;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.6s;
+    transition: all 1s ease-in-out;
 }
 
 input[type="submit"]:hover {
-    background-color: #92b2d5;
+    background: #94c4f7;
+    border-radius: 50rem;
 }
