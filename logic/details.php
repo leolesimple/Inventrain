@@ -1,5 +1,5 @@
 <?php
-include "./assets/conn.php";
+include "./assets/includes/conn.php";
 
 $jsonIcons = file_get_contents('./assets/json/serieInfos.json');
 $lineIcons = json_decode($jsonIcons, true);
@@ -27,6 +27,8 @@ train.deliveryDate,
 network.name AS network_name,
 status.state AS status,
 depot.name AS depot_name,
+depot.code AS depot_code,
+depot.city AS depot_city,
 renovation.renovationType,
 owner.name AS owner_name,
 GROUP_CONCAT(DISTINCT line.LineRef ORDER BY line.LineRef SEPARATOR ', ') AS lignes_affectees,
@@ -61,6 +63,7 @@ ORDER BY train.idTrain DESC";
             $breadcrumb = '<div class="fil-ariane"><a href="./index.php">Accueil</a> > <a href="./detailsTrain.php?">Détails du train</a> > <a href="./detailsTrain.php?id=' . $row["idTrain"] . '">' . $serie . " n°" . htmlspecialchars($number) . '</a></div>';
             echo $breadcrumb;
             echo '<h1 class="bigTitle">Détails</h1>';
+            echo '<script>document.title = "' . htmlspecialchars($serie) . ' ' . htmlspecialchars($number) . ' - L\'Inventrain";</script>';
 
             $livree = $row["livery_name"];
             $serie = $row["serie_name"];
@@ -258,7 +261,7 @@ ORDER BY train.idTrain DESC";
                                         </tr>
                                          <tr>
                                             <td class="tableContent">Établissement d\'attache</td>
-                                            <td class="tableContent">' . $row['depot_name'] . '</td>
+                                            <td class="tableContent">' . $row['depot_name'] ." - <strong>(". $row['depot_code'] . ')</strong></td>
                                         </tr>
                                     </table>
                                 </div>
