@@ -5,3 +5,16 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Index désactivé
 Options -Indexes
+
+# Encodage fichiers .geojson
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE application/json
+    AddEncoding gzip .gz
+
+    # Forcer l'encodage gzip sur les .geojson.gz
+    <FilesMatch "\.geojson\.gz$">
+        ForceType application/json
+        Header set Content-Encoding gzip
+        Header set Content-Type application/json
+    </FilesMatch>
+</IfModule>
