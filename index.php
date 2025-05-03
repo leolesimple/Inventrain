@@ -68,7 +68,7 @@ include "./assets/includes/nav.php";
         map.on('load', () => {
             map.addSource('idfm', {
                 type: 'geojson',
-                data: 'assets/json/lines_alleged.geojson'
+                data: 'assets/json/lines_alleged.geojson.gz'
             });
 
             map.addLayer({
@@ -122,14 +122,14 @@ include "./assets/includes/nav.php";
         </div>
     </div>
 </main>
+<?php
+include "./assets/includes/footer.php";
+?>
 <script src="./js/app.js"></script>
 <script>
     document.querySelectorAll('.tile[role="button"]').forEach(tile => {
         tile.addEventListener('click', () => {
             const idTrain = tile.dataset.train;
-            const number = tile.querySelector('.trainNumber')?.textContent || 'Inconnu';
-
-            console.log("Train cliqué :", idTrain, "-", number);
             window.location.href = "detailsTrain.php?id=" + idTrain;
         });
     });
