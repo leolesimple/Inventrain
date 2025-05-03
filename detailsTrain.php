@@ -45,21 +45,6 @@ $ext = "./"
 <?php
 include "./assets/includes/nav.php";
 ?>
-<div class="pubContainer" id="pubC">
-    <div class="pub" id="pub" onclick="window.open('https://infostation.fr', '_blank');">
-        <div>
-            <img src="https://infostation.fr/img/z58.svg" class="infostationIcon" alt="">
-            <div>
-                <img src="https://infostation.fr/img/wordmark.svg" alt="InfoStation" class="infostationLogo">
-                <p class="infostationTagLine">Pratique. Rapide. En temps réel.</p>
-            </div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 14 24" fill="none">
-            <path d="M1.98289 20.245C1.52155 21.3869 1.14259 22.5124 0.846007 23.6216H7.76616C8.2275 21.4032 8.91952 19.4458 9.84221 17.7493C10.7649 16.0202 11.9842 14.7642 13.5 13.9812V10.1642C12.4785 9.67483 11.5887 8.94079 10.8308 7.96207C10.0729 6.98334 9.43029 5.87412 8.90304 4.63441C8.40875 3.36207 8.02978 2.02448 7.76616 0.621643H0.5C0.862484 1.69824 1.2744 2.79115 1.73574 3.90036C2.23004 4.97696 2.83967 5.98831 3.56464 6.93441C5.5 9.46009 8.5 12.1216 8.5 12.1216C8.5 12.1216 5 15.1216 3.6635 17.1131C3.00444 18.0592 2.44423 19.1032 1.98289 20.245Z"
-                  fill="#262E41" style="fill:#262E41;fill:color(display-p3 0.1490 0.1804 0.2549);fill-opacity:1;"/>
-        </svg>
-    </div>
-</div>
 <main class="noCenter" id="content">
     <?php
     include "./logic/details.php";

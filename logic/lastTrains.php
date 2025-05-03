@@ -137,7 +137,7 @@ if ($result->num_rows > 0) {
         echo '
         <div class="tile" role="button" aria-label="Voir le train ' . $number . '" tabindex="0" data-train="' . $row["idTrain"] . '">
         <div class="rameInfo">
-            <img src="../img/trains/' . $icon . '" class="rameIcon" alt="">
+            <img src="img/trains/' . $icon . '" class="rameIcon" alt="">
             <div>
                 <h3>' . $number . '</h3>
                 <div class="badgesContainer">
