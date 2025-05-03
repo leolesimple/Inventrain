@@ -44,7 +44,7 @@ $ext = "../";
 </head>
 <body>
 <?php
-include $ext . "assets/nav.php";
+include $ext . "assets/includes/nav.php";
 ?>
 <main class="docsMain" id="content">
     <div class="fil-ariane">
@@ -212,7 +212,7 @@ include $ext . "assets/nav.php";
             <dl>
                 <dt>🤔 Qu’est-ce que c’est ?</dt>
                 <dd>
-                    Le niveau d’automatisation est une échelle d'à quel point le conducteur est assisté par le système
+                    Le niveau d’automatisation est une échelle indiquant à quel point le conducteur est assisté par le système
                     de conduite. Il existe plusieurs niveaux, allant de GOA0 à GOA4.
                     <ul>
                         <li>
@@ -224,18 +224,18 @@ include $ext . "assets/nav.php";
                             et de la vitesse ainsi que la distance entre deux trains. (KVB, BAL)
                         </li>
                         <li>
-                            <strong>GOA2</strong> : Le système de conduite est semi-automatisé, il gère tout départ et
+                            <strong>GOA2</strong> : Le système de conduite est semi-automatisée, il gère tout départ et
                             arrêt inclus SAUF les <a target="_blank" href="./lexique.php#ev">échanges voyageurs</a>. Le
                             conducteur est toujours présent en cabine, en cas d'urgence, il peut reprendre en conduite
                             manuelle. (SACEM, Métro de Paris)
                         </li>
                         <li>
-                            <strong>GOA3</strong> : La conduite est entièrement automatisé, le système gère même la
+                            <strong>GOA3</strong> : La conduite est entièrement automatisée, le système gère même la
                             présence d'obstacle sur les voies, un opérateur est présent dans le train en cas d'urgence,
                             mais n'est pas conducteur. (NExTEO, Ligne 4 du Métro de Lyon).
                         </li>
                         <li>
-                            <strong>GOA4</strong> : La conduite est entièrement automatisé, sans conducteur, ni
+                            <strong>GOA4</strong> : La conduite est entièrement automatisée, sans conducteur, ni
                             opérateur, ces systèmes sont souvent en milieu hermétique avec <a target="_blank"
                                                                                               href="./lexique.php#portespal">portes
                                 palières</a>. (Ligne 1, 4, 14 du Métro de Paris).
@@ -361,6 +361,9 @@ include $ext . "assets/nav.php";
         <a href="./lexique.php" class="next">Lexique</a>
     </section>
 </main>
+<?php
+include $ext . "assets/includes/footer.php";
+?>
 <script src="<?= $ext; ?>js/docs.js"></script>
 <script src="<?= $ext; ?>js/app.js"></script>
 </body>
