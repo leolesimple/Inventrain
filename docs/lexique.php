@@ -44,7 +44,7 @@ $ext = "../";
 </head>
 <body>
 <?php
-include $ext . "assets/nav.php";
+include $ext . "assets/includes/nav.php";
 ?>
 <main class="docsMain" id="content">
     <div class="fil-ariane">

@@ -4,7 +4,7 @@ if (!isset($ext)) {
 }
 ?>
 
-<header>
+<header class="navHeader">
     <a href="#content" class="skip-link">Aller au contenu</a>
     <a href="#search" class="skip-link">Aller à la recherche</a>
     <nav>
