@@ -46,7 +46,7 @@ $ext = "./"
 <body>
 <div id="overlay"></div>
 <?php
-include "./assets/nav.php";
+include "./assets/includes/nav.php";
 ?>
 <section class="mapView">
     <div id="map"></div>
@@ -113,7 +113,7 @@ include "./assets/nav.php";
         </h1>
         <div class="tilesContainer">
             <?php
-            include "./core/lastTrains.php";
+            include "./logic/lastTrains.php";
             ?>
         </div>
         <div class="buttonContainer">
@@ -130,12 +130,9 @@ include "./assets/nav.php";
             const number = tile.querySelector('.trainNumber')?.textContent || 'Inconnu';
 
             console.log("Train cliqué :", idTrain, "-", number);
-            // Tu peux rediriger si besoin :
             window.location.href = "detailsTrain.php?id=" + idTrain;
         });
     });
-
-
 </script>
 <script src="https://kit.fontawesome.com/406b037200.js" crossorigin="anonymous"></script>
 </body>

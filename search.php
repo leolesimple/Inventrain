@@ -38,7 +38,7 @@ $ext = "./"
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
 
-    <title>Accueil - L'Inventrain</title>
+    <title>Recherche - L'Inventrain</title>
 
     <!--Scripts-->
     <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
@@ -46,7 +46,7 @@ $ext = "./"
 <body>
 <div id="overlay"></div>
 <?php
-include "./assets/nav.php";
+include "./assets/includes/nav.php";
 ?>
 <main class="noCenter" id="content">
     <form class="homeSearch" action="search.php" method="get" style="padding: 4.375rem 1.25rem 1.5rem 1.25rem;">
@@ -113,17 +113,30 @@ include "./assets/nav.php";
         </div>
         <div class="resultsContainer">
             <?php
-            include "./core/searchResults.php";
+            include "./logic/searchResults.php";
             ?>
         </div>
     </div>
 </main>
+<?php
+include "./assets/includes/footer.php";
+?>
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const search = urlParams.get('search');
     if (search) {
         document.getElementById('homeBar').value = search;
     }
+
+    document.querySelectorAll('.tile[role="button"]').forEach(tile => {
+        tile.addEventListener('click', () => {
+            const idTrain = tile.dataset.train;
+            const number = tile.querySelector('.trainNumber')?.textContent || 'Inconnu';
+
+            console.log("Train cliqué :", idTrain, "-", number);
+            window.location.href = "detailsTrain.php?id=" + idTrain;
+        });
+    });
 </script>
 <script src="./js/app.js"></script>
 <script src="https://kit.fontawesome.com/406b037200.js" crossorigin="anonymous"></script>
