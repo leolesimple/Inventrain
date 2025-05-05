@@ -34,6 +34,7 @@ textarea {
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
+
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
@@ -53,8 +54,11 @@ textarea::placeholder {
 select {
     appearance: none;
     padding-right: 1.2rem;
-    background: #FDFDFD;
     cursor: pointer;
+    background: #FDFDFD  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 1.2rem;
+    background-position: right 1rem center;
 }
 
 textarea {
@@ -79,4 +83,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background: #94c4f7;
     border-radius: 50rem;
+}
+
+label:has(+ input[required]):after,
+label:has(+ select[required]):after,
+label:has(+ textarea[required]):after {
+    content: ' *';
+    color: #9F0000;
 }
