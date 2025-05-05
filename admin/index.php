@@ -138,8 +138,8 @@ include "../assets/includes/nav.php";
             ?>
         </div>
         <div class="inputContainer">
-            <label for="num">Numéro</label>
-            <input type="text" name="num" id="num" placeholder="34C, 3546, 001L" required>
+            <label for="num">Numéro <small>(max. 50 caractères)</small></label>
+            <input type="text" name="num" id="num" maxlength="50" placeholder="34C, 3546, 001L" required>
         </div>
         <div class="inputContainer">
             <label for="livree">Livrée</label>
@@ -233,8 +233,8 @@ include "../assets/includes/nav.php";
             echo '</select>';
             ?>
         </div>
-        <div class="inputContainer">
-            <label for="line">Ligne d'Affectation</label>
+        <fieldset class="inputContainer">
+            <legend for="line">Ligne d'Affectation</legend>
             <?php
             $lines = $conn->query("SELECT * FROM line")->fetch_all(MYSQLI_ASSOC);
             foreach ($lines as $line) {
@@ -244,7 +244,7 @@ include "../assets/includes/nav.php";
                 echo '</div>';
             }
             ?>
-        </div>
+        </fieldset>
         <div class="inputContainer">
             <label for="comment">Commentaire</label>
             <textarea name="comment" id="comment" cols="30" rows="8"></textarea>
@@ -255,6 +255,6 @@ include "../assets/includes/nav.php";
 <?php
 include "../assets/includes/footer.php";
 ?>
-<script src="../js/app.js"></script>
+<script src="../js/form.js"></script>
 </body>
 </html>

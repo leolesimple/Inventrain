@@ -249,6 +249,10 @@ form.adminSearch {
 
 .inputContainer {
     width: 100%;
+    /* Delete fieldset stuffs*/
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 h1 > label {
@@ -335,6 +339,23 @@ h1 > label {
 .tileResult {
     flex-direction: row;
     padding: 1.375rem;
+    order: 1;
+}
+
+.tileResult.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fullHide {
+    opacity: 0;
+    height: 0;
+    max-height: 0;
+    padding: 0;
+    transition: all 0.5s ease-in-out;
+    order: 2;
 }
 
 .tileResult > .rame {
@@ -613,7 +634,7 @@ h1 > label {
 }
 
 .idfmLegerBadge {
-    background: rgb(38,41,58);
+    background: rgb(38, 41, 58);
     color: rgb(211, 208, 205);
 }
 
@@ -623,7 +644,7 @@ h1 > label {
 }
 
 .stifCarmillonRatpBadge {
-    background: linear-gradient(to right, #902d42, #007a68 );
+    background: linear-gradient(to right, #902d42, #007a68);
     color: #f7f7f7;
 }
 
@@ -634,7 +655,7 @@ h1 > label {
 .filterContainer {
     display: flex;
     padding: 0.625rem;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.625rem;
     align-self: stretch;
 }
@@ -655,9 +676,28 @@ h1 > label {
     align-items: center;
 }
 
+#rameUp,
+#rameDown,
+#livraisonUp,
+#livraisonDown {
+    opacity: 0;
+    margin-top: -7.9px;
+    transition: opacity 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+    transform-origin: center;
+}
+
+#rameUp.visible,
+#rameDown.visible,
+#livraisonUp.visible,
+#livraisonDown.visible {
+    margin-top: 0 !important;
+    opacity: 1;
+}
+
 .TriBtn span {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .vSep::before {
@@ -754,7 +794,7 @@ table tr:last-child td:first-child {
 
 table tr:last-child td:last-child {
     border-bottom-right-radius: 15px;
-    border-bottom:none;
+    border-bottom: none;
     border-right: none;
 }
 
