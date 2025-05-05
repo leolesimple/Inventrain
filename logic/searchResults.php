@@ -51,13 +51,23 @@ GROUP BY train.idTrain
 ORDER BY train.idTrain DESC";
 
 $result = $conn->query($sql);
-// Check if there are results
 if ($result->num_rows > 0) {
     $jsonLines = file_get_contents('./assets/json/LineReferentiel.json');
     $lineData = json_decode($jsonLines, true);
 
     $jsonIcons = file_get_contents('./assets/json/serieInfos.json');
     $lineIcons = json_decode($jsonIcons, true);
+
+    $livery = [];
+
+    // Affichage du nombre de résultats
+    echo '<div class="resultCount">';
+    if ($result->num_rows == 1) {
+        echo '1 train trouvé';
+    } else {
+        echo $result->num_rows . ' trains trouvés';
+    }
+    echo '</div>';
 
     while ($row = $result->fetch_assoc()) {
         // Données à afficher
@@ -99,6 +109,10 @@ if ($result->num_rows > 0) {
         }
 
         $livree = $row["livery_name"];
+
+        if (!in_array($livree, $livery)) {
+            $livery[] = $livree;
+        }
         if ($serie == "mi84" or $serie == "mi79") {
             $icon_array = $serie . "_*";
         } elseif ($serie == "B 82500" or $serie == "U52600" or $serie == "U53600" or $serie == "U53700" or $serie == "U53800") {
@@ -153,8 +167,7 @@ if ($result->num_rows > 0) {
         $date = date("d/m/Y", strtotime($date));
         $date = htmlspecialchars($date);
 
-
-        echo '<div class="tile tileResult" role="button" aria-label="Voir le train ' . $number . '" tabindex="0" data-train="' . $row["idTrain"] . '">
+        echo '<div class="tile tileResult" role="button" aria-label="Voir le train ' . $number . '" tabindex="0" data-rame="' . $number . '" data-livraison="' . $date . '" data-livery="' . $livree . '" data-train="' . $row["idTrain"] . '">
                 <div class="rame">
                     <div class="rameInfo">
                         <img src="../img/trains/' . $icon . '" class="rameIcon" alt="">
@@ -193,8 +206,9 @@ if ($result->num_rows > 0) {
                 </div>
             </div>';
     }
+    echo "<script>let livrees = " . json_encode($livery) . ";</script>";
 } else {
-    echo "0 results";
+    echo "0 éléments trouvés";
 }
 // Close the connection
 $conn->close();

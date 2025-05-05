@@ -59,11 +59,20 @@ include "./assets/includes/nav.php";
             zoom: 10,
             lang: 'fr',
             center: [2.3470129, 48.8616513],
+            cooperativeGestures: true
         });
+
+        const mapOptions = {
+            scrollZoom: {
+                ctrl: true
+            }
+        };
 
         map.on('style.load', () => {
             map.setLayoutProperty('country-label', 'text-field', ['get', 'name_fr']);
         });
+
+        map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
         map.on('load', () => {
             map.addSource('idfm', {
