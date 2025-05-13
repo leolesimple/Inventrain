@@ -2,9 +2,6 @@
 global $conn;
 include "./assets/includes/conn.php";
 
-echo "Chargé";
-var_dump($conn);
-
 $sql = "SELECT
   train.idTrain,
   train.number,
@@ -130,8 +127,10 @@ if (count($result) > 0) {
 
         $depot = $row["depotName"];
         $date = $row["deliveryDate"];
-        $date = date("d/m/Y", strtotime($date));
+        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMMM yyyy');
+        $date = $formatter->format(new DateTime($date));
         $date = htmlspecialchars($date);
+
 
         echo '
         <div class="tile" role="button" aria-label="Voir le train ' . $number . '" tabindex="0" data-train="' . $row["idTrain"] . '">
