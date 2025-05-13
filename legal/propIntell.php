@@ -33,6 +33,7 @@ $ext = "../"
     <meta name="msapplication-TileImage" content="<?php echo $ext; ?>img/favicon/ms-icon-144x144.png">
 
     <link rel="stylesheet" href="<?php echo $ext; ?>/css/app.css">
+    <link rel="stylesheet" href="<?php echo $ext; ?>/css/docs.css">
     <title>Propriété Intellectuelle - L'Inventrain</title>
 </head>
 <body>
@@ -77,13 +78,26 @@ include $ext . "assets/includes/nav.php";
                         href="./licenses/License_Meshed_Display.pdf">Consulter la license (PDF, 69 ko)</a>.
             </li>
             <li>
-                <strong>
-                    PT Sans
-                </strong>
-                : utilisée pour le texte du site, est soumise à la license SIL Open Font License 1.1 <br> <a
+                <strong>IBM Plex Sans</strong> : utilisée pour le texte du site, est soumise à la license SIL Open Font License 1.1 <br> <a
                         href="./licenses/OFL.txt">Consulter la license OFL (TXT, 5 ko)</a>.
             </li>
+            <li><s>
+                <strong>PT Sans</strong> : utilisée pour le texte du site, est soumise à la license SIL Open Font License 1.1 <br> <a
+                            href="./licenses/OFL.txt" aria-disabled="true" class="disabledLink">Consulter la license OFL (TXT, 5 ko)</a>.</s>
+            </li>
         </ul>
+        <div class="docAlert red">
+            <p>
+                <strong>
+                    Attention !
+                </strong>
+                <br>
+                Suite à la découverte récente que la police « PT Sans » a été conçue pour le gouvernement russe et qu’elle est toujours utilisée par ce dernier, et conscient du caractère problématique de cette symbolique, j'ai procédé au remplacement de la police « PT Sans » par la police « IBM Plex Sans » sur le site.
+                <br>
+                Toute mention de la police "PT Sans" dans ce site est donc obsolète et n'est plus utilisée.
+                <br>
+            </p>
+        </div>
     </section>
     <section class="legalContent">
         <h2>

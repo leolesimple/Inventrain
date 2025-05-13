@@ -152,6 +152,9 @@ include "./assets/includes/nav.php";
                 Que vous soyez curieux, passionné ou juste en train de chercher une info précise, L’Inventrain vous aide
                 à
                 mieux comprendre ce qui roule autour de vous.
+                <br>
+                <a class="seeMoreBtn" href="./about.php">Plus en détail <i
+                            class="fa-solid fa-chevron-right hoverOnly"></i></a>
             </p>
         </div>
     </div>
