@@ -108,3 +108,15 @@ selectLivrees.addEventListener('change', (e) => {
         }
     })
 })
+
+
+/*
+* On click on #overlay, remove focus on inputs
+*/
+const overlay = document.getElementById('overlay');
+overlay.addEventListener('click', () => {
+    const inputs = document.querySelectorAll('.filterContainer input')
+    inputs.forEach(input => {
+        input.blur()
+    })
+})
