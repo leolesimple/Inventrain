@@ -34,12 +34,8 @@ $ext = "../"
 
     <link rel="stylesheet" href="<?php echo $ext; ?>css/app.css">
     <link rel="stylesheet" href="<?php echo $ext; ?>css/docs.css">
-    <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
 
-    <title>Accueil - L'Inventrain</title>
-
-    <!--Scripts-->
-    <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
+    <title>Accueil de la Documentation - L'Inventrain</title>
 </head>
 <body>
 <div id="overlay"></div>
@@ -57,36 +53,57 @@ include $ext . "assets/includes/nav.php";
             Documentation
         </h1>
         <p>
-            Bienvenue dans la documentation de L'Inventrain ! <br> Vous trouverez ici toutes les informations
-            nécessaires pour utiliser le site.
+            L’Inventrain, c’est un projet de base de données dédiée aux trains d’Île-de-France, pensé pour centraliser
+            un maximum d’infos techniques, visuelles et historiques sur les matériels roulants.
+            Cette documentation vous guide à travers son fonctionnement, sa structure et les règles de contribution
+            éventuelles.
         </p>
     </header>
 
-    <section class="aLaUne">
-        <h2>À la Une</h2>
-        <div class="banner" role="button" tabindex="0">
-            <h3>Ajouter un train à L'Inventrain</h3>
-            <p>
-                Découvrez comment ajouter un train à L'Inventrain via l'espace sécurisé. <br>
-                Vous y trouverez notamment des informations sur les différentes valeurs à renseigner, les formats
-                acceptés et les erreurs possibles.
-            </p>
-        </div>
+    <section class="docsContent">
+        <h2>🔍 Que trouve-t-on dans L’Inventrain ?</h2>
+        <ul>
+            <li>Une fiche <strong>détaillée</strong> pour chaque rame</li>
+            <li>
+                Des données techniques : série, livrée, constructeur, automatisation…
+            </li>
+            <li>
+                Des affectations par ligne, dépôt, réseau…
+            </li>
+            <li>
+                L’évolution du matériel : rénovations, mises en service, retraits
+            </li>
+        </ul>
+    </section>
+    <section class="docsContent">
+        <h2>📄 Les pages disponibles</h2>
+        <p>
+            Je vous propose une documentation complète sur le site en raison de la complexité de certaines notions. En
+            effet, les termes ferroviaire peuvent-être difficiles à comprendre pour les néophytes. Voici un aperçu des
+            pages disponibles :
+        </p>
+        <ul class="unList bigList">
+            <li><a href="./add_trains.php">➕ Comment ajouter un train</a></li>
+            <li><a href="./lexique.php">📚 un lexique</a>, pour comprendre chaque terme technique.</li>
+            <li><a href="./livraisons.php">📔 un annuaire des mouvements de trains</a>, pour alimenter la base de
+                données.
+            </li>
+        </ul>
+    </section>
+
+    <section class="docsContent">
+        <h2>💡 Pourquoi cette doc ?</h2>
+        <p>Parce qu’on aime les trains, mais aussi les projets bien organisés.
+            Et que tout projet de base de données sans doc… ben, c'est comme un <a
+                    href="https://fr.wikipedia.org/wiki/Altéo">MI2N</a> attelé à un <a
+                    href="https://fr.wikipedia.org/wiki/MI_09">MI09</a> : ça finit par cramer
+            😎</p>
     </section>
 </main>
+<?php
+include $ext . "assets/includes/footer.php";
+?>
 <script src="../js/app.js"></script>
-<script>
-    // On click or focus + enter on the banner, redirect to the add train page
-    document.querySelector('.banner').addEventListener('click', function () {
-        window.location.href = 'add_trains.php';
-    });
-
-    document.querySelector('.banner').addEventListener('keyup', function (e) {
-        if (e.key === 'Enter') {
-            window.location.href = 'add_trains.php';
-        }
-    });
-</script>
 <script src="https://kit.fontawesome.com/406b037200.js" crossorigin="anonymous"></script>
 </body>
 </html>
