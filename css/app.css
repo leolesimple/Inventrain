@@ -496,6 +496,12 @@ h1 > label {
     aspect-ratio: 1/1;
 }
 
+.imgExpl {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
 
 .buttonContainer {
     display: flex;
@@ -660,7 +666,7 @@ h1 > label {
     align-self: stretch;
 }
 
-.TriBtn {
+.TriBtn, .filterSelect {
     max-width: 31.25rem;
     padding: 0.75rem 1.0625rem;
     border-radius: 0.5625rem;
@@ -674,6 +680,10 @@ h1 > label {
     display: flex;
     gap: .52rem;
     align-items: center;
+}
+
+.filterSelect {
+    padding: 0.5rem;
 }
 
 #rameUp,
@@ -808,30 +818,8 @@ th:last-child, td:last-child {
     border-bottom: 1px solid #CBCBCB;
 }
 
-/*
-    Responsive
-*/
-
-@media screen and (width < 900px) {
-    .tilesContainer {
-        flex-direction: column;
-    }
-}
-
-@media screen and (width < 525px) {
-    .searchResults {
-        padding: 0 !important;
-    }
-
-    .badgeMD {
-        padding: 0.3125rem 0.625rem;
-        border-radius: 3.3125rem;
-        font-size: 0.8125rem;
-    }
-
-    .rame {
-        flex-wrap: wrap;
-    }
+.legalContent {
+    padding: 1.25rem 1.5rem;
 }
 
 /*
@@ -916,9 +904,70 @@ footer {
 }
 
 .linkRow ul li a {
-    color: var(--txt-color) !important;
+    color: var(--txt-color);
     font-size: 1.125rem;
     font-style: normal;
     font-weight: 700;
     line-height: 0.9rem;
+}
+
+
+/*
+    Responsive
+*/
+
+@media screen and (width < 900px) {
+    .tilesContainer {
+        flex-direction: column;
+    }
+
+    footer {
+        padding: 2.5rem 1.25rem;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .tagLine {
+        font-size: 1.125rem;
+        line-height: 1.25rem;
+    }
+
+    .tableContainer {
+        flex-direction: column;
+    }
+
+    .trainInfo {
+        flex-direction: column;
+        gap: 0.625rem;
+        padding: 1rem;
+    }
+
+    /* !important -> Écrase le margin persistant */
+    .bigTitle {
+        margin-top: .75rem !important;
+    }
+
+    .tableContainer > * {
+        width: 100%;
+    }
+
+    nav > ul > li > a {
+        font-size: 1.125rem;
+    }
+}
+
+@media screen and (width < 525px) {
+    .searchResults {
+        padding: 0 !important;
+    }
+
+    .badgeMD {
+        padding: 0.3125rem 0.625rem;
+        border-radius: 3.3125rem;
+        font-size: 0.8125rem;
+    }
+
+    .rame {
+        flex-wrap: wrap;
+    }
 }
