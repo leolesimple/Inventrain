@@ -32,35 +32,31 @@ if (isset($_POST['add'])) {
     if ($serie == 0 || $livree == 0 || $fab == 0 || $reseau == 0 || $status == 0 || $depot == 0 || $owner == 0) {
         echo "<script>toast('error', 'Erreur', 'Veuillez remplir tous les champs.');</script>";
     } else {
-        // Insert into database
-        $stmt = $conn->prepare("INSERT INTO train (idSerie, number, idLivery, idManufacturer, deliveryDate, radiationDate, idNetwork, idStatus, idDepot, idRenovation, idOwner, incidents) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sisissiiisss", $serie, $num, $livree, $fab, $livraison, $radiation, $reseau, $status, $depot, $reno, $owner, $comment);
+        $stmt = $conn->prepare("INSERT INTO train (idSerie, number, idLivery, idManufacturer, deliveryDate, radiationDate, idNetwork, idStatus, idDepot, idRenovation, idOwner, incidents) 
+VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :depot, :reno, :owner, :comment)");
+
+        $stmt->bindValue(':serie', $serie, PDO::PARAM_INT);
+        $stmt->bindValue(':num', $num, PDO::PARAM_STR);
+        $stmt->bindValue(':livree', $livree, PDO::PARAM_INT);
+        $stmt->bindValue(':fab', $fab, PDO::PARAM_INT);
+        $stmt->bindValue(':livraison', $livraison);
+        $stmt->bindValue(':radiation', $radiation);
+        $stmt->bindValue(':reseau', $reseau, PDO::PARAM_INT);
+        $stmt->bindValue(':status', $status, PDO::PARAM_INT);
+        $stmt->bindValue(':depot', $depot, PDO::PARAM_INT);
+        $stmt->bindValue(':reno', $reno);
+        $stmt->bindValue(':owner', $owner, PDO::PARAM_INT);
+        $stmt->bindValue(':comment', $comment, PDO::PARAM_STR);
+
         $stmt->execute();
-        // Ajout du traitement pour les lignes d'affectation
-        $train_id = $conn->insert_id;
+        $train_id = $conn->lastInsertId();
         if (isset($_POST['lines']) && is_array($_POST['lines'])) {
-            $line_stmt = $conn->prepare("INSERT INTO train_line (idTrain, idLine) VALUES (?, ?)");
+            $line_stmt = $conn->prepare("INSERT INTO train_line (idTrain, idLine) VALUES (:train_id, :line_id)");
             foreach ($_POST['lines'] as $line_id) {
-                $line_stmt->bind_param("ii", $train_id, $line_id);
+                $line_stmt->bindValue(':train_id', $train_id, PDO::PARAM_INT);
+                $line_stmt->bindValue(':line_id', $line_id, PDO::PARAM_INT);
                 $line_stmt->execute();
             }
-            $line_stmt->close();
-        }
-
-
-        if (isset($_POST['lines']) && is_array($_POST['lines']) && isset($_POST['idTrain'])) {
-            $train_id = intval($_POST['idTrain']);
-            $lines = $_POST['lines'];
-
-            $stmt = $conn->prepare("INSERT INTO train_line (idTrain, idLine) VALUES (?, ?)");
-
-            foreach ($lines as $line_id) {
-                $line_id = intval($line_id);
-                $stmt->bind_param("ii", $train_id, $line_id);
-                $stmt->execute();
-            }
-
-            $stmt->close();
         }
     }
 }
@@ -124,14 +120,15 @@ include "../assets/includes/nav.php";
         <div class="inputContainer">
             <label for="serie">Série</label>
             <?php
-            $series = $conn->query("SELECT * FROM series")->fetch_all(MYSQLI_ASSOC);
+            $series = $conn->query("SELECT * FROM series")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="serie" id="serie" required>';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['serie']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($series as $s) {
+                echo "<option value=\"{$s['idSerie']}\" " . (isset($_POST['serie']) && $_POST['serie'] == $s['idSerie'] ? 'selected' : '') . ">";
                 if ($s['altName'] == "") {
-                    echo "<option value=\"{$s['idSerie']}\">{$s['name']}</option>";
+                    echo "{$s['serieName']}</option>";
                 } else {
-                    echo "<option value=\"{$s['idSerie']}\">{$s['name']} ({$s['altName']})</option>";
+                    echo "{$s['serieName']} ({$s['altName']})</option>";
                 }
             }
             echo '</select>';
@@ -139,16 +136,16 @@ include "../assets/includes/nav.php";
         </div>
         <div class="inputContainer">
             <label for="num">Numéro <small>(max. 50 caractères)</small></label>
-            <input type="text" name="num" id="num" maxlength="50" placeholder="34C, 3546, 001L" required>
+            <input type="text" name="num" id="num" maxlength="50" placeholder="34C, 3546, 001L" required value="<?php echo htmlspecialchars($_POST['num'] ?? '', ENT_QUOTES); ?>">
         </div>
         <div class="inputContainer">
             <label for="livree">Livrée</label>
             <?php
-            $livery = $conn->query("SELECT * FROM livery")->fetch_all(MYSQLI_ASSOC);
+            $livery = $conn->query("SELECT * FROM livery")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="livree" id="livree" required>';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['livree']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($livery as $l) {
-                echo "<option value=\"{$l['idLivery']}\">{$l['name']}</option>";
+                echo "<option value=\"{$l['idLivery']}\" " . (isset($_POST['livree']) && $_POST['livree'] == $l['idLivery'] ? 'selected' : '') . ">{$l['liveryName']}</option>";
             }
             echo '</select>';
             ?>
@@ -156,31 +153,31 @@ include "../assets/includes/nav.php";
         <div class="inputContainer">
             <label for="fab">Fabricant</label>
             <?php
-            $manufacturer = $conn->query("SELECT * FROM manufacturer")->fetch_all(MYSQLI_ASSOC);
+            $manufacturer = $conn->query("SELECT * FROM manufacturer")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="fab" id="fab" required>';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['fab']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($manufacturer as $m) {
-                echo "<option value=\"{$m['idManufacturer']}\">{$m['name']}</option>";
+                echo "<option value=\"{$m['idManufacturer']}\" " . (isset($_POST['fab']) && $_POST['fab'] == $m['idManufacturer'] ? 'selected' : '') . ">{$m['fabricant']}</option>";
             }
             echo '</select>';
             ?>
         </div>
         <div class="inputContainer">
             <label for="livraison">Date de Livraison</label>
-            <input type="date" name="livraison" id="livraison" required>
+            <input type="date" name="livraison" id="livraison" required value="<?php echo htmlspecialchars($_POST['livraison'] ?? '', ENT_QUOTES); ?>">
         </div>
         <div class="inputContainer">
             <label for="radiation">Date de Radiation</label>
-            <input type="date" name="radiation" id="radiation">
+            <input type="date" name="radiation" id="radiation" value="<?php echo htmlspecialchars($_POST['radiation'] ?? '', ENT_QUOTES); ?>">
         </div>
         <div class="inputContainer">
             <label for="reseau">Réseau d'Affectation</label>
             <?php
-            $network = $conn->query("SELECT * FROM network")->fetch_all(MYSQLI_ASSOC);
+            $network = $conn->query("SELECT * FROM network")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="reseau" id="reseau" required>';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['reseau']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($network as $n) {
-                echo "<option value=\"{$n['idNetwork']}\">{$n['name']}</option>";
+                echo "<option value=\"{$n['idNetwork']}\" " . (isset($_POST['reseau']) && $_POST['reseau'] == $n['idNetwork'] ? 'selected' : '') . ">{$n['railNetwork']}</option>";
             }
             echo '</select>';
             ?>
@@ -188,11 +185,11 @@ include "../assets/includes/nav.php";
         <div class="inputContainer">
             <label for="status">Statut</label>
             <?php
-            $status = $conn->query("SELECT * FROM status")->fetch_all(MYSQLI_ASSOC);
+            $status = $conn->query("SELECT * FROM status")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="status" id="status" required>';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['status']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($status as $st) {
-                echo "<option value=\"{$st['idStatus']}\">{$st['state']}</option>";
+                echo "<option value=\"{$st['idStatus']}\" " . (isset($_POST['status']) && $_POST['status'] == $st['idStatus'] ? 'selected' : '') . ">{$st['state']}</option>";
             }
             echo '</select>';
             ?>
@@ -200,11 +197,11 @@ include "../assets/includes/nav.php";
         <div class="inputContainer">
             <label for="depot">Dépôt</label>
             <?php
-            $depot = $conn->query("SELECT * FROM depot")->fetch_all(MYSQLI_ASSOC);
+            $depot = $conn->query("SELECT * FROM depot")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="depot" id="depot" required>';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['depot']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($depot as $d) {
-                echo "<option value=\"{$d['idDepot']}\">{$d['name']}</option>";
+                echo "<option value=\"{$d['idDepot']}\" " . (isset($_POST['depot']) && $_POST['depot'] == $d['idDepot'] ? 'selected' : '') . ">{$d['depotName']}</option>";
             }
             echo '</select>';
             ?>
@@ -212,11 +209,11 @@ include "../assets/includes/nav.php";
         <div class="inputContainer">
             <label for="reno">Rénovation</label>
             <?php
-            $reno = $conn->query("SELECT * FROM renovation")->fetch_all(MYSQLI_ASSOC);
+            $reno = $conn->query("SELECT * FROM renovation")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="reno" id="reno">';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['reno']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($reno as $r) {
-                echo "<option value=\"{$r['idRenovation']}\">{$r['renovationType']}</option>";
+                echo "<option value=\"{$r['idRenovation']}\" " . (isset($_POST['reno']) && $_POST['reno'] == $r['idRenovation'] ? 'selected' : '') . ">{$r['renovationType']}</option>";
             }
             echo '</select>';
             ?>
@@ -224,11 +221,11 @@ include "../assets/includes/nav.php";
         <div class="inputContainer">
             <label for="owner">Propriétaire</label>
             <?php
-            $owner = $conn->query("SELECT * FROM owner")->fetch_all(MYSQLI_ASSOC);
+            $owner = $conn->query("SELECT * FROM owner")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="owner" id="owner" required>';
-            echo '<option value="0" disabled selected>Choisir...</option>';
+            echo '<option value="0" disabled' . (!isset($_POST['owner']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($owner as $o) {
-                echo "<option value=\"{$o['idOwner']}\">{$o['name']}</option>";
+                echo "<option value=\"{$o['idOwner']}\" " . (isset($_POST['owner']) && $_POST['owner'] == $o['idOwner'] ? 'selected' : '') . ">{$o['ownerName']}</option>";
             }
             echo '</select>';
             ?>
@@ -236,18 +233,18 @@ include "../assets/includes/nav.php";
         <fieldset class="inputContainer">
             <legend for="line">Ligne d'Affectation</legend>
             <?php
-            $lines = $conn->query("SELECT * FROM line")->fetch_all(MYSQLI_ASSOC);
+            $lines = $conn->query("SELECT * FROM line")->fetchAll(PDO::FETCH_ASSOC);
             foreach ($lines as $line) {
                 echo '<div class="checkbox-group">';
-                echo '<input type="checkbox" id="line_' . $line['idLine'] . '" name="lines[]" value="' . $line['idLine'] . '">';
-                echo '<label for="line_' . $line['idLine'] . '">' . $line['name'] . '</label>';
+                echo '<input type="checkbox" id="line_' . $line['idLine'] . '" name="lines[]" value="' . $line['idLine'] . '" ' . (isset($_POST['lines']) && in_array($line['idLine'], $_POST['lines']) ? 'checked' : '') . '>';
+                echo '<label for="line_' . $line['idLine'] . '">' . $line['lineName'] . '</label>';
                 echo '</div>';
             }
             ?>
         </fieldset>
         <div class="inputContainer">
             <label for="comment">Commentaire</label>
-            <textarea name="comment" id="comment" cols="30" rows="8"></textarea>
+            <textarea name="comment" id="comment" cols="30" rows="8"><?php echo htmlspecialchars($_POST['comment'] ?? '', ENT_QUOTES); ?></textarea>
         </div>
         <input type="submit" name="add" value="Envoyer">
     </form>
