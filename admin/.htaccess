@@ -1,18 +1,10 @@
-# Redirect all traffic to HTTPS
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Disable directory indexing
-Options -Indexes
-
-# Basic authentication
+# Authentification
 AuthType Basic
 AuthName "Restricted Area"
 AuthUserFile /home/lesimple/public_html/sae203/admin/.htpasswd
 Require valid-user
 
-# Deny access to the .htpasswd file
+# Retirer accès au fichier .htpasswd
 <Files ".htpasswd">
     Require all denied
 </Files>
