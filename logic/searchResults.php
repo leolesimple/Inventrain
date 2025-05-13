@@ -157,11 +157,12 @@ if (count($result) > 0) {
         } else {
             $statusClass = "grayBadge";
         }
-
         $depot = $row["depotName"];
         $date = $row["deliveryDate"];
-        $date = date("d/m/Y", strtotime($date));
+        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMM yyyy');
+        $date = $formatter->format(new DateTime($date));
         $date = htmlspecialchars($date);
+
 
         echo '<div class="tile tileResult" role="button" aria-label="Voir le train ' . $number . '" tabindex="0" data-rame="' . $number . '" data-livraison="' . $date . '" data-livery="' . $livree . '" data-train="' . $row["idTrain"] . '">
                 <div class="rame">

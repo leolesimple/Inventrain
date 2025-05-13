@@ -130,8 +130,8 @@ if (isset($_GET['id'])) {
 
             $livree = $row["liveryName"];
             $deliveryDate = $row["deliveryDate"];
-            $deliveryDate = date("d/m/Y", strtotime($deliveryDate));
-            $deliveryDate = htmlspecialchars($deliveryDate);
+            $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMMM yyyy');
+            $deliveryDate = $formatter->format(new DateTime($deliveryDate));
 
             $currentYear = date("Y");
             $deliveryYear = date("Y", strtotime($row["deliveryDate"]));
