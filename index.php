@@ -1,5 +1,5 @@
 <?php
-$ext = "./"
+$ext = "./";
 ?>
 
 <!doctype html>
@@ -128,6 +128,31 @@ include "./assets/includes/nav.php";
         <div class="buttonContainer">
             <a href="search.php" class="seeMoreBtn">Voir tous les trains <i
                         class="fa-solid fa-chevron-right hoverOnly"></i> </a>
+        </div>
+    </div>
+    <div class="about">
+        <div>
+            <h1>
+                Qu'est-ce que L'Inventrain ?
+            </h1>
+            <img src="./img/Z5000_295L.webp"
+                 alt="" height="200" class="imgExpl">
+            <p>
+                <strong>Vous prenez régulièrement le train ou le RER en Île-de-France ?</strong> Vous vous êtes déjà
+                demandé quel est ce
+                modèle de rame que vous voyez tous les matins ? L’Inventrain est là pour répondre simplement à ce genre
+                de
+                question.
+                <br>
+                C’est une base de données accessible qui répertorie les trains en circulation dans la région. Pour
+                chaque
+                rame, vous pouvez retrouver des infos utiles : modèle, constructeur, ligne d’affectation, dépôt, livrée,
+                rénovations… Le tout, présenté de manière claire et structurée.
+                <br>
+                Que vous soyez curieux, passionné ou juste en train de chercher une info précise, L’Inventrain vous aide
+                à
+                mieux comprendre ce qui roule autour de vous.
+            </p>
         </div>
     </div>
 </main>
