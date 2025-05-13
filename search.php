@@ -49,7 +49,7 @@ $ext = "./"
 include "./assets/includes/nav.php";
 ?>
 <main class="noCenter" id="content">
-    <form class="homeSearch" action="search.php" method="get" style="padding: 4.375rem 1.25rem 1.5rem 1.25rem;">
+    <form class="search" action="" method="get">
         <h1>
             <label for="homeBar">
                 Rechercher un train
