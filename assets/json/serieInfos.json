@@ -26,16 +26,16 @@
   "z8800_idfm": {
     "src": "z2n_idfm.svg"
   },
-  "z20500_IDF": {
+  "z20500_idf": {
     "src": "z2n_idf.svg"
   },
-  "z20500_Transilien": {
+  "z20500_transilien": {
     "src": "z2n_transilien.svg"
   },
-  "z20500_Carmillon": {
+  "z20500_stif/carmillon": {
     "src": "z2n_carmillon.svg"
   },
-  "z20500_IDFM": {
+  "z20500_idfm": {
     "src": "z2n_idfm.svg"
   },
   "z20900_idf": {
@@ -64,6 +64,12 @@
   },
   "mi84_*": {
     "src": "mi84_79.svg"
+  },
+  "mi79_stif/ratp/sncf" : {
+    "src": "mi84_79.svg"
+  },
+  "mi79_idf" : {
+    "src": "mi84_79_idf.svg"
   },
   "mi79_*": {
     "src": "mi84_79.svg"
