@@ -9,64 +9,76 @@ $lineData = json_decode($jsonLines, true);
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "SELECT
-train.idTrain,
-train.number,
-series.name AS serie_name,
-series.altName AS serie_alt_name,
-series.serviceStartYear,
-series.capacity,
-series.maxSpeed,
-series.masse,
-automation.goaLevel,
-automation.type AS automation_type,
-train.radiationDate,
-trainSystem.name AS system_name,
-livery.name AS livery_name,
-manufacturer.name AS manufacturer_name,
-train.deliveryDate,
-network.name AS network_name,
-status.state AS status,
-depot.name AS depot_name,
-depot.code AS depot_code,
-depot.city AS depot_city,
-renovation.renovationType,
-owner.name AS owner_name,
-GROUP_CONCAT(DISTINCT line.LineRef ORDER BY line.LineRef SEPARATOR ', ') AS lignes_affectees,
-train.incidents
-FROM train
-LEFT JOIN series ON train.idSerie = series.idSerie
-LEFT JOIN automation ON series.idAutomation = automation.idAutomation
-LEFT JOIN trainSystem ON series.idSystem = trainSystem.idSystem
-LEFT JOIN livery ON train.idLivery = livery.idLivery
-LEFT JOIN manufacturer ON train.idManufacturer = manufacturer.idManufacturer
-LEFT JOIN network ON train.idNetwork = network.idNetwork
-LEFT JOIN status ON train.idStatus = status.idStatus
-LEFT JOIN depot ON train.idDepot = depot.idDepot
-LEFT JOIN renovation ON train.idRenovation = renovation.idRenovation
-LEFT JOIN owner ON train.idOwner = owner.idOwner
-LEFT JOIN train_line ON train.idTrain = train_line.idTrain
-LEFT JOIN line ON train_line.idLine = line.idLine
-WHERE train.idTrain = ?
-GROUP BY train.idTrain
-ORDER BY train.idTrain DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+                train.idTrain,
+                train.number,
+                series.serieName,
+                series.altName,
+                series.serviceStartYear,
+                series.capacity,
+                series.maxSpeed,
+                series.masse,
+                automation.goaLevel,
+                automation.type,
+                train.radiationDate,
+                trainSystem.system,
+                livery.liveryName,
+                manufacturer.fabricant,
+                train.deliveryDate,
+                network.railNetwork,
+                status.state,
+                depot.depotName,
+                depot.code,
+                depot.city,
+                renovation.renovationType,
+                owner.ownerName,
+                line.LineRef,
+                train.incidents
+                FROM train
+                JOIN train_line ON train.idTrain = train_line.idTrain
+                JOIN line ON train_line.idLine = line.idLine
+                LEFT JOIN series ON train.idSerie = series.idSerie
+                LEFT JOIN automation ON series.idAutomation = automation.idAutomation
+                LEFT JOIN trainSystem ON series.idSystem = trainSystem.idSystem
+                LEFT JOIN livery ON train.idLivery = livery.idLivery
+                LEFT JOIN manufacturer ON train.idManufacturer = manufacturer.idManufacturer
+                LEFT JOIN network ON train.idNetwork = network.idNetwork
+                LEFT JOIN status ON train.idStatus = status.idStatus
+                LEFT JOIN depot ON train.idDepot = depot.idDepot
+                LEFT JOIN renovation ON train.idRenovation = renovation.idRenovation
+                LEFT JOIN owner ON train.idOwner = owner.idOwner
+                WHERE train.idTrain = :id
+                ORDER BY train.idTrain DESC";
 
-    /* Create a  <a
-        href="#">Train [n°]</a>*/
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $serie = $row["serie_name"];
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':id', '' . $id . '', PDO::PARAM_STR);
+    $stmt->execute();
+
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $result = [];
+    foreach ($rows as $row) {
+        $trainId = $row['idTrain'];
+        if (!isset($result[$trainId])) {
+            $result[$trainId] = $row;
+            $result[$trainId]['lignes_affectees'] = [];
+        }
+        $result[$trainId]['lignes_affectees'][] = $row['LineRef'];
+    }
+
+    $result = array_values($result);
+
+    if (count($result) > 0) {
+        foreach ($result as $row) {
+            $lignes_affectees = $row["lignes_affectees"] ?? [];
+            $serie = $row["serieName"];
             $number = $row["number"];
             $breadcrumb = '<div class="fil-ariane"><a href="./index.php">Accueil</a> > <a href="./detailsTrain.php?">Détails du train</a> > <a href="./detailsTrain.php?id=' . $row["idTrain"] . '">' . $serie . " n°" . htmlspecialchars($number) . '</a></div>';
             echo $breadcrumb;
             echo '<h1 class="bigTitle">Détails</h1>';
             echo '<script>document.title = "' . htmlspecialchars($serie) . ' ' . htmlspecialchars($number) . ' - L\'Inventrain";</script>';
 
-            $livree = $row["livery_name"];
-            $serie = $row["serie_name"];
+            $livree = $row["liveryName"];
+            $serie = $row["serieName"];
             if ($serie == "mi84" or $serie == "mi79") {
                 $icon_array = $serie . "_*";
             } elseif ($serie == "B 82500" or $serie == "U52600" or $serie == "U53600" or $serie == "U53700" or $serie == "U53800") {
@@ -101,7 +113,7 @@ ORDER BY train.idTrain DESC";
                 $badgeLivree = "grayBadge";
             }
 
-            $status = $row["status"];
+            $status = $row["state"];
             if ($status == "En Service") {
                 $statusClass = "greenBadge";
             } elseif ($status == "Maintenance") {
@@ -116,11 +128,11 @@ ORDER BY train.idTrain DESC";
                 $statusClass = "grayBadge";
             }
 
-            $livree = $row["livery_name"];
+            $livree = $row["liveryName"];
             $deliveryDate = $row["deliveryDate"];
             $deliveryDate = date("d/m/Y", strtotime($deliveryDate));
             $deliveryDate = htmlspecialchars($deliveryDate);
-//Calculer le nombre d'années depuis la livraison
+
             $currentYear = date("Y");
             $deliveryYear = date("Y", strtotime($row["deliveryDate"]));
             $yearsSinceDelivery = $currentYear - $deliveryYear;
@@ -145,14 +157,6 @@ ORDER BY train.idTrain DESC";
             } else {
                 $incidents = '<h2 class="tableCategory">Commentaires</h2>
 <p>' . $row['incidents'] . '</p>';
-            }
-
-            $lignes_affectees = $row["lignes_affectees"];
-            if ($lignes_affectees) {
-                $lignes_affectees = explode(", ", $lignes_affectees);
-                $lignes_affectees = array_map('trim', $lignes_affectees);
-            } else {
-                $lignes_affectees = [];
             }
 
             $htmlIcons = "";
@@ -191,11 +195,11 @@ ORDER BY train.idTrain DESC";
                                         <tbody>
                                         <tr>
                                             <td class="tableContent">Série</td>
-                                            <td class="tableContent">' . $row['serie_name'] . '</td>
+                                            <td class="tableContent">' . $row['serieName'] . '</td>
                                         </tr>
                                         <tr>
                                             <td class="tableContent">Constructeur</td>
-                                            <td class="tableContent">' . $row['manufacturer_name'] . '</td>
+                                            <td class="tableContent">' . $row['fabricant'] . '</td>
                                         </tr>
                                         <tr>
                                             <td class="tableContent">Mise en Service</td>
@@ -203,19 +207,19 @@ ORDER BY train.idTrain DESC";
                                         </tr>
                                         <tr>
                                             <td class="tableContent">Surnom</td>
-                                            <td class="tableContent">' . $row['serie_alt_name'] . '</td>
+                                            <td class="tableContent">' . $row['altName'] . '</td>
                                         </tr>
                                         <tr>
                                             <td class="tableContent">Automatisation</td>
-                                            <td class="tableContent">' . $row['goaLevel'] . ' (' . $row['automation_type'] . ')</td>
+                                            <td class="tableContent">' . $row['goaLevel'] . ' (' . $row['type'] . ')</td>
                                         </tr>
                                         <tr>
                                             <td class="tableContent">Système de conduite</td>
-                                            <td class="tableContent">' . $row['system_name'] . '</td>
+                                            <td class="tableContent">' . $row['system'] . '</td>
                                         </tr>
                                         <tr>
                                             <td class="tableContent">Propriétaire</td>
-                                            <td class="tableContent">' . $row['owner_name'] . '</td>
+                                            <td class="tableContent">' . $row['ownerName'] . '</td>
                                         </tr>
                                         <tr>
                                             <td class="tableContent">Capacité</td>
@@ -253,15 +257,15 @@ ORDER BY train.idTrain DESC";
                                         </tr>
                                          <tr>
                                             <td class="tableContent">Réseau</td>
-                                            <td class="tableContent">' . $row['network_name'] . '</td>
+                                            <td class="tableContent">' . $row['railNetwork'] . '</td>
                                         </tr>
                                          <tr>
                                             <td class="tableContent">Livrée</td>
-                                            <td class="tableContent">' . $row['livery_name'] . '</td>
+                                            <td class="tableContent">' . $row['liveryName'] . '</td>
                                         </tr>
                                          <tr>
                                             <td class="tableContent">Établissement d\'attache</td>
-                                            <td class="tableContent">' . $row['depot_name'] ." - <strong>(". $row['depot_code'] . ')</strong></td>
+                                            <td class="tableContent">' . $row['depotName'] ." - <strong>(". $row['code'] . ')</strong></td>
                                         </tr>
                                     </table>
                                 </div>

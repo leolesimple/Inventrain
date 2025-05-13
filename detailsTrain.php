@@ -50,27 +50,6 @@ include "./assets/includes/nav.php";
     include "./logic/details.php";
     ?>
 </main>
-<script>
-    function hidePub(elementId) {
-        const element = document.getElementById(elementId);
-        element.style.transition = "opacity 0.5s ease, height 0.5s ease"; // Transition fluide
-        element.style.overflow = "hidden"; // Masquer le contenu
-        element.style.opacity = "0"; // Réduire l'opacité
-        element.style.height = "0"; // Réduire la hauteur
-
-        // Attendre la fin de la transition avant de définir display: none
-        setTimeout(() => {
-            element.style.display = "none";
-        }, 500); // Correspond à la durée de la transition
-    }
-
-    //if the user ,scroll down 20px, hide the pub
-    window.onscroll = function () {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            hidePub('pubC');
-        }
-    };
-</script>
 <?php
 include "./assets/includes/footer.php"
 ?>
