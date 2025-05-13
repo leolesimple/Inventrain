@@ -1,5 +1,5 @@
 body {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -25,7 +25,7 @@ h1.bigTitle {
 }
 
 .trainNumber {
-    font-family: "PT Sans", sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     font-size: 3.5rem;
     font-style: normal;
     font-weight: 700;
@@ -70,39 +70,39 @@ h6 {
 */
 
 p {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
     margin: 0;
 }
 
 p.alertText {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: bold;
     color: #910000;
 }
 
 a, .button {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: bold;
 }
 
 .menu-link {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;
 }
 
 .caption {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.75rem;
 }
 
 label {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1.1rem;
 }
 
 label.max {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1.25rem;
 }

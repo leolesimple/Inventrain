@@ -58,6 +58,16 @@
     border-color: #f5c6cb;
 }
 
+.disabledLink {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
+.disabledLink:hover {
+    text-decoration: none;
+}
+
 .docsContent {
     margin: 0 auto;
     padding: 20px 0;
