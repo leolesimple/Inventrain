@@ -1,40 +1,27 @@
 <?php
 include './assets/includes/conn.php';
 
-
-/*
- * Utilisation de l'IA pour la concaténation de la requête à la table de train_line uniquement.
- * Prompt : Comment puis-je récupérer toutes les informations sur les trains dans la base de données “inventrain”, y compris les lignes sur lesquelles chaque train circule, même si un train est affecté à plusieurs lignes ?
- * Modèle : GPT 4o (Version Plus)
- */
 $search = $_GET['search'] ?? '';
 
-// Anti injection SQL
 $search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
 $search = preg_replace('/[^a-zA-Z0-9_]/', '', $search);
 
 $sql = "SELECT
   train.idTrain,
   train.number,
-  series.name AS serie_name,
-  series.altName AS serie_alt_name,
+  series.serieName,
   series.serviceStartYear,
-  series.capacity,
-  series.maxSpeed,
-  series.masse,
-  automation.goaLevel,
-  automation.type AS automation_type,
-  trainSystem.name AS system_name,
-  livery.name AS livery_name,
-  manufacturer.name AS manufacturer_name,
+  livery.liveryName,
+  manufacturer.fabricant,
   train.deliveryDate,
-  network.name AS network_name,
-  status.state AS status,
-  depot.name AS depot_name,
+  status.state,
+  depot.depotName,
   renovation.renovationType,
-GROUP_CONCAT(DISTINCT line.LineRef ORDER BY line.LineRef SEPARATOR ', ') AS lignes_affectees,
-train.incidents
+  line.LineRef,
+  train.incidents
 FROM train
+JOIN train_line ON train.idTrain = train_line.idTrain
+JOIN line ON train_line.idLine = line.idLine
 LEFT JOIN series ON train.idSerie = series.idSerie
 LEFT JOIN automation ON series.idAutomation = automation.idAutomation
 LEFT JOIN trainSystem ON series.idSystem = trainSystem.idSystem
@@ -44,14 +31,29 @@ LEFT JOIN network ON train.idNetwork = network.idNetwork
 LEFT JOIN status ON train.idStatus = status.idStatus
 LEFT JOIN depot ON train.idDepot = depot.idDepot
 LEFT JOIN renovation ON train.idRenovation = renovation.idRenovation
-LEFT JOIN train_line ON train.idTrain = train_line.idTrain
-LEFT JOIN line ON train_line.idLine = line.idLine
-WHERE train.number LIKE '%" . $conn->real_escape_string($search) . "%'
-GROUP BY train.idTrain
+WHERE train.number LIKE :search
 ORDER BY train.idTrain DESC";
+/*LIMIT 100;*/
 
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
+$stmt = $conn->prepare($sql);
+$stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+$stmt->execute();
+
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$result = [];
+foreach ($rows as $row) {
+    $id = $row['idTrain'];
+    if (!isset($result[$id])) {
+        $result[$id] = $row;
+        $result[$id]['lignes_affectees'] = [];
+    }
+    $result[$id]['lignes_affectees'][] = $row['LineRef'];
+}
+
+$result = array_values($result);
+
+if (count($result) > 0) {
     $jsonLines = file_get_contents('./assets/json/LineReferentiel.json');
     $lineData = json_decode($jsonLines, true);
 
@@ -62,25 +64,19 @@ if ($result->num_rows > 0) {
 
     // Affichage du nombre de résultats
     echo '<div class="resultCount">';
-    if ($result->num_rows == 1) {
+    if (count($result) == 1) {
         echo '1 train trouvé';
     } else {
-        echo $result->num_rows . ' trains trouvés';
+        echo count($result) . ' trains trouvés';
     }
     echo '</div>';
 
-    while ($row = $result->fetch_assoc()) {
+    foreach ($result as $row) {
         // Données à afficher
         $number = $row["number"];
-        $serie = $row["serie_name"];
+        $serie = $row["serieName"];
         $startYear = $row["serviceStartYear"];
-        $lignes_affectees = $row["lignes_affectees"];
-        if ($lignes_affectees) {
-            $lignes_affectees = explode(", ", $lignes_affectees);
-            $lignes_affectees = array_map('trim', $lignes_affectees);
-        } else {
-            $lignes_affectees = [];
-        }
+        $lignes_affectees = $row["lignes_affectees"] ?? [];
 
         // Badge Color en fonction de l'année de début de service en fonction de la série de livrées.
         if ($startYear >= 1970 && $startYear <= 1979) {
@@ -108,7 +104,7 @@ if ($result->num_rows > 0) {
             $htmlIcons .= $icon;
         }
 
-        $livree = $row["livery_name"];
+        $livree = $row["liveryName"];
 
         if (!in_array($livree, $livery)) {
             $livery[] = $livree;
@@ -147,7 +143,7 @@ if ($result->num_rows > 0) {
             $badgeLivree = "grayBadge";
         }
 
-        $status = $row["status"];
+        $status = $row["state"];
         if ($status == "En Service") {
             $statusClass = "greenBadge";
         } elseif ($status == "Maintenance") {
@@ -162,7 +158,7 @@ if ($result->num_rows > 0) {
             $statusClass = "grayBadge";
         }
 
-        $depot = $row["depot_name"];
+        $depot = $row["depotName"];
         $date = $row["deliveryDate"];
         $date = date("d/m/Y", strtotime($date));
         $date = htmlspecialchars($date);
@@ -211,5 +207,5 @@ if ($result->num_rows > 0) {
     echo "0 éléments trouvés";
 }
 // Close the connection
-$conn->close();
+$conn = null;
 ?>
