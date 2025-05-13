@@ -21,7 +21,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     /*
     border: 1px solid red;
     */
@@ -224,6 +224,17 @@ body:has(.bigSearch:focus) {
     margin: 0;
 }
 
+ul.unList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.bigList li {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
 .docTitle > h1, .docTitle > p, .titleContainer > h1, .titleContainer > * {
     line-height: 1;
 }
@@ -244,6 +255,11 @@ body:has(.bigSearch:focus) {
 /* Form */
 form.homeSearch {
     width: 100%;
+}
+
+form.search {
+    width: 100%;
+    padding: 4.375rem 1.25rem 1.5rem 1.25rem;
 }
 
 form.adminSearch {
@@ -413,7 +429,7 @@ h1 > label {
 
 .rameInfo > * > h3 {
     color: var(--txt-color);
-    font-family: "PT Sans", sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
@@ -875,7 +891,7 @@ footer {
 
 .tagLine {
     color: #202124;
-    font-family: "PT Sans", sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
@@ -910,7 +926,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    font-family: "PT Sans", sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
 }
 
 .linkRow ul li a {

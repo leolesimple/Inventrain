@@ -1,4 +1,12 @@
 /*
+    IBM Plex Sans
+    License : legal/licenses/OFL.txt
+    -
+    Toute notion de PT Sans est obsolète, remplacée par IBM Plex Sans en raison de la provenance de la police.
+*/
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+/*
     Meshed Display
     License : legal/licenses/License_Meshed_Display.pdf
 */
@@ -36,36 +44,4 @@
     src: url('../fonts/meshed_display/MeshedDisplay-Black.woff2') format('woff2');
     font-weight: 900;
     font-style: normal;
-}
-
-/*
-    PT Sans
-    License : legal/licenses/OFL.txt
-*/
-@font-face {
-    font-family: 'PT Sans';
-    src: url('../fonts/pt_sans/PTSans-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PT Sans';
-    src: url('../fonts/pt_sans/PTSans-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PT Sans';
-    src: url('../fonts/pt_sans/PTSans-Italic.woff2') format('woff2');
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'PT Sans';
-    src: url('../fonts/pt_sans/PTSans-BoldItalic.woff2') format('woff2');
-    font-weight: bold;
-    font-style: italic;
 }
