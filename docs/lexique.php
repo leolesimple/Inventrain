@@ -193,6 +193,14 @@ include $ext . "assets/includes/nav.php";
                 </li>
             </ul>
         </article>
+        <article id="sive">
+            <h2>SIVE</h2>
+            <p>
+                Le SIVE, ou Système d’Information Voyageurs Embarqué, est un dispositif installé à bord des trains pour informer les passagers en temps réel. Il se compose généralement d’écrans, d’annonces sonores et de panneaux lumineux.
+                <br>
+                Ce système affiche les arrêts à venir, les correspondances ou les perturbations éventuelles sur le trajet.
+            </p>
+        </article>
     </section>
 
     <section class="nextPrevious">
@@ -200,6 +208,9 @@ include $ext . "assets/includes/nav.php";
         <a href="./livraisons.php" class="next">Livraisons</a>
     </section>
 </main>
+<?php
+include $ext . "assets/includes/footer.php";
+?>
 <script src="<?= $ext; ?>js/docs.js"></script>
 <script src="<?= $ext; ?>js/app.js"></script>
 </body>
