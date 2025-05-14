@@ -100,7 +100,7 @@ if (count($result) > 0) {
             } else {
                 $lineIcon = "default_icon.svg"; // Fallback
             }
-            $icon = "<img src='https://infostation.fr/img/lignes/$lineIcon' height='30' alt='Ligne " . $lineData[$value]['letter'] . "' class='iconLigne'>";
+            $icon = "<img src='img/lignes/$lineIcon' height='30' alt='Ligne " . $lineData[$value]['letter'] . "' class='iconLigne'>";
             $htmlIcons .= $icon;
         }
 
