@@ -4,9 +4,41 @@
 L'Inventrain permet d'inventorier tous les trains du réseau ferré francilien (RER, Transilien, Tram-Train) et de les visualiser avec divers filtres et tris. Tout cela dans une WebApp simple et intuitive (et bien sûr accessible 😉). <br>
 L'Inventrain inventorie les trains de manière précise avec des informations telles que le numéro de la rame, le type de train, sa ligne et son dépôt d'attache, sa date de mise en service, radiation, son état de service, et tellement plus ! <br>
 
+## 👨🏼‍💻 Accès au site 
+[👉 L'Inventrain](https://webinventory.lesimple.projetsmmichamps.fr/) <br>
+
+## 🖥️ Installer le site
+- Une fois XAMPP, MAMP, WAMP ouvert.
+
+- Lancer les services Apache (serveur web) et MySQL (base de données).
+
+- Copier les fichiers du site (HTML, PHP, JS, CSS, etc.) dans le dossier, généralement nommé htdocs ou www, selon le logiciel.  
+
+- Créer un sous-dossier `inventrain/`, pour accéder ensuite au site via :
+👉 http://localhost/inventrain/
+
+- Accèder à phpMyAdmin via http://localhost/phpmyadmin ou http://localhost:8888/phpMyAdmin (variable selon l'outil utilisé). 
+
+- Créer une base de données nommée ``lesimple_inventrain``
+
+- Dans phpMyAdmin, sélectionner la base nouvellement créée, cliquer sur l’onglet Importer, puis choisir le fichier inventrain.sql fourni et valider.
+
+- Dans le fichier du site `assets/conn.php`, vérifier et adapter les paramètres de connexion :
+
+  - Hôte : localhost
+  - Port : 3306 (ou 8889 selon l’outil utilisé)
+  - Nom de la base : lesimple_inventrain
+  - Nom d'utilisateur : root
+  - Mot de passe : souvent vide, ou root selon la config
+
+- Lancer ton navigateur et saisis l’URL suivante :
+👉 http://localhost/monsite/ 
+- Le site est maintenant opérationnel en local.
+
 ## 📋 Accessibilité & qualité (Opquast/a11y)
 [👉 Consulter le tableur](https://docs.google.com/spreadsheets/d/1fMyE432mOvpnpSP1UVwFlVAKF-D4SXZhio5wEj2JJ4M/edit?usp=sharing) <br>
 
+---
 
 ## ➕ Ajout de trains
 Conscient que certains termes techniques peuvent présenter un problème de compréhension, j’ai pris la décision de rédiger une documentation dédiée à la manipulation des données techniques présentes dans le projet. Un lexique est également disponible pour aider la compréhension.
