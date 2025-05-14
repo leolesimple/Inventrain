@@ -53,7 +53,8 @@ Conscient que certains termes techniques peuvent présenter un problème de comp
 
 ### ✒️ Polices
 - **Meshed Display** : [License Propriétaire](legal/licenses/License_Meshed_Display.pdf)
-- **PT Sans** : [SIL Open Font License](legal/licenses/OFL.txt)
+- ~~**PT Sans** : [SIL Open Font License](legal/licenses/OFL.txt)~~
+- **IBM Plex Sans** : [SIL Open Font License](legal/licenses/OFL.txt)
 
 ### 🗺️ Référentiel & icônes de lignes
 - **LineReferentiel.json & lines_alleged.geojson** : [License ODbL](https://opendatacommons.org/licenses/odbl/1.0/)
