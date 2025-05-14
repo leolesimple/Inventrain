@@ -166,7 +166,7 @@ if (isset($_GET['id'])) {
                 } else {
                     $lineIcon = "default_icon.svg"; // Fallback
                 }
-                $affectationLineicon = "<img src='https://infostation.fr/img/lignes/$lineIcon' height='30' alt='Ligne " . $lineData[$value]['letter'] . "' class=''>";
+                $affectationLineicon = "<img src='img/lignes/$lineIcon' height='30' alt='Ligne " . $lineData[$value]['letter'] . "' class=''>";
                 $htmlIcons .= $affectationLineicon;
             }
 
