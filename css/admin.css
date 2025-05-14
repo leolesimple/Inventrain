@@ -80,6 +80,19 @@ input[type="submit"] {
     transition: all 1s ease-in-out;
 }
 
+input[type="submit"]:disabled {
+    background: #e5e5e5;
+    color: #c3c3c3;
+    cursor: not-allowed;
+}
+
+input[type="submit"]:disabled:hover {
+    background: #e5e5e5;
+    color: #c3c3c3;
+    cursor: not-allowed;
+    border-radius: 12px;
+}
+
 input[type="submit"]:hover {
     background: #94c4f7;
     border-radius: 50rem;
@@ -90,4 +103,43 @@ label:has(+ select[required]):after,
 label:has(+ textarea[required]):after {
     content: ' *';
     color: #9F0000;
+}
+
+input.is-valid,
+select.is-valid,
+textarea.is-valid {
+    border: 2px solid #06853c;
+    background-color: #d7efe2;
+    outline-color: #06853c;
+}
+
+input.is-invalid,
+select.is-invalid,
+textarea.is-invalid {
+    border: 2px solid #b31909;
+    background-color: #f8dfdd;
+    outline-color: #b31909;
+}
+
+.error-message {
+    display: flex;
+    align-items: start;
+    gap: 0.5rem;
+    font-size: 0.9em;
+}
+
+.error-message > .redError {
+    color: #b31909;
+}
+
+.error-message > .orangeError {
+    color: #aa5407;
+}
+
+
+/*
+    Utilisation du !important pour écraser le rouge initial
+*/
+.noError {
+    color: #005c2a !important;
 }
