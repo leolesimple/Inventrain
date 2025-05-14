@@ -98,7 +98,7 @@ include $ext . "assets/includes/nav.php";
         <article id="automaitonsystem">
             <h2>Système d'automatisation</h2>
             <p>
-                Un système d'automatisation est un système qui permet au train d'automatiser certaines tâches à bord, le conducteur peut alors ce concentrer sur la sécurité du train.
+                Un système d'automatisation est un système qui permet au train d'automatiser certaines tâches à bord, le conducteur peut alors se concentrer sur la sécurité du train.
                 <br>
                 Plusieurs niveaux de systèmes d'automatisation existent, des systèmes de sécurité (comme le KVB) aux systèmes d'automatisation avancés (comme le SACEM).
                 <br><br>
@@ -147,7 +147,7 @@ include $ext . "assets/includes/nav.php";
             </p>
             <h3 style="margin-left: 1rem;">W (Vide Voyageurs)</h3>
             <p>
-                Un service W est un train qui circule sans voyageurs, il sert soit à déplacer un train vers son terminus/origine ou le déposer dans un technicentre pour maintenance et bien plus. Il est aussi identifié par un numéro unique ou un code contenant W ou 00, (ex. WXWB ou 003849)
+                Un service W est un train qui circule sans voyageurs, il sert soit à déplacer un train vers son terminus/origine ou le déposer dans un technicentre pour maintenance et bien plus. Il est aussi identifié par un numéro unique ou un code contenant W ou 00, (ex. WXWB ou 003849).
             </p>
         </article>
         <article id="reno">
@@ -155,11 +155,11 @@ include $ext . "assets/includes/nav.php";
             <p>
                 La rénovation est un processus qui consiste à moderniser un train pour le rendre plus performant et plus confortable. Elle peut concerner l'intérieur, l'extérieur ou les deux.
                 <br>
-                Un train peut-être rénové de plusieurs manières.
+                Un train peut être rénové de plusieurs manières.
             </p>
             <ul>
                 <li>
-                    <strong>OPMV (Opération Mie-Vie)</strong>: Réalisée à la moitié de la durée de vie du train (entre 15 et 20 ans), elle consiste à remettre le train à neuf (changement de motorisation, changement intérieurs majeurs, conversion diesel-éléctrique, etc.)
+                    <strong>OPMV (Opération Mie-Vie)</strong> : Réalisée à la moitié de la durée de vie du train (entre 15 et 20 ans), elle consiste à remettre le train à neuf (changement de motorisation, changement intérieurs majeurs, conversion diesel-éléctrique, etc.)
                 </li>
                 <li>
                     <strong>RL (Rénovation Légère)</strong> : Réalisée tous les 3/4 ans, elle permet de refaire la livrée du train, changer les selleries ou encore revoir les systèmes de conduite, mettre à jour le
@@ -177,7 +177,7 @@ include $ext . "assets/includes/nav.php";
             </p>
             <ul>
                 <li>
-                    <strong>MI2N (RER A)</strong>: Leur <em>OPMV</em> a commencée en 2020 et les premières rames (bleues) circulent sur le RER A depuis octobre 2024.
+                    <strong>MI2N (RER A)</strong> : Leur <em>OPMV</em> a commencé en 2020 et les premières rames (bleues) circulent sur le RER A depuis octobre 2024.
                 </li>
                 <li>
                     <strong>
@@ -189,7 +189,7 @@ include $ext . "assets/includes/nav.php";
                     <strong>
                         Z50000
                     </strong>
-                    : Ces rames ont subies une <em>RL</em> entre 2018 et 2021 pour changer la livrée Carmillon (couleur de la SNCF) vers la livrée Île-de-France Mobilités (bleues).
+                    : Ces rames ont subi une <em>RL</em> entre 2018 et 2021 pour changer la livrée Carmillon (couleur de la SNCF) vers la livrée Île-de-France Mobilités (bleues).
                 </li>
             </ul>
         </article>
