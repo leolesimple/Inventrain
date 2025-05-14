@@ -59,27 +59,16 @@ include $ext . "assets/includes/nav.php";
             Un peu de vocabulaire ? Volontiers ! <br> Voici un lexique des termes utilisés dans le ferroviaire.
         </p>
     </header>
-    rame
-    voiture
-    serie
-    US/UM (#usum)
-    Système d'automatisation (#automaitonsystem)
-    EPIC
-    EPA
-    STF
-    Automotrices
-    Services Co et W (#services)
-    Rénovation (#reno)
     <section class="docsContent">
         <article id="rame">
-            <h3>Rame</h3>
+            <h2>Rame</h2>
             <p>
                 Une rame est un <strong>groupe</strong> de voitures et/ou de locomotives qui circulent ensemble. Il peut s'agir d'une
                 composition fixe ou d'une composition modulaire.
             </p>
         </article>
         <article id="voiture">
-            <h3>Voiture</h3>
+            <h2>Voiture</h2>
             <p>
                 Une voiture (maladroitement appelé wagon) est un véhicule ferroviaire qui peut être tracté ou poussé par une locomotive. Elle transporte des passagers
                 <br>
@@ -87,7 +76,7 @@ include $ext . "assets/includes/nav.php";
             </p>
         </article>
         <article id="serie">
-            <h3>Série</h3>
+            <h2>Série</h2>
             <figure>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Regio_2N_%28Z_57000%29%2C_rame_125R%2C_gare_de_Dreux.jpg/960px-Regio_2N_%28Z_57000%29%2C_rame_125R%2C_gare_de_Dreux.jpg" alt="">
                 <figcaption>Un Regio2N à la gare de Dreux</figcaption>
@@ -99,7 +88,7 @@ include $ext . "assets/includes/nav.php";
             </p>
         </article>
         <article id="usum">
-            <h3>US et UM</h3>
+            <h2>US et UM</h2>
             <p>
                 US signifie <em>Unité Simple</em>, c'est une rame qui circule seule. <br>UM signifie Unité Multiple, c'est une rame composée de plusieurs rames. Les trains en Île-de-France sont souvent en UM2 (donc deux rames couplées).
                 <br><br>
@@ -107,7 +96,7 @@ include $ext . "assets/includes/nav.php";
             </p>
         </article>
         <article id="automaitonsystem">
-            <h3>Système d'automatisation</h3>
+            <h2>Système d'automatisation</h2>
             <p>
                 Un système d'automatisation est un système qui permet au train d'automatiser certaines tâches à bord, le conducteur peut alors ce concentrer sur la sécurité du train.
                 <br>
@@ -119,7 +108,7 @@ include $ext . "assets/includes/nav.php";
             </p>
         </article>
         <article id="epic">
-            <h3>EPIC</h3>
+            <h2>EPIC</h2>
             <p>
                 EPIC signifie <em>Établissement Public à caractère Industriel et Commercial</em>, c'est un établissement public qui a pour mission de gérer une activité industrielle ou commerciale.
                 <br>
@@ -127,12 +116,82 @@ include $ext . "assets/includes/nav.php";
             </p>
         </article>
         <article id="epa">
-            <h3>EPA</h3>
+            <h2>EPA</h2>
             <p>
                 EPA signifie <em>Établissement Public Administratif</em>, c'est un établissement public qui a pour mission de gérer une activité administrative.
                 <br>
-                Par exemple, la SNCF  est un EPA qui gère le transport ferroviaire en France.
+                Par exemple, la SNCF est un EPA qui gère le transport ferroviaire en France.
             </p>
+        </article>
+        <article id="stf">
+            <h2>STF</h2>
+            <p>
+                Un STF (Supervision Technique de Flotte), parfois désigné à tort sous le nom de <em>dépôt</em> est un établissement ferroviaire qui peut contenir un ou plusieurs dépôts (voies de garages), un centre de maintenance (technicentre), un centre de formation, etc. Il est chargé de la gestion de la flotte de trains d'une partie du réseau, une rame est <strong>forcément</strong> rattachée à un STF et peut en changer au cours de sa vie.
+                <br>
+                Par exemple, le STF Saint Lazare possède 4 dépôts (Clichy, Achères, Val Notre-Dame, Mantes-la-Jolie), un centre de formation (à La Garenne Colombes), 2 technicentres (Clichy, Achères) et est chargé de la supervision des Lignes L et J du Transilien ainsi que de la partie SNCF du RER A.
+            </p>
+        </article>
+        <article id="automotrices">
+            <h2>Automotrices</h2>
+            <p>
+                Une automotrice est un train qui possède sa propre source d'énergie, il n'a pas besoin d'une locomotive pour circuler. Il peut être composé de plusieurs voitures ou d'une seule voiture.
+                <br>
+                Aujourd'hui, la plupart des trains sont des automotrices, elles sont plus légères et plus économiques à l'usage. Elles peuvent être électriques ou diesel. Seules les VB2N+BB27300 ne sont pas des automotrices en IDF.
+            </p>
+        </article>
+        <article class="services">
+            <h2>Services</h2>
+            <h3 style="margin-left: 1rem;">Commercial</h3>
+            <p>
+                Un service commercial est un train qui circule sur le réseau et qui est destiné à transporter des passagers. Il est identifié par un numéro unique ou un code mission (ex. QDIL34, QUDO56 (code missions RER A), 130859 (numéro circulation Ligne J)).
+            </p>
+            <h3 style="margin-left: 1rem;">W (Vide Voyageurs)</h3>
+            <p>
+                Un service W est un train qui circule sans voyageurs, il sert soit à déplacer un train vers son terminus/origine ou le déposer dans un technicentre pour maintenance et bien plus. Il est aussi identifié par un numéro unique ou un code contenant W ou 00, (ex. WXWB ou 003849)
+            </p>
+        </article>
+        <article id="reno">
+            <h2>Rénovation</h2>
+            <p>
+                La rénovation est un processus qui consiste à moderniser un train pour le rendre plus performant et plus confortable. Elle peut concerner l'intérieur, l'extérieur ou les deux.
+                <br>
+                Un train peut-être rénové de plusieurs manières.
+            </p>
+            <ul>
+                <li>
+                    <strong>OPMV (Opération Mie-Vie)</strong>: Réalisée à la moitié de la durée de vie du train (entre 15 et 20 ans), elle consiste à remettre le train à neuf (changement de motorisation, changement intérieurs majeurs, conversion diesel-éléctrique, etc.)
+                </li>
+                <li>
+                    <strong>RL (Rénovation Légère)</strong> : Réalisée tous les 3/4 ans, elle permet de refaire la livrée du train, changer les selleries ou encore revoir les systèmes de conduite, mettre à jour le
+                    <a href="#sive">SIVE</a>, etc.
+                </li>
+                <li>
+                    <strong>
+                        RLO (Rénovation Lourde)
+                    </strong>
+                    : Réalisée à la fin de vie des trains en cas de prolongement de leur durée de service, elle est entre l'OPMV et la rénovation Légère, elle permet seulement de garder un train propre et en bon état de marche.
+                </li>
+            </ul>
+            <p>
+                <strong>Exemples :</strong> <br>
+            </p>
+            <ul>
+                <li>
+                    <strong>MI2N (RER A)</strong>: Leur <em>OPMV</em> a commencée en 2020 et les premières rames (bleues) circulent sur le RER A depuis octobre 2024.
+                </li>
+                <li>
+                    <strong>
+                        MI84 (RER B)
+                    </strong>
+                    : Partis en OPMV en 2015, les MI84 sont en cours de <em>RLO</em> en raison de leur prolongement de service jusqu'en 2030, en cause le retard des MI20.
+                </li>
+                <li>
+                    <strong>
+                        Z50000
+                    </strong>
+                    : Ces rames ont subies une <em>RL</em> entre 2018 et 2021 pour changer la livrée Carmillon (couleur de la SNCF) vers la livrée Île-de-France Mobilités (bleues).
+                </li>
+            </ul>
         </article>
     </section>
 
