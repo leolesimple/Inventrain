@@ -1,6 +1,7 @@
 <?php
 global $conn;
 $ext = "../";
+$success = false;
 
 include "../assets/includes/conn.php";
 
@@ -30,7 +31,7 @@ if (isset($_POST['add'])) {
 
     // If one of the fields contains 0, die
     if ($serie == 0 || $livree == 0 || $fab == 0 || $reseau == 0 || $status == 0 || $depot == 0 || $owner == 0) {
-        echo "<script>toast('error', 'Erreur', 'Veuillez remplir tous les champs.');</script>";
+        echo "Houston, we have a problem !";
     } else {
         $stmt = $conn->prepare("INSERT INTO train (idSerie, number, idLivery, idManufacturer, deliveryDate, radiationDate, idNetwork, idStatus, idDepot, idRenovation, idOwner, incidents) 
 VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :depot, :reno, :owner, :comment)");
@@ -58,6 +59,8 @@ VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :
                 $line_stmt->execute();
             }
         }
+
+        $success = true;
     }
 }
 ?>
@@ -94,6 +97,7 @@ VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :
 
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/docs.css">
 
     <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
 
@@ -105,6 +109,17 @@ VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :
 <body>
 <?php
 include "../assets/includes/nav.php";
+?>
+<?php
+if ($success) {
+    echo "  
+    <div class='docAlert green'>
+        <h2>Train ajouté !</h2>
+        <p>Le train a été ajouté avec succès. Le formulaire est pré-rempli si besoin d'ajouter un autre train.</p>
+        <a href=\"/detailsTrain.php?id=$train_id\">Voir le train</a>
+        </div>
+    ";
+}
 ?>
 <main id="content">
     <div class="titleContainer adminTitle">
@@ -122,7 +137,7 @@ include "../assets/includes/nav.php";
             <?php
             $series = $conn->query("SELECT * FROM series")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="serie" id="serie" required>';
-            echo '<option value="0" disabled' . (!isset($_POST['serie']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['serie']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($series as $s) {
                 echo "<option value=\"{$s['idSerie']}\" " . (isset($_POST['serie']) && $_POST['serie'] == $s['idSerie'] ? 'selected' : '') . ">";
                 if ($s['altName'] == "") {
@@ -136,14 +151,15 @@ include "../assets/includes/nav.php";
         </div>
         <div class="inputContainer">
             <label for="num">Numéro <small>(max. 50 caractères)</small></label>
-            <input type="text" name="num" id="num" maxlength="50" placeholder="34C, 3546, 001L" required value="<?php echo htmlspecialchars($_POST['num'] ?? '', ENT_QUOTES); ?>">
+            <input type="text" name="num" id="num" maxlength="50" placeholder="34C, 3546, 001L" required
+                   value="<?php echo htmlspecialchars($_POST['num'] ?? '', ENT_QUOTES); ?>">
         </div>
         <div class="inputContainer">
             <label for="livree">Livrée</label>
             <?php
             $livery = $conn->query("SELECT * FROM livery")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="livree" id="livree" required>';
-            echo '<option value="0" disabled' . (!isset($_POST['livree']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['livree']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($livery as $l) {
                 echo "<option value=\"{$l['idLivery']}\" " . (isset($_POST['livree']) && $_POST['livree'] == $l['idLivery'] ? 'selected' : '') . ">{$l['liveryName']}</option>";
             }
@@ -155,7 +171,7 @@ include "../assets/includes/nav.php";
             <?php
             $manufacturer = $conn->query("SELECT * FROM manufacturer")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="fab" id="fab" required>';
-            echo '<option value="0" disabled' . (!isset($_POST['fab']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['fab']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($manufacturer as $m) {
                 echo "<option value=\"{$m['idManufacturer']}\" " . (isset($_POST['fab']) && $_POST['fab'] == $m['idManufacturer'] ? 'selected' : '') . ">{$m['fabricant']}</option>";
             }
@@ -164,18 +180,20 @@ include "../assets/includes/nav.php";
         </div>
         <div class="inputContainer">
             <label for="livraison">Date de Livraison</label>
-            <input type="date" name="livraison" id="livraison" required value="<?php echo htmlspecialchars($_POST['livraison'] ?? '', ENT_QUOTES); ?>">
+            <input type="date" name="livraison" id="livraison" required
+                   value="<?php echo htmlspecialchars($_POST['livraison'] ?? '', ENT_QUOTES); ?>">
         </div>
         <div class="inputContainer">
             <label for="radiation">Date de Radiation</label>
-            <input type="date" name="radiation" id="radiation" value="<?php echo htmlspecialchars($_POST['radiation'] ?? '', ENT_QUOTES); ?>">
+            <input type="date" name="radiation" id="radiation"
+                   value="<?php echo htmlspecialchars($_POST['radiation'] ?? '', ENT_QUOTES); ?>">
         </div>
         <div class="inputContainer">
             <label for="reseau">Réseau d'Affectation</label>
             <?php
             $network = $conn->query("SELECT * FROM network")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="reseau" id="reseau" required>';
-            echo '<option value="0" disabled' . (!isset($_POST['reseau']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['reseau']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($network as $n) {
                 echo "<option value=\"{$n['idNetwork']}\" " . (isset($_POST['reseau']) && $_POST['reseau'] == $n['idNetwork'] ? 'selected' : '') . ">{$n['railNetwork']}</option>";
             }
@@ -187,7 +205,7 @@ include "../assets/includes/nav.php";
             <?php
             $status = $conn->query("SELECT * FROM status")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="status" id="status" required>';
-            echo '<option value="0" disabled' . (!isset($_POST['status']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['status']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($status as $st) {
                 echo "<option value=\"{$st['idStatus']}\" " . (isset($_POST['status']) && $_POST['status'] == $st['idStatus'] ? 'selected' : '') . ">{$st['state']}</option>";
             }
@@ -199,7 +217,7 @@ include "../assets/includes/nav.php";
             <?php
             $depot = $conn->query("SELECT * FROM depot")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="depot" id="depot" required>';
-            echo '<option value="0" disabled' . (!isset($_POST['depot']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['depot']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($depot as $d) {
                 echo "<option value=\"{$d['idDepot']}\" " . (isset($_POST['depot']) && $_POST['depot'] == $d['idDepot'] ? 'selected' : '') . ">{$d['depotName']}</option>";
             }
@@ -211,7 +229,7 @@ include "../assets/includes/nav.php";
             <?php
             $reno = $conn->query("SELECT * FROM renovation")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="reno" id="reno">';
-            echo '<option value="0" disabled' . (!isset($_POST['reno']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['reno']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($reno as $r) {
                 echo "<option value=\"{$r['idRenovation']}\" " . (isset($_POST['reno']) && $_POST['reno'] == $r['idRenovation'] ? 'selected' : '') . ">{$r['renovationType']}</option>";
             }
@@ -223,7 +241,7 @@ include "../assets/includes/nav.php";
             <?php
             $owner = $conn->query("SELECT * FROM owner")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="owner" id="owner" required>';
-            echo '<option value="0" disabled' . (!isset($_POST['owner']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden' . (!isset($_POST['owner']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($owner as $o) {
                 echo "<option value=\"{$o['idOwner']}\" " . (isset($_POST['owner']) && $_POST['owner'] == $o['idOwner'] ? 'selected' : '') . ">{$o['ownerName']}</option>";
             }
@@ -244,11 +262,214 @@ include "../assets/includes/nav.php";
         </fieldset>
         <div class="inputContainer">
             <label for="comment">Commentaire</label>
-            <textarea name="comment" id="comment" cols="30" rows="8"><?php echo htmlspecialchars($_POST['comment'] ?? '', ENT_QUOTES); ?></textarea>
+            <textarea name="comment" id="comment" cols="30"
+                      rows="8"><?php echo htmlspecialchars($_POST['comment'] ?? '', ENT_QUOTES); ?></textarea>
         </div>
-        <input type="submit" name="add" value="Envoyer">
+        <input type="submit" name="add" value="Envoyer" disabled>
+        <div id="formSummary" class="error-message" role="alert" style="margin-bottom: 10px;" hidden></div>
     </form>
 </main>
+<script>
+    const form = document.querySelector("form");
+    const requiredFields = form.querySelectorAll("input[required], select[required], textarea[required]");
+    const submitBtn = form.querySelector('input[type="submit"]');
+    const inputNum = document.querySelector("#num");
+    const errorNum = document.createElement("div");
+    errorNum.id = "numError";
+    errorNum.className = "error-message";
+    errorNum.setAttribute("role", "alert");
+    errorNum.hidden = true;
+    inputNum.setAttribute("aria-describedby", "numError");
+    inputNum.insertAdjacentElement("afterend", errorNum);
+
+    const summary = document.querySelector("#formSummary");
+
+    let formWasSubmitted = false;
+
+    // Validation du numéro de train selon des patterns spécifiques
+    function validateNum() {
+        let value = inputNum.value.replace(/\s+/g, "");
+        inputNum.value = value;
+
+        const letterCount = (value.match(/[a-zA-Z]/g) || []).length;
+        const digitCount = (value.match(/\d/g) || []).length;
+        const patterns = [
+            /^\d{4}$/,
+            /^\d{4}\/\d{1,3}$/,
+            /^\d{1,5}[a-zA-Z]{1,2}$/,
+            /^\d{5}$/,
+            /^TT\d{3,5}$/
+        ];
+
+        const isValid =
+            value.length > 0 &&
+            letterCount <= 2 &&
+            digitCount <= 14 &&
+            patterns.some((r) => r.test(value));
+
+        if (inputNum.classList.contains("was-touched") || formWasSubmitted) {
+            if (isValid) {
+                inputNum.classList.add("is-valid");
+                inputNum.classList.remove("is-invalid");
+                inputNum.setAttribute("aria-invalid", "false");
+                errorNum.textContent = "Votre numéro est conforme.";
+                errorNum.classList.add("noError");
+                errorNum.hidden = true;
+            } else {
+                inputNum.classList.add("is-invalid");
+                inputNum.classList.remove("is-valid");
+                inputNum.setAttribute("aria-invalid", "true");
+                errorNum.textContent = "Numéro invalide. Exemple : 3546, 3546/002, 123AB, TT456";
+                errorNum.hidden = false;
+            }
+        } else {
+            inputNum.classList.remove("is-valid", "is-invalid");
+            errorNum.hidden = true;
+        }
+
+        return isValid;
+    }
+
+    /*
+    * Récupération des champs invalides
+    * Utilisation de Set pour éviter les doublons
+    * Renvoie un objet contenant deux tableaux : empty et invalid, permet de différencier les actions à faire.
+    */
+    function getInvalidFields() {
+        const emptyFields = new Set();
+        const invalidFields = new Set();
+
+        requiredFields.forEach((field) => {
+            const value = field.value.trim();
+            const isInvalid =
+                field.tagName === "SELECT"
+                    ? field.value === "0"
+                    : value === "";
+
+            if ((formWasSubmitted || field.classList.contains("was-touched")) || isInvalid) {
+                const label = form.querySelector(`label[for="${field.id}"]`);
+                const name = label ? label.textContent.trim().replace(/\s*\(.*?\)/g, '') : field.name;
+
+                if (isInvalid) {
+                    emptyFields.add(name);
+                }
+            }
+        });
+
+        const numValue = inputNum.value.trim();
+        const letterCount = (numValue.match(/[a-zA-Z]/g) || []).length;
+        const digitCount = (numValue.match(/\d/g) || []).length;
+        const numValid = numValue.length > 0 && letterCount <= 2 && digitCount <= 14 && [/^\d{4}$/, /^\d{4}\/\d{1,3}$/, /^\d{1,5}[a-zA-Z]{1,2}$/, /^\d{5}$/, /^TT\d{3,5}$/].some((r) => r.test(numValue));
+
+        const label = form.querySelector(`label[for="num"]`);
+        const numName = label ? label.textContent.trim().replace(/\s*\(.*?\)/g, '') : "Numéro";
+
+        if ((formWasSubmitted || inputNum.classList.contains("was-touched")) || !numValid) {
+            if (numValue === "") {
+                emptyFields.add(numName);
+            } else if (!numValid) {
+                invalidFields.add(numName);
+            }
+        }
+
+        return {
+            empty: Array.from(emptyFields),
+            invalid: Array.from(invalidFields)
+        };
+    }
+
+    function updateSummary() {
+        const { empty, invalid } = getInvalidFields();
+
+        let html = "";
+        if (empty.length > 0) {
+            html += "<div class='redError'><h3>Champs requis non remplis :</h3><ul>";
+            for (let i = 0; i < empty.length; i++) {
+                html += "<li>" + empty[i] + "</li>";
+            }
+            html += "</ul></div>";
+        }
+
+        if (invalid.length > 0 && submitBtn.disabled) {
+            if (html !== "") html += "<br>";
+            html += "<div class='orangeError'><h3>Champs remplis mais invalides :</h3><ul>";
+            for (let i = 0; i < invalid.length; i++) {
+                html += "<li>" + invalid[i] + "</li>";
+            }
+            html += "</ul></div>";
+        }
+
+        if (html !== "") {
+            summary.innerHTML = html;
+            summary.hidden = false;
+        } else if (!submitBtn.disabled) {
+            summary.innerHTML = "";
+            summary.hidden = true;
+        } else {
+            summary.innerHTML = "";
+            summary.hidden = true;
+        }
+    }
+
+    function checkFormValidity() {
+        let isComplete = true;
+
+        requiredFields.forEach((field) => {
+            const value = field.value.trim();
+            const isInvalid = field.tagName === "SELECT" ? field.value === "0" : value === "";
+
+            if (field.classList.contains("was-touched") || formWasSubmitted) {
+                if (isInvalid) {
+                    field.classList.add("is-invalid");
+                } else {
+                    field.classList.remove("is-invalid");
+                }
+            }
+
+            if (isInvalid) {
+                isComplete = false;
+            }
+        });
+
+        if (!validateNum()) isComplete = false;
+
+        submitBtn.disabled = !isComplete;
+        updateSummary();
+    }
+
+    // Écouteurs
+    inputNum.addEventListener("input", () => {
+        inputNum.classList.add("was-touched");
+        validateNum();
+        checkFormValidity();
+    });
+
+    requiredFields.forEach((field) => {
+        field.addEventListener("input", () => {
+            field.classList.add("was-touched");
+            checkFormValidity();
+        });
+
+        field.addEventListener("change", () => {
+            field.classList.add("was-touched");
+            checkFormValidity();
+        });
+    });
+
+    form.addEventListener("submit", (e) => {
+        formWasSubmitted = true;
+        checkFormValidity();
+
+        if (submitBtn.disabled) {
+            e.preventDefault();
+        }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+        checkFormValidity();
+        validateNum();
+    });
+</script>
 <?php
 include "../assets/includes/footer.php";
 ?>
