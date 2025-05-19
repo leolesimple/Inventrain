@@ -137,7 +137,7 @@ if ($success) {
             <?php
             $series = $conn->query("SELECT * FROM series")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="serie" id="serie" required>';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['serie']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['serie']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($series as $s) {
                 echo "<option value=\"{$s['idSerie']}\" " . (isset($_POST['serie']) && $_POST['serie'] == $s['idSerie'] ? 'selected' : '') . ">";
                 if ($s['altName'] == "") {
@@ -159,7 +159,7 @@ if ($success) {
             <?php
             $livery = $conn->query("SELECT * FROM livery")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="livree" id="livree" required>';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['livree']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['livree']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($livery as $l) {
                 echo "<option value=\"{$l['idLivery']}\" " . (isset($_POST['livree']) && $_POST['livree'] == $l['idLivery'] ? 'selected' : '') . ">{$l['liveryName']}</option>";
             }
@@ -171,7 +171,7 @@ if ($success) {
             <?php
             $manufacturer = $conn->query("SELECT * FROM manufacturer")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="fab" id="fab" required>';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['fab']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['fab']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($manufacturer as $m) {
                 echo "<option value=\"{$m['idManufacturer']}\" " . (isset($_POST['fab']) && $_POST['fab'] == $m['idManufacturer'] ? 'selected' : '') . ">{$m['fabricant']}</option>";
             }
@@ -193,7 +193,7 @@ if ($success) {
             <?php
             $network = $conn->query("SELECT * FROM network")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="reseau" id="reseau" required>';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['reseau']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['reseau']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($network as $n) {
                 echo "<option value=\"{$n['idNetwork']}\" " . (isset($_POST['reseau']) && $_POST['reseau'] == $n['idNetwork'] ? 'selected' : '') . ">{$n['railNetwork']}</option>";
             }
@@ -205,7 +205,7 @@ if ($success) {
             <?php
             $status = $conn->query("SELECT * FROM status")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="status" id="status" required>';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['status']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['status']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($status as $st) {
                 echo "<option value=\"{$st['idStatus']}\" " . (isset($_POST['status']) && $_POST['status'] == $st['idStatus'] ? 'selected' : '') . ">{$st['state']}</option>";
             }
@@ -217,7 +217,7 @@ if ($success) {
             <?php
             $depot = $conn->query("SELECT * FROM depot")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="depot" id="depot" required>';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['depot']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['depot']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($depot as $d) {
                 echo "<option value=\"{$d['idDepot']}\" " . (isset($_POST['depot']) && $_POST['depot'] == $d['idDepot'] ? 'selected' : '') . ">{$d['depotName']}</option>";
             }
@@ -229,7 +229,7 @@ if ($success) {
             <?php
             $reno = $conn->query("SELECT * FROM renovation")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="reno" id="reno">';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['reno']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['reno']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($reno as $r) {
                 echo "<option value=\"{$r['idRenovation']}\" " . (isset($_POST['reno']) && $_POST['reno'] == $r['idRenovation'] ? 'selected' : '') . ">{$r['renovationType']}</option>";
             }
@@ -241,7 +241,7 @@ if ($success) {
             <?php
             $owner = $conn->query("SELECT * FROM owner")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="owner" id="owner" required>';
-            echo '<option value="0" disabled selected hidden' . (!isset($_POST['owner']) ? ' selected' : '') . '>Choisir...</option>';
+            echo '<option value="0" disabled selected hidden ' . (!isset($_POST['owner']) ? ' selected' : '') . '>Choisir...</option>';
             foreach ($owner as $o) {
                 echo "<option value=\"{$o['idOwner']}\" " . (isset($_POST['owner']) && $_POST['owner'] == $o['idOwner'] ? 'selected' : '') . ">{$o['ownerName']}</option>";
             }
@@ -249,7 +249,7 @@ if ($success) {
             ?>
         </div>
         <fieldset class="inputContainer">
-            <legend for="line">Ligne d'Affectation</legend>
+            <legend>Ligne d'Affectation</legend>
             <?php
             $lines = $conn->query("SELECT * FROM line")->fetchAll(PDO::FETCH_ASSOC);
             foreach ($lines as $line) {
