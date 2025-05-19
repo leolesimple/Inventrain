@@ -103,7 +103,7 @@ include $ext . "assets/includes/nav.php";
                         </li>
                         <li><strong>000A</strong> (trois chiffres suivis d'une lettre) : Nouvelle nomenclature, la
                             lettre correspondant au dépôt d'affectation. <br><em>Attention ! Dans une même série, il
-                                n'existe pas de 001A et de 001H, ce sera 001A et 002H</em></li>
+                                n'existe pas de 001A et de 001H, ce sera 001A et 002H.</em></li>
                         <li><strong>000TT</strong> : Nomenclature Tram-Train.</li>
                         -
                         <li><strong>0000</strong> : Nomenclature RATP pour les rames des lignes A et B du RER.</li>
@@ -146,7 +146,7 @@ include $ext . "assets/includes/nav.php";
                 <dd>
                     Chaque série possède une date de mise en service qui peut être différente de la date de mise en
                     service de chaque rame. Cette date est la date à laquelle la première rame de la série a été mise en
-                    service, soit l'inauguration officielle et publique de la série. Exemple : la série MI09 a été mise
+                    service, soit l'inauguration publique de la série. Exemple : la série MI09 a été mise
                     en service sur le RER A en 2011 par M. Sarkozy, bien que la première MI09 ait été livrée en 2009.
                 </dd>
                 <dt>🛠️ Utilisation</dt>
@@ -197,9 +197,9 @@ include $ext . "assets/includes/nav.php";
                 <dt>🤔 Qu’est-ce que c’est ?</dt>
                 <dd>
                     Le système de conduite est le nom du système d’automatisation qui assiste le conducteur. Il est
-                    important de le noter car il permet de savoir si la rame est équipée d’un système de conduite
+                    important de le noter, car il permet de savoir si la rame est équipée d’un système de conduite
                     automatique ou non. Il existe plusieurs systèmes de conduite, comme le SACEM (RER A), le KVB (SNCF
-                    Réseau), le BAL (RATP) et d'ici 2027, NExTEO (SNCF Réseau - RER B,D,E).
+                    Réseau), le BAL (RATP) et d'ici à 2027, NExTEO (SNCF Réseau - RER B, D, E).
                 </dd>
                 <dt>🛠️ Utilisation</dt>
                 <dd>
@@ -303,8 +303,8 @@ include $ext . "assets/includes/nav.php";
                 <dt>🤔 Qu’est-ce que c’est ?</dt>
                 <dd>
                     Entreprise possédant la rame, elle peut être différente de l'entreprise exploitante. Par exemple,
-                    SNCF Voyageurs loue certaines rames à SNCF Matériel ou aux Régions (hors IDF), les rames post-2009,
-                    appartiennent à Île de France Mobilités (IDFM) et sont louées à SNCF Voyageurs/RATP/Stretto
+                    SNCF Voyageurs louent certaines rames à SNCF Matériel ou aux Régions (hors IDF), les rames post-2009,
+                    appartiennent à Île-de-France Mobilités (IDFM) et sont louées à SNCF Voyageurs/RATP/Stretto
                     (T4/T11/T14), dans une logique de mise en concurrence voulue par l'UE.
                     <br><br>
                     Certaines rames appartenaient à la SNCF (ex. Regio2N) avant d'être revendues à IDFM.
@@ -323,7 +323,7 @@ include $ext . "assets/includes/nav.php";
             <dl>
                 <dt>🤔 Qu’est-ce que c’est ?</dt>
                 <dd>
-                    Le dépôt auquel la rame est attaché est appelé STF (Supervision Technique de Flotte). Il s'agit de
+                    Le dépôt, auquel la rame est attaché, est appelé STF (Supervision Technique de Flotte). Il s'agit de
                     l'endroit sur lequel la rame est "immatriculée" et où elle est entretenue. Un STF peut contenir
                     plusieurs dépôts, par exemple, le STF de Paris Saint-Lazare contient les dépôts/technicentres de
                     Clichy, Achères Grand Cormier, etc.
@@ -349,7 +349,7 @@ include $ext . "assets/includes/nav.php";
                     Réseau) sur lequel la rame est autorisée à circuler.
                 </li>
                 <li><strong>Ligne d'Affectation</strong> : Ligne(s) commerciale(s) sur laquelle/lesquelles le train est amené à rouler en <a target="_blank" href="lexique.php#services">service commercial</a>.</li>
-                <li><strong>Rénovation</strong> : Rénovation la plus récente de la rame (voir les <a target="_blank" href="lexique.php#reno">types de rénovation</a>.</li>
+                <li><strong>Rénovation</strong> : Rénovation la plus récente de la rame (voir les <a target="_blank" href="lexique.php#reno">types de rénovation)</a>.</li>
             </ul>
         </article>
         <p>

@@ -79,7 +79,7 @@ include $ext . "assets/includes/nav.php";
         <h2>📄 Les pages disponibles</h2>
         <p>
             Je vous propose une documentation complète sur le site en raison de la complexité de certaines notions. En
-            effet, les termes ferroviaire peuvent-être difficiles à comprendre pour les néophytes. Voici un aperçu des
+            effet, les termes ferroviaires peuvent-être difficiles à comprendre pour les néophytes. Voici un aperçu des
             pages disponibles :
         </p>
         <ul class="unList bigList">

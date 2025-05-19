@@ -59,7 +59,7 @@ include $ext . "assets/includes/nav.php";
         </p>
         <hr>
         <p>
-            Le logo "L'Inventrain" écrit, est soumis à la license propriétaire de la police "Meshed Display" <br>
+            Le logo "L'Inventrain" écrit, est soumis à la license propriétaire de la police "Meshed Display". <br>
             <a
                     href="./licenses/License_Meshed_Display.pdf">Consulter la license (PDF, 69 ko)</a>.
         </p>

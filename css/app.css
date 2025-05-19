@@ -287,7 +287,6 @@ h1 > label {
 }
 
 .bigSearch {
-    padding: 1.25rem 1.5625rem;
     border-radius: 1.25rem;
     border: 2px solid #E5E5E5;
     background: #FDFDFD;
@@ -296,7 +295,7 @@ h1 > label {
     font-style: normal;
     font-weight: 700;
     line-height: 1.5rem;
-    padding-left: 3rem;
+    padding: 1.25rem 1.5625rem 1.25rem 3rem;
     width: 100%;
 }
 
