@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['HTTP_HOST'] == "localhost:63342") {
+if ($_SERVER['HTTP_HOST'] == "localhost:63343") {
     $dsn = "mysql:host=localhost;port=8889;dbname=inventrain;charset=utf8";
     $username = "root";
     $password = "root";
