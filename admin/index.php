@@ -37,7 +37,7 @@ if (isset($_POST['add'])) {
 VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :depot, :reno, :owner, :comment)");
 
         $stmt->bindValue(':serie', $serie, PDO::PARAM_INT);
-        $stmt->bindValue(':num', $num, PDO::PARAM_STR);
+        $stmt->bindValue(':num', $num);
         $stmt->bindValue(':livree', $livree, PDO::PARAM_INT);
         $stmt->bindValue(':fab', $fab, PDO::PARAM_INT);
         $stmt->bindValue(':livraison', $livraison);
@@ -47,7 +47,7 @@ VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :
         $stmt->bindValue(':depot', $depot, PDO::PARAM_INT);
         $stmt->bindValue(':reno', $reno);
         $stmt->bindValue(':owner', $owner, PDO::PARAM_INT);
-        $stmt->bindValue(':comment', $comment, PDO::PARAM_STR);
+        $stmt->bindValue(':comment', $comment);
 
         $stmt->execute();
         $train_id = $conn->lastInsertId();
@@ -392,7 +392,7 @@ if ($success) {
 
         if (invalid.length > 0 && submitBtn.disabled) {
             if (html !== "") html += "<br>";
-            html += "<div class='orangeError'><h3>Champs remplis mais invalides :</h3><ul>";
+            html += "<div class='orangeError'><h3>Champs remplis, mais invalides :</h3><ul>";
             for (let i = 0; i < invalid.length; i++) {
                 html += "<li>" + invalid[i] + "</li>";
             }
