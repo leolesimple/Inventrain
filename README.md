@@ -52,7 +52,7 @@ Conscient que certains termes techniques peuvent présenter un problème de comp
 - Licence principale : **AGPL-3.0**
 
 ### ✒️ Polices
-- **Meshed Display** : [License Propriétaire](legal/licenses/License_Meshed_Display.pdf)
+- **Meshed Display** : [Licence Propriétaire](legal/licenses/License_Meshed_Display.pdf)
 - ~~**PT Sans** : [SIL Open Font License](legal/licenses/OFL.txt)~~
 - **IBM Plex Sans** : [SIL Open Font License](legal/licenses/OFL.txt)
 

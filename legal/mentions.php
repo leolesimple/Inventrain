@@ -55,8 +55,7 @@ include $ext . "assets/includes/nav.php";
         <p>
             Pour plus d'informations sur la propriété intellectuelle, veuillez consulter notre
             <a href="<?php echo $ext; ?>legal/cgu.php">
-                page "Propriété Intellectuelle
-            </a>.
+                page "Propriété Intellectuelle</a>.
         </p>
     </section>
     <section class="legalContent">
