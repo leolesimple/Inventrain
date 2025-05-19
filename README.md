@@ -31,8 +31,8 @@ L'Inventrain inventorie les trains de manière précise avec des informations te
   - Nom d'utilisateur : root
   - Mot de passe : souvent vide, ou root selon la config
 
-- Lancer ton navigateur et saisis l’URL suivante :
-👉 http://localhost/monsite/ 
+- Lancer le navigateur et saisir l’URL suivante :
+👉 http://localhost/
 - Le site est maintenant opérationnel en local.
 
 ## 📋 Accessibilité & qualité (Opquast/a11y)
