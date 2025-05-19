@@ -76,7 +76,7 @@ include $ext . "assets/includes/nav.php";
             </h3>
             <p>
                 Les Regio2N, nouveau train en vogue dans toutes les régions n'est pas encore complètement livré sur le réseau IDFM. Quelques-unes semblent manquer. Vous pourrez retrouver ces dates
-                <a href="http://trainsso.fr/Z57000.pdf" target="_blank">sur le site trainsso</a> (tenu par un interne de la SNCF).
+                <a href="https://trainsso.fr/Z57000.pdf" target="_blank">sur le site trainsso</a> (tenu par un interne de la SNCF).
             </p>
         </article>
         <article id="renovations">
@@ -103,7 +103,7 @@ include $ext . "assets/includes/nav.php";
 
             <h3>Z22500 (MI2N Eole, RER E)</h3>
             <p>
-                Suite à une trop grande incompatibilité avec le RER NG, la radiation des MI2N Eole a été avancée de 6 mois.
+                Suite à une trop grande incompatibilité avec le RER NG, la radiation des MI2N Eole a été avancée de six mois.
                 <br>
                 <a href="https://fr.wikipedia.org/wiki/Liste_des_Z_22500" target="_blank">Liste des Z22500</a>.
             </p>
@@ -117,7 +117,7 @@ include $ext . "assets/includes/nav.php";
 
             <h3>MI79/MI84 (RER B)</h3>
             <p>
-                Les MI84 ont déjà été en partie radiés mais le reste le sera à partir de 2027.
+                Les MI84 ont déjà été en partie radiés, mais le reste le sera à partir de 2027.
                 <br>
                 <a href="https://fr.wikipedia.org/wiki/Liste_des_Z_8100" target="_blank">Liste des MI79/MI84</a>.
             </p>

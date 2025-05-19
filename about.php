@@ -85,7 +85,7 @@ include $ext . "assets/includes/nav.php";
             partager des connaissances méconnues du grand public a été une évidence. En effet, la plupart des gens ne
             connaissent pas les trains qu'ils prennent tous les jours, et c'est bien dommage ! Ils sont bien plus qu'un
             tas de ferraille ou une « bétaillère » comme peuvent dire certains. Ils possèdent une histoire, parfois, ils
-            font parti de l'histoire comme le
+            font partie de l'histoire comme le
             <a href="./detailsTrain.php?id=458">MI79 n°8243/4</a> ayant subi l'attentat de Saint-Michel en 1995, ou le
             Z5301 qui a percuté un autre train à Gare de Lyon en 1988.
             <br>
