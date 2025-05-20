@@ -101,6 +101,10 @@ body {
     top: 0;
 }
 
+u {
+    text-decoration: none !important;
+}
+
 /* Navbar */
 header.navHeader {
     position: sticky;
