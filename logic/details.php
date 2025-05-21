@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
                 ORDER BY train.idTrain DESC";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bindValue(':id', '' . $id . '', PDO::PARAM_STR);
+    $stmt->bindValue(':id', $id);
     $stmt->execute();
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,7 +78,6 @@ if (isset($_GET['id'])) {
             echo '<script>document.title = "' . htmlspecialchars($serie) . ' ' . htmlspecialchars($number) . ' - L\'Inventrain";</script>';
 
             $livree = $row["liveryName"];
-            $serie = $row["serieName"];
             if ($serie == "mi84" or $serie == "mi79") {
                 $icon_array = $serie . "_*";
             } elseif ($serie == "B 82500" or $serie == "U52600" or $serie == "U53600" or $serie == "U53700" or $serie == "U53800") {
@@ -130,8 +129,7 @@ if (isset($_GET['id'])) {
 
             $livree = $row["liveryName"];
             $deliveryDate = $row["deliveryDate"];
-            $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMMM yyyy');
-            $deliveryDate = $formatter->format(new DateTime($deliveryDate));
+            $deliveryDate = formatDateFr($deliveryDate);
 
             $currentYear = date("Y");
             $deliveryYear = date("Y", strtotime($row["deliveryDate"]));
@@ -265,7 +263,7 @@ if (isset($_GET['id'])) {
                                         </tr>
                                          <tr>
                                             <td class="tableContent">Établissement d\'attache</td>
-                                            <td class="tableContent">' . $row['depotName'] ." - <strong>(". $row['code'] . ')</strong></td>
+                                            <td class="tableContent">' . $row['depotName'] . " - <strong>(" . $row['code'] . ')</strong></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -302,4 +300,4 @@ if (isset($_GET['id'])) {
     echo "<p>ID de train non spécifié.</p>";
     return;
 }
-?>
+
