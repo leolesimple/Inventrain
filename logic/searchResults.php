@@ -36,7 +36,7 @@ ORDER BY train.idTrain DESC";
 /*LIMIT 100;*/
 
 $stmt = $conn->prepare($sql);
-$stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+$stmt->bindValue(':search', '%' . $search . '%');
 $stmt->execute();
 
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,10 +159,7 @@ if (count($result) > 0) {
         }
         $depot = $row["depotName"];
         $date = $row["deliveryDate"];
-        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMM yyyy');
-        $date = $formatter->format(new DateTime($date));
-        $date = htmlspecialchars($date);
-
+        $date = formatDateFr($date);
 
         echo '<div class="tile tileResult" role="button" aria-label="Voir le train ' . $number . '" tabindex="0" data-rame="' . $number . '" data-livraison="' . $date . '" data-livery="' . $livree . '" data-train="' . $row["idTrain"] . '">
                 <div class="rame">
@@ -209,4 +206,3 @@ if (count($result) > 0) {
 }
 // Close the connection
 $conn = null;
-?>
