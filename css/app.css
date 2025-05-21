@@ -547,6 +547,10 @@ h1 > label {
     position: relative;
 }
 
+p .seeMoreBtn {
+    padding: 1.25rem 0;
+}
+
 .seeMoreBtn > .hoverOnly {
     position: absolute;
     top: 50%;
