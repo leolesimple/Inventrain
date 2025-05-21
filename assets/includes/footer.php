@@ -39,8 +39,8 @@
         <div class="linkRow">
             <ul>
                 <li><a href="<?= $ext; ?>/">Accueil</a></li>
-                <li><a href="<?= $ext; ?>/search.php">L'Inventrain</a></li>
                 <li><a href="<?= $ext; ?>/admin">Ajout de Train</a></li>
+                <li><a href="<?= $ext; ?>/docs/">Documentation</a></li>
                 <li><a href="<?= $ext; ?>/plan.php">Plan du Site</a></li>
             </ul>
             <ul>
