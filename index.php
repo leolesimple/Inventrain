@@ -49,7 +49,7 @@ $ext = "./";
 include "./assets/includes/nav.php";
 ?>
 <section class="mapView">
-    <div id="map"></div>
+    <div id="map" aria-hidden="true"></div>
     <script>
         // Snippet de code officiel de Mapbox GL JS
         mapboxgl.accessToken = 'pk.eyJ1IjoibGVvbDQ1NiIsImEiOiJjbTEyOTd3emowemQ1MmxzY2g3bzZ0dXN1In0.m584YEMvD5ucGLBFfBGg9g';
