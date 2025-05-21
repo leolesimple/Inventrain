@@ -127,9 +127,7 @@ if (count($result) > 0) {
 
         $depot = $row["depotName"];
         $date = $row["deliveryDate"];
-        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMMM yyyy');
-        $date = $formatter->format(new DateTime($date));
-        $date = htmlspecialchars($date);
+        $date = formatDateFr($date);
 
 
         echo '
@@ -182,4 +180,3 @@ if (count($result) > 0) {
 echo '</div>';
 // Close the connection
 $conn = null;
-?>
