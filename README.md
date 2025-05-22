@@ -36,7 +36,7 @@ L'Inventrain inventorie les trains de manière précise avec des informations te
 - Le site est maintenant opérationnel en local.
 
 ## 📋 Accessibilité & qualité (Opquast/a11y)
-[👉 Consulter le tableur](https://docs.google.com/spreadsheets/d/1fMyE432mOvpnpSP1UVwFlVAKF-D4SXZhio5wEj2JJ4M/edit?usp=sharing) <br>
+[👉 Consulter le contenu](./LESIMPLE_Opquast&a11y.pdf) <br>
 
 ---
 
