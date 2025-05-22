@@ -116,7 +116,7 @@ include "./assets/includes/nav.php";
             </button>
         </div>
     </form>
-    <div class="lastTrainsHero">
+    <section class="lastTrainsHero">
         <h1>
             Les derniers ajouts.
         </h1>
@@ -129,8 +129,8 @@ include "./assets/includes/nav.php";
             <a href="search.php" class="seeMoreBtn">Voir tous les trains <i
                         class="fa-solid fa-chevron-right hoverOnly"></i> </a>
         </div>
-    </div>
-    <div class="about">
+    </section>
+    <section class="about">
         <div>
             <h1>
                 Qu'est-ce que L'Inventrain ?
@@ -157,7 +157,7 @@ include "./assets/includes/nav.php";
                             class="fa-solid fa-chevron-right hoverOnly"></i></a>
             </p>
         </div>
-    </div>
+    </section>
 </main>
 <?php
 include "./assets/includes/footer.php";

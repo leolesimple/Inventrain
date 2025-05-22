@@ -22,6 +22,7 @@
 * {
     box-sizing: border-box;
     font-family: 'IBM Plex Sans', sans-serif;
+    /* Débuggage de Layout */
     /*
     border: 1px solid red;
     */
@@ -101,17 +102,22 @@ body {
     top: 0;
 }
 
+/*
+    !important -> Écrase le soulignement par défaut.
+*/
 u {
     text-decoration: none !important;
 }
 
 /* Navbar */
+/*
+    !important -> Évite les problèmes de z-index avec le header sticky.
+*/
 header.navHeader {
     position: sticky;
     top: 0;
     background: linear-gradient(180deg, #F2F2F2 0%, #F2F2F250 52%, #F2F2F200 100%);
     z-index: 1005 !important;
-
 }
 
 nav {
@@ -490,7 +496,7 @@ h1 > label {
 }
 
 .tileResult > .infosSupp {
-    flex: 0 0 0 !important;
+    flex: 0 0 0;
 }
 
 .iconLigne {
@@ -733,7 +739,7 @@ p .seeMoreBtn {
 #rameDown.visible,
 #livraisonUp.visible,
 #livraisonDown.visible {
-    margin-top: 0 !important;
+    margin-top: 0;
     opacity: 1;
 }
 
