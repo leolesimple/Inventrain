@@ -111,7 +111,7 @@ selectLivrees.addEventListener('change', (e) => {
 
 
 /*
-* On click on #overlay, remove focus on inputs
+* Au clic sur l'overlay, on retire le focus des inputs du form.filterContainer.
 */
 const overlay = document.getElementById('overlay');
 overlay.addEventListener('click', () => {
@@ -120,3 +120,13 @@ overlay.addEventListener('click', () => {
         input.blur()
     })
 })
+
+/*
+* Au clic sur une tuile de la liste des trains, on redirige vers detailsTrain.php?id=[id du train].
+*/
+document.querySelectorAll('.tile[role="button"]').forEach(tile => {
+    tile.addEventListener('click', () => {
+        const idTrain = tile.dataset.train;
+        window.location.href = "detailsTrain.php?id=" + idTrain;
+    });
+});
