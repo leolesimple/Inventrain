@@ -1,9 +1,7 @@
-// add next to #headContent , this :
-//     <aside class="tocContainer">
-//         <details class="toc">
-//             <summary>Table des matières</summary>
-//         </details>
-//     </aside>
+/*
+* Ajout d'une table des matières dans les pages de documentation.
+* La table des matières est générée à partir des titres h2, h3, h4, h5 et h6 présents dans le document et inserée dans un aside en dessous du titre principal.
+*/
 
 const headContent = document.querySelector('#headContent');
 const tocContainer = '    <aside class="tocContainer">\n' +

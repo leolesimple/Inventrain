@@ -163,14 +163,6 @@ include "./assets/includes/nav.php";
 include "./assets/includes/footer.php";
 ?>
 <script src="./js/app.js"></script>
-<script>
-    document.querySelectorAll('.tile[role="button"]').forEach(tile => {
-        tile.addEventListener('click', () => {
-            const idTrain = tile.dataset.train;
-            window.location.href = "detailsTrain.php?id=" + idTrain;
-        });
-    });
-</script>
 <script src="https://kit.fontawesome.com/406b037200.js" crossorigin="anonymous"></script>
 </body>
 </html>

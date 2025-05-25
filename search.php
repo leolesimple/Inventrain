@@ -120,12 +120,18 @@ include "./assets/includes/nav.php";
 include "./assets/includes/footer.php";
 ?>
 <script>
+    /*
+    * Remplissage du champ de recherche avec le paramètre 'search' de l'URL.
+    */
     const urlParams = new URLSearchParams(window.location.search);
     const search = urlParams.get('search');
     if (search) {
         document.getElementById('homeBar').value = search;
     }
 
+    /*
+    * Ajout d'un écouteur d'événement pour chaque tuile de train, lors du clic, on redirige vers la page de détails du train.
+    */
     document.querySelectorAll('.tile[role="button"]').forEach(tile => {
         tile.addEventListener('click', () => {
             const idTrain = tile.dataset.train;
