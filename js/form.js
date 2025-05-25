@@ -1,4 +1,6 @@
-// Listen the use of back button
+/*
+* Écoute les modifications du formulaire pour prévenir l'utilisateur s'il tente de quitter la page sans avoir sauvegardé ses modifications.
+*/
 let formModified = false
 
 document.querySelectorAll('input, textarea, select').forEach(el => {
@@ -16,7 +18,10 @@ window.addEventListener('popstate', () => {
     }
 })
 
-// Code qui trie les <options> de chaque select dans l'ordre alphabétique (sauf les options vides) et le select #serie
+/*
+* Tri des options des selects du formulaire.
+* Les options sont triées par ordre alphabétique, en gardant les options vides ou "Choisir..." en premier.
+*/
 document.querySelectorAll('select:not(#serie)').forEach(select => {
     const options = Array.from(select.options)
     const fixedOptions = options.filter(option => option.value === '' || option.text.trim().toLowerCase() === 'choisir...')

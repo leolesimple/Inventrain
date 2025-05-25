@@ -270,6 +270,9 @@ if ($success) {
     </form>
 </main>
 <script>
+/*
+* Validation du formulaire d'ajout de train
+*/
     const form = document.querySelector("form");
     const requiredFields = form.querySelectorAll("input[required], select[required], textarea[required]");
     const submitBtn = form.querySelector('input[type="submit"]');
@@ -332,8 +335,9 @@ if ($success) {
 
     /*
     * Récupération des champs invalides
-    * Utilisation de Set pour éviter les doublons
+    * Utilisation de Set pour éviter les doublons (Ressource : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set)
     * Renvoie un objet contenant deux tableaux : empty et invalid, permet de différencier les actions à faire.
+    * Regex : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
     */
     function getInvalidFields() {
         const emptyFields = new Set();
