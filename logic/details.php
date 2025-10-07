@@ -294,10 +294,12 @@ if (isset($_GET['id'])) {
         }
     } else {
         echo "<p>Aucun train trouvé.</p>";
+        http_response_code(404);
         return;
     }
 } else {
     echo "<p>ID de train non spécifié.</p>";
+    http_response_code(404);
     return;
 }
 

@@ -15,6 +15,7 @@ $ext = "../"
     <meta name="theme-color" content="#F2F2F2">
     <meta name="msapplication-navbutton-color" content="#F2F2F2">
     <meta name="apple-mobile-web-app-status-bar-style" content="#F2F2F2">
+    <link rel="canonical" href="https://linventrain.leolesimple.fr/docs/index.php">
 
     <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $ext; ?>img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $ext; ?>img/favicon/apple-icon-60x60.png">
