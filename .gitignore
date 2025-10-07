@@ -2,3 +2,5 @@
 /assets/json/lines_alleged.geojson
 .DS_Store
 /lesimple_inventrain.sql
+.htaccess
+/admin/.htaccess
