@@ -118,6 +118,7 @@ if (count($result) > 0) {
         }
         $icon_array = strtolower($icon_array);
         $icon = $lineIcons[$icon_array]['src'] ?? 'default_icon.svg';
+        //echo $icon_array;
 
         if ($livree == "IDFM") {
             $badgeLivree = "blueBadge";

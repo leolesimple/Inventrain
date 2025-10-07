@@ -62,7 +62,10 @@
   "z22500_idf": {
     "src": "mi2n_eole.svg"
   },
-  "mi84_*": {
+  "mi84_idf/idfm/ratp/sncf": {
+    "src": "mi84_79_idfm_alleged.svg"
+  },
+  "mi84_idfm/ratp/sncf": {
     "src": "mi84_79.svg"
   },
   "mi79_stif/ratp/sncf" : {
@@ -86,7 +89,7 @@
   "z58500_IDFM": {
     "src": "z58000.svg"
   },
-  "B 82500": {
+  "b 82500": {
     "src": "z50000_carmillon.svg"
   },
   "U52600": {
