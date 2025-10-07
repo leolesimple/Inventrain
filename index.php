@@ -15,6 +15,7 @@ $ext = "./";
     <meta name="theme-color" content="#F2F2F2">
     <meta name="msapplication-navbutton-color" content="#F2F2F2">
     <meta name="apple-mobile-web-app-status-bar-style" content="#F2F2F2">
+    <link rel="canonical" href="https://linventrain.leolesimple.fr/index.php">
 
     <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $ext; ?>img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $ext; ?>img/favicon/apple-icon-60x60.png">
@@ -48,57 +49,12 @@ $ext = "./";
 <?php
 include "./assets/includes/nav.php";
 ?>
-<section class="mapView">
-    <div id="map" aria-hidden="true"></div>
-    <script>
-        // Snippet de code officiel de Mapbox GL JS
-        mapboxgl.accessToken = 'pk.eyJ1IjoibGVvbDQ1NiIsImEiOiJjbTEyOTd3emowemQ1MmxzY2g3bzZ0dXN1In0.m584YEMvD5ucGLBFfBGg9g';
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/light-v11',
-            zoom: 10,
-            lang: 'fr',
-            center: [2.3470129, 48.8616513],
-            cooperativeGestures: true
-        });
-
-        const mapOptions = {
-            scrollZoom: {
-                ctrl: true
-            }
-        };
-
-        map.on('style.load', () => {
-            map.setLayoutProperty('country-label', 'text-field', ['get', 'name_fr']);
-        });
-
-        map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-        map.on('load', () => {
-            map.addSource('idfm', {
-                type: 'geojson',
-                data: 'assets/json/lines_alleged.geojson.gz'
-            });
-
-            map.addLayer({
-                id: 'layer-borders',
-                type: 'line',
-                source: 'idfm',
-                paint: {
-                    'line-color': [
-                        'case',
-                        ['has', 'colourweb_hexa'],
-                        ['concat', '#', ['get', 'colourweb_hexa']],
-                        '#000000'
-                    ],
-                    'line-width': 5,
-                    'line-opacity': 0.7,
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                }
-            });
-        });
-    </script>
+<section class="mapView" aria-hidden="true">
+    <div id="imgOverlay"></div>
+    <p class="attribution">
+        <a href="https://commons.wikimedia.org/wiki/File:RER_NG_009M.jpg">Adnane</a>, <a
+                href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons
+    </p>
 </section>
 <main class="noCenter" id="content">
     <form class="homeSearch" action="search.php" method="get">
