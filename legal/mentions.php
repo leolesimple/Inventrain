@@ -61,27 +61,11 @@ include $ext . "assets/includes/nav.php";
     <section class="legalContent">
         <h2>Hébergement</h2>
         <p>
-            <strong>Dénomination : </strong>
-            O2Switch SAS
+            Ce site est hébergé sur un serveur personnel appartenant à <strong>Léo Lesimple</strong>, situé en France.
         </p>
         <p>
-            <strong>SIRET : </strong>
-            510 909 807 00032
-        </p>
-        <p>
-            <strong>Adresse : </strong>
-            Chemin des Pardiaux,
-            63000 Clermont-Ferrand
-        </p>
-        <p>
-            <strong>Téléphone : </strong>
-            04 44 44 60 40
-        </p>
-        <p>
-            <strong>Site Web :</strong>
-            <a href="https://www.o2switch.fr" target="_blank" rel="noopener noreferrer">
-                www.o2switch.fr
-            </a>
+            Pour toute demande relative à l’hébergement, vous pouvez écrire à l’adresse suivante :
+            <a href="mailto:leo@leolesimple.com">leo@leolesimple.com</a>
         </p>
     </section>
     <section class="legalContent">
