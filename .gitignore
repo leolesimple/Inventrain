@@ -4,3 +4,4 @@
 /lesimple_inventrain.sql
 .htaccess
 /admin/.htaccess
+assets/includes/conn.php
