@@ -12,47 +12,66 @@ $success = false;
 
 include "../assets/includes/conn.php";
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // If add button is clicked
 if (isset($_POST['add'])) {
 
-    $serie = $_POST['serie'];
-    $num = $_POST['num'];
-    $livree = $_POST['livree'];
-    $fab = $_POST['fab'];
-    $livraison = $_POST['livraison'];
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'] ?? '')) {
+        http_response_code(403);
+        die('Requête invalide.');
+    }
+
+    $serie          = $_POST['serie'];
+    $num            = $_POST['num'];
+    $livree         = $_POST['livree'];
+    $manufacturerId = $_POST['fab'];
+    $livraison      = $_POST['livraison'];
     if (isset($_POST['radiation']) && $_POST['radiation'] != "") {
         $radiation = $_POST['radiation'];
     } else {
         $radiation = null;
     }
-    $reseau = $_POST['reseau'];
-    $status = $_POST['status'];
-    $depot = $_POST['depot'];
+    $reseau       = $_POST['reseau'];
+    $statusId     = $_POST['status'];
+    $depot        = $_POST['depot'];
     if (isset($_POST['reno']) && $_POST['reno'] != "") {
-        $reno = $_POST['reno'];
+        $renovationId = $_POST['reno'];
     } else {
-        $reno = null;
+        $renovationId = null;
     }
-    $owner = $_POST['owner'];
+    $owner   = $_POST['owner'];
     $comment = $_POST['comment'];
 
-    // If one of the fields contains 0, die
-    if ($serie == 0 || $livree == 0 || $fab == 0 || $reseau == 0 || $status == 0 || $depot == 0 || $owner == 0) {
-        echo "Houston, we have a problem !";
+    $errors = [];
+    if ($serie == 0)          $errors[] = "La série est obligatoire.";
+    if ($livree == 0)         $errors[] = "La livrée est obligatoire.";
+    if ($manufacturerId == 0) $errors[] = "Le fabricant est obligatoire.";
+    if ($reseau == 0)         $errors[] = "Le réseau est obligatoire.";
+    if ($statusId == 0)       $errors[] = "Le statut est obligatoire.";
+    if ($depot == 0)          $errors[] = "Le dépôt est obligatoire.";
+    if ($owner == 0)          $errors[] = "Le propriétaire est obligatoire.";
+
+    if (!empty($errors)) {
+        foreach ($errors as $err) {
+            echo '<div class="docAlert red"><p>' . htmlspecialchars($err, ENT_QUOTES, 'UTF-8') . '</p></div>';
+        }
     } else {
-        $stmt = $conn->prepare("INSERT INTO train (idSerie, number, idLivery, idManufacturer, deliveryDate, radiationDate, idNetwork, idStatus, idDepot, idRenovation, idOwner, incidents) 
+        $stmt = $conn->prepare("INSERT INTO train (idSerie, number, idLivery, idManufacturer, deliveryDate, radiationDate, idNetwork, idStatus, idDepot, idRenovation, idOwner, incidents)
 VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :depot, :reno, :owner, :comment)");
 
         $stmt->bindValue(':serie', $serie, PDO::PARAM_INT);
         $stmt->bindValue(':num', $num);
         $stmt->bindValue(':livree', $livree, PDO::PARAM_INT);
-        $stmt->bindValue(':fab', $fab, PDO::PARAM_INT);
+        $stmt->bindValue(':fab', $manufacturerId, PDO::PARAM_INT);
         $stmt->bindValue(':livraison', $livraison);
         $stmt->bindValue(':radiation', $radiation);
         $stmt->bindValue(':reseau', $reseau, PDO::PARAM_INT);
-        $stmt->bindValue(':status', $status, PDO::PARAM_INT);
+        $stmt->bindValue(':status', $statusId, PDO::PARAM_INT);
         $stmt->bindValue(':depot', $depot, PDO::PARAM_INT);
-        $stmt->bindValue(':reno', $reno);
+        $stmt->bindValue(':reno', $renovationId);
         $stmt->bindValue(':owner', $owner, PDO::PARAM_INT);
         $stmt->bindValue(':comment', $comment);
 
@@ -70,6 +89,7 @@ VALUES (:serie, :num, :livree, :fab, :livraison, :radiation, :reseau, :status, :
         $success = true;
     }
 }
+
 ?>
 
 <!doctype html>
@@ -139,6 +159,7 @@ if ($success) {
         </p>
     </div>
     <form action="" method="post" class="adminSearch">
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
         <div class="inputContainer">
             <label for="serie">Série</label>
             <?php
@@ -179,8 +200,8 @@ if ($success) {
             $manufacturer = $conn->query("SELECT * FROM manufacturer")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="fab" id="fab" required>';
             echo '<option value="0" disabled selected hidden ' . (!isset($_POST['fab']) ? ' selected' : '') . '>Choisir...</option>';
-            foreach ($manufacturer as $m) {
-                echo "<option value=\"{$m['idManufacturer']}\" " . (isset($_POST['fab']) && $_POST['fab'] == $m['idManufacturer'] ? 'selected' : '') . ">{$m['fabricant']}</option>";
+            foreach ($manufacturer as $mfr) {
+                echo "<option value=\"{$mfr['idManufacturer']}\" " . (isset($_POST['fab']) && $_POST['fab'] == $mfr['idManufacturer'] ? 'selected' : '') . ">{$mfr['fabricant']}</option>";
             }
             echo '</select>';
             ?>
@@ -210,11 +231,11 @@ if ($success) {
         <div class="inputContainer">
             <label for="status">Statut</label>
             <?php
-            $status = $conn->query("SELECT * FROM status")->fetchAll(PDO::FETCH_ASSOC);
+            $statusOptions = $conn->query("SELECT * FROM status")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="status" id="status" required>';
             echo '<option value="0" disabled selected hidden ' . (!isset($_POST['status']) ? ' selected' : '') . '>Choisir...</option>';
-            foreach ($status as $st) {
-                echo "<option value=\"{$st['idStatus']}\" " . (isset($_POST['status']) && $_POST['status'] == $st['idStatus'] ? 'selected' : '') . ">{$st['state']}</option>";
+            foreach ($statusOptions as $statusRow) {
+                echo "<option value=\"{$statusRow['idStatus']}\" " . (isset($_POST['status']) && $_POST['status'] == $statusRow['idStatus'] ? 'selected' : '') . ">{$statusRow['state']}</option>";
             }
             echo '</select>';
             ?>
@@ -234,10 +255,10 @@ if ($success) {
         <div class="inputContainer">
             <label for="reno">Rénovation</label>
             <?php
-            $reno = $conn->query("SELECT * FROM renovation")->fetchAll(PDO::FETCH_ASSOC);
+            $renovations = $conn->query("SELECT * FROM renovation")->fetchAll(PDO::FETCH_ASSOC);
             echo '<select name="reno" id="reno">';
             echo '<option value="0" disabled selected hidden ' . (!isset($_POST['reno']) ? ' selected' : '') . '>Choisir...</option>';
-            foreach ($reno as $r) {
+            foreach ($renovations as $r) {
                 echo "<option value=\"{$r['idRenovation']}\" " . (isset($_POST['reno']) && $_POST['reno'] == $r['idRenovation'] ? 'selected' : '') . ">{$r['renovationType']}</option>";
             }
             echo '</select>';
