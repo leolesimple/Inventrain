@@ -1,5 +1,6 @@
 <?php
-$ext = "./"
+declare(strict_types=1);
+$ext = "./";
 ?>
 
 <!doctype html>

@@ -1,10 +1,9 @@
 <?php
+declare(strict_types=1);
 include './assets/includes/conn.php';
 
 $search = $_GET['search'] ?? '';
-
-$search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
-$search = preg_replace('/[^a-zA-Z0-9_]/', '', $search);
+$search = preg_replace('/[^a-zA-Z0-9\-_\/\s]/', '', trim($search));
 
 $sql = "SELECT
   train.idTrain,
@@ -33,13 +32,12 @@ LEFT JOIN depot ON train.idDepot = depot.idDepot
 LEFT JOIN renovation ON train.idRenovation = renovation.idRenovation
 WHERE train.number LIKE :search
 ORDER BY train.idTrain DESC";
-/*LIMIT 100;*/
 
 $stmt = $conn->prepare($sql);
 $stmt->bindValue(':search', '%' . $search . '%');
 $stmt->execute();
 
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = $stmt->fetchAll();
 
 $result = [];
 foreach ($rows as $row) {
@@ -54,125 +52,41 @@ foreach ($rows as $row) {
 $result = array_values($result);
 
 if (count($result) > 0) {
-    $jsonLines = file_get_contents('./assets/json/LineReferentiel.json');
-    $lineData = json_decode($jsonLines, true);
+    $liveries = [];
 
-    $jsonIcons = file_get_contents('./assets/json/serieInfos.json');
-    $lineIcons = json_decode($jsonIcons, true);
-
-    $livery = [];
-
-    // Affichage du nombre de résultats
-    echo '<div class="resultCount">';
-    if (count($result) == 1) {
-        echo '1 train trouvé';
-    } else {
-        echo count($result) . ' trains trouvés';
-    }
-    echo '</div>';
+    $count = count($result);
+    echo '<div class="resultCount">' . ($count === 1 ? '1 train trouvé' : $count . ' trains trouvés') . '</div>';
 
     foreach ($result as $row) {
-        // Données à afficher
-        $number = $row["number"];
-        $serie = $row["serieName"];
-        $startYear = $row["serviceStartYear"];
-        $lignes_affectees = $row["lignes_affectees"] ?? [];
+        $number   = $row['number'];
+        $serie    = $row['serieName'];
+        $livree   = $row['liveryName'];
+        $status   = $row['state'];
+        $depot    = $row['depotName'];
+        $date     = formatDateFr($row['deliveryDate']);
 
-        // Badge Color en fonction de l'année de début de service en fonction de la série de livrées.
-        if ($startYear >= 1970 && $startYear <= 1979) {
-            $badgeColor = "grayBadge";
-        } elseif ($startYear >= 1980 && $startYear <= 1994) {
-            $badgeColor = "yellowBadge";
-        } elseif ($startYear >= 1995 && $startYear <= 2008) {
-            $badgeColor = "redBadge";
-        } elseif ($startYear >= 2009 && $startYear <= 2019) {
-            $badgeColor = "blueBadge";
-        } elseif ($startYear >= 2020 && $startYear <= 2029) {
-            $badgeColor = "blueBadge";
-        } else {
-            $badgeColor = "grayBadge";
+        $badgeColor  = getBadgeByYear((int) $row['serviceStartYear']);
+        $badgeLivree = getLiveryBadge($livree);
+        $statusClass = getStatusBadge($status);
+        $iconKey     = getIconKey($serie, $livree);
+        $icon        = LINE_ICONS[$iconKey]['src'] ?? 'default_icon.svg';
+        $htmlIcons   = buildLineIconsHtml($row['lignes_affectees'] ?? [], LINE_DATA);
+
+        if (!in_array($livree, $liveries, true)) {
+            $liveries[] = $livree;
         }
 
-        $htmlIcons = "";
-        foreach ($lignes_affectees as $key => $value) {
-            if (isset($lineData[$value])) {
-                $lineIcon = $lineData[$value]['icon'];
-            } else {
-                $lineIcon = "default_icon.svg"; // Fallback
-            }
-            $icon = "<img src='img/lignes/$lineIcon' height='30' alt='Ligne " . $lineData[$value]['letter'] . "' class='iconLigne'>";
-            $htmlIcons .= $icon;
-        }
-
-        $livree = $row["liveryName"];
-
-        if (!in_array($livree, $livery)) {
-            $livery[] = $livree;
-        }
-        if ($serie == "mi84" or $serie == "mi79") {
-            $icon_array = $serie . "_*";
-        } elseif ($serie == "B 82500" or $serie == "U52600" or $serie == "U53600" or $serie == "U53700" or $serie == "U53800") {
-            $icon_array = $serie;
-        } else {
-            $icon_array = $serie . "_" . $livree;
-        }
-        $icon_array = strtolower($icon_array);
-        $icon = $lineIcons[$icon_array]['src'] ?? 'default_icon.svg';
-        //echo $icon_array;
-
-        if ($livree == "IDFM") {
-            $badgeLivree = "blueBadge";
-        } elseif ($livree == "STIF/Carmillon") {
-            $badgeLivree = "redBerryBadge";
-        } else if ($livree == "Carmillon") {
-            $badgeLivree = "redBerryBadge";
-        } else if ($livree == "STIF/RATP") {
-            $badgeLivree = "stifRatpBadge";
-        } else if ($livree == "RATP") {
-            $badgeLivree = "ratpBadge";
-        } else if ($livree == "Transilien") {
-            $badgeLivree = "transilienBadge";
-        } else if ($livree == "IDF") {
-            $badgeLivree = "redBadge";
-        } else if ($livree == "STIF/RATP/SNCF") {
-            $badgeLivree = "stifCarmillonRatpBadge";
-        } else if ($livree == "IDFM/RATP/SNCF") {
-            $badgeLivree = "stifCarmillonRatpBadge";
-        } else if ($livree == "IDF/IDFM/RATP/SNCF") {
-            $badgeLivree = "idfmLegerBadge";
-        } else {
-            $badgeLivree = "grayBadge";
-        }
-
-        $status = $row["state"];
-        if ($status == "En Service") {
-            $statusClass = "greenBadge";
-        } elseif ($status == "Maintenance") {
-            $statusClass = "yellowBadge";
-        } elseif ($status == "Rénovation") {
-            $statusClass = "blueBadge";
-        } elseif ($status == "En Cours de Livraison") {
-            $statusClass = "grayBadge";
-        } elseif ($status == "Radiée") {
-            $statusClass = "redBadge";
-        } else {
-            $statusClass = "grayBadge";
-        }
-        $depot = $row["depotName"];
-        $date = $row["deliveryDate"];
-        $date = formatDateFr($date);
-
-        echo '<div class="tile tileResult" role="button" aria-label="Voir le train ' . $number . '" tabindex="0" data-rame="' . $number . '" data-livraison="' . $date . '" data-livery="' . $livree . '" data-train="' . $row["idTrain"] . '">
+        echo '<div class="tile tileResult" role="button" aria-label="Voir le train ' . h($number) . '" tabindex="0" data-rame="' . h($number) . '" data-livraison="' . h($date) . '" data-livery="' . h($livree) . '" data-train="' . h((string)$row['idTrain']) . '">
                 <div class="rame">
                     <div class="rameInfo">
-                        <img src="../img/trains/' . $icon . '" class="rameIcon" alt="">
+                        <img src="../img/trains/' . h($icon) . '" class="rameIcon" alt="Illustration du train ' . h($number) . '">
                         <div>
-                            <h3>' . $number . '</h3>
+                            <h3>' . h($number) . '</h3>
                         </div>
                     </div>
                     <div class="badgesContainer">
-                        <span class="badge badgeMD ' . $badgeColor . '">' . $serie . '</span>
-                        <span class="badge badgeMD ' . $badgeLivree . '">' . $livree . '</span>
+                        <span class="badge badgeMD ' . $badgeColor . '">' . h($serie) . '</span>
+                        <span class="badge badgeMD ' . $badgeLivree . '">' . h($livree) . '</span>
                     </div>
                     <div class="dateContainer">
                         <div>
@@ -182,11 +96,11 @@ if (count($result) > 0) {
                                 <path d="M11.5 14.3572L1 8.10718L6.25 4.98218L11.5 1.85718L22 8.10718L16.75 11.2322L11.5 14.3572Z" fill="#E3E7F2" style="fill:#E3E7F2;fill:color(display-p3 0.8883 0.9051 0.9476);fill-opacity:1;"></path>
                                 <path d="M11.5 14.3572L22 8.10718M11.5 14.3572V26.8572M11.5 14.3572L1 8.10718M11.5 14.3572L16.75 11.2322M22 8.10718V20.6072L11.5 26.8572M22 8.10718L11.5 1.85718L6.25 4.98218M22 8.10718L16.75 11.2322M11.5 26.8572L1 20.6072V8.10718M1 8.10718L6.25 4.98218M6.25 4.98218L16.75 11.2322" stroke="#202124" style="stroke:#202124;stroke:color(display-p3 0.1255 0.1294 0.1412);stroke-opacity:1;" stroke-width="2" stroke-linejoin="round"></path>
                             </svg>
-                            <h4 class="date">' . $date . '</h4>
+                            <h4 class="date">' . h($date) . '</h4>
                         </div>
                         <div>
                             <div class="badge badgeMD ' . $statusClass . '">
-                                ' . $status . '
+                                ' . h($status) . '
                             </div>
                         </div>
                     </div>
@@ -201,9 +115,13 @@ if (count($result) > 0) {
                 </div>
             </div>';
     }
-    echo "<script>let livrees = " . json_encode($livery) . ";</script>";
+
+    echo '<script>let livrees = ' . json_encode($liveries, JSON_HEX_TAG) . ';</script>';
 } else {
-    echo "0 éléments trouvés";
+    echo '<div class="emptyState">
+        <p>Aucun train trouvé pour « ' . h($search) . ' ».</p>
+        <p>Vérifiez le numéro de rame ou <a href="index.php">retournez à l\'accueil</a>.</p>
+    </div>';
 }
-// Close the connection
+
 $conn = null;

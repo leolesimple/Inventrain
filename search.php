@@ -1,5 +1,6 @@
 <?php
-$ext = "./"
+declare(strict_types=1);
+$ext = "./";
 ?>
 
 <!doctype html>
@@ -137,7 +138,6 @@ include "./assets/includes/footer.php";
             const idTrain = tile.dataset.train;
             const number = tile.querySelector('.trainNumber')?.textContent || 'Inconnu';
 
-            console.log("Train cliqué :", idTrain, "-", number);
             window.location.href = "detailsTrain.php?id=" + idTrain;
         });
     });
