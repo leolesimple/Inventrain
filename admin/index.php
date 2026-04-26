@@ -1,5 +1,12 @@
 <?php
-global $conn;
+declare(strict_types=1);
+session_start();
+
+if (!isset($_SESSION['admin_logged_in'])) {
+    header('Location: login.php');
+    exit;
+}
+
 $ext = "../";
 $success = false;
 
@@ -127,8 +134,8 @@ if ($success) {
             Ajouter un train
         </h1>
         <p>
-            Besoin d'aide ? Consultez la <a target="_blank" href="<?php echo $ext; ?>docs/add_trains.php">documentation
-                associée.</a>
+            Besoin d'aide ? Consultez la <a target="_blank" href="<?php echo $ext; ?>docs/add_trains.php">documentation associée.</a>
+            · <a href="logout.php">Se déconnecter</a>
         </p>
     </div>
     <form action="" method="post" class="adminSearch">

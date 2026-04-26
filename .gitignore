@@ -5,3 +5,4 @@
 .htaccess
 /admin/.htaccess
 assets/includes/conn.php
+.env
