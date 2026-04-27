@@ -6,6 +6,15 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Index désactivé
 Options -Indexes
 
+# En-têtes de sécurité HTTP
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "DENY"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
 # Encodage fichiers .geojson
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE application/json
