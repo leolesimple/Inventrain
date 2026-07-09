@@ -1,0 +1,12 @@
+.git/
+.idea/
+.gitignore
+*.md
+docker/
+docker-compose.yml
+Dockerfile
+.dockerignore
+*.sql
+.DS_Store
+.htaccess
+admin/.htaccess
