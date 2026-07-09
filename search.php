@@ -1,47 +1,17 @@
 <?php
-$ext = "./"
+$ext = "./";
 ?>
 
 <!doctype html>
 <html lang="fr">
 <head>
-    <!--Meta-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Ajouter un train à L'Inventrain via l'espace sécurisé.">
-    <meta name="author" content="Léo LESIMPLE">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F2F2F2">
-    <meta name="msapplication-navbutton-color" content="#F2F2F2">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#F2F2F2">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $ext; ?>img/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $ext; ?>img/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $ext; ?>img/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo $ext; ?>img/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $ext; ?>img/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo $ext; ?>img/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo $ext; ?>img/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $ext; ?>img/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $ext; ?>img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $ext; ?>img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $ext; ?>img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo $ext; ?>img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $ext; ?>img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="<?php echo $ext; ?>img/favicon/manifest.json">
-    <meta name="msapplication-TileImage" content="<?php echo $ext; ?>img/favicon/ms-icon-144x144.png">
-
-    <link rel="stylesheet" href="./css/app.css">
-    <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
-
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
-
-    <title>Recherche - L'Inventrain</title>
-
-    <!--Scripts-->
-    <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
+    <?php
+    $pageTitle = "Recherche - L'Inventrain";
+    $pageDescription = "Rechercher un train dans L'Inventrain - Inventoriez le materiel ferre d'Ile-de-France";
+    $includeToast = true;
+    $includeMapbox = true;
+    include "./assets/includes/head.php";
+    ?>
 </head>
 <body>
 <div id="overlay"></div>
@@ -119,29 +89,6 @@ include "./assets/includes/nav.php";
 <?php
 include "./assets/includes/footer.php";
 ?>
-<script>
-    /*
-    * Remplissage du champ de recherche avec le paramètre 'search' de l'URL.
-    */
-    const urlParams = new URLSearchParams(window.location.search);
-    const search = urlParams.get('search');
-    if (search) {
-        document.getElementById('homeBar').value = search;
-    }
-
-    /*
-    * Ajout d'un écouteur d'événement pour chaque tuile de train, lors du clic, on redirige vers la page de détails du train.
-    */
-    document.querySelectorAll('.tile[role="button"]').forEach(tile => {
-        tile.addEventListener('click', () => {
-            const idTrain = tile.dataset.train;
-            const number = tile.querySelector('.trainNumber')?.textContent || 'Inconnu';
-
-            console.log("Train cliqué :", idTrain, "-", number);
-            window.location.href = "detailsTrain.php?id=" + idTrain;
-        });
-    });
-</script>
 <script src="./js/app.js"></script>
 <script src="https://kit.fontawesome.com/406b037200.js" crossorigin="anonymous"></script>
 </body>

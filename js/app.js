@@ -2,131 +2,167 @@
     Gestion du comportement du form.filterContainer
     Source : https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
 */
-const filterContainer = document.querySelector('.filterContainer');
-filterContainer.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-});
-
-/*
-    Gestion du tri des .tileResult par data-rame (ex: "360L" → 360) et date de livraison (ex: "01/01/2023")
-    Au clic sur le bouton, bascule entre : pas de tri (ordre d’origine), tri croissant, tri décroissant.
-    Les chevrons s’affichent via une classe CSS selon l’état, et on garde l’ordre de base avec data-index au chargement.
-*/
-const resultsContainer = document.querySelector('.resultsContainer')
-const tiles = Array.from(resultsContainer.querySelectorAll('.tileResult'))
-
-tiles.forEach((tile, i) => {
-    tile.dataset.index = i
-})
-
-let rameTri = 0
-let livraisonTri = 0
-
-const rameBtn = document.getElementById('filterRame')
-const rameUp = document.getElementById('rameUp')
-const rameDown = document.getElementById('rameDown')
-
-const livraisonBtn = document.getElementById('filterLivraison')
-const livraisonUp = document.getElementById('livraisonUp')
-const livraisonDown = document.getElementById('livraisonDown')
-
-rameBtn.addEventListener('click', () => {
-    rameTri = (rameTri + 1) % 3
-    livraisonTri = 0
-    updateChevrons()
-    applySort()
-})
-
-livraisonBtn.addEventListener('click', () => {
-    livraisonTri = (livraisonTri + 1) % 3
-    rameTri = 0
-    updateChevrons()
-    applySort()
-})
-
-function updateChevrons() {
-    rameUp.classList.toggle('visible', rameTri === 1)
-    rameDown.classList.toggle('visible', rameTri === 2)
-    livraisonUp.classList.toggle('visible', livraisonTri === 1)
-    livraisonDown.classList.toggle('visible', livraisonTri === 2)
-}
-
-function applySort() {
-    const sorted = tiles.slice();
-
-    if (rameTri > 0) {
-        sorted.sort((a, b) => {
-            const numA = parseInt(a.dataset.rame.replace(/\D/g, ''), 10)
-            const numB = parseInt(b.dataset.rame.replace(/\D/g, ''), 10)
-            return rameTri === 1 ? numA - numB : numB - numA
-        })
-    } else if (livraisonTri > 0) {
-        sorted.sort((a, b) => {
-            const dateA = parseDate(a.dataset.livraison)
-            const dateB = parseDate(b.dataset.livraison)
-            return livraisonTri === 1 ? dateA - dateB : dateB - dateA
-        })
-    } else {
-        sorted.sort((a, b) => +a.dataset.index - +b.dataset.index)
+(function () {
+    var filterContainer = document.querySelector('.filterContainer');
+    if (filterContainer) {
+        filterContainer.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
     }
 
-    sorted.forEach(tile => resultsContainer.appendChild(tile))
-}
+    var resultsContainer = document.querySelector('.resultsContainer');
+    if (!resultsContainer) return;
 
-function parseDate(str) {
-    const [d, m, y] = str.split('/').map(Number)
-    return new Date(y, m - 1, d).getTime()
-}
+    var tiles = Array.from(resultsContainer.querySelectorAll('.tileResult'));
 
-/*
-    Ajout d'un select avec le contenu de la variable livrees dans filterContainer.
-    livrees = ["IDFM", "Carmillon", ...]
-*/
-const selectLivrees = document.createElement('select')
-selectLivrees.id = 'filterLivrees'
-selectLivrees.classList.add('filterSelect')
-selectLivrees.innerHTML = `
-    <option value="" selected>Tous</option>
-    ${livrees.map(livree => `<option value="${livree}">${livree}</option>`).join('')}
-`
-filterContainer.appendChild(selectLivrees)
-selectLivrees.addEventListener('change', (e) => {
-    const selectedValue = e.target.value
-    tiles.forEach(tile => {
-        if (selectedValue === '' || tile.dataset.livery === selectedValue) {
-            tile.classList.remove('fullHide');
-            setTimeout(() => {
-                tile.classList.remove('hidden');
-            }, 500);
+    tiles.forEach(function (tile, i) {
+        tile.dataset.index = i;
+    });
+
+    var rameTri = 0;
+    var livraisonTri = 0;
+
+    var rameBtn = document.getElementById('filterRame');
+    var rameUp = document.getElementById('rameUp');
+    var rameDown = document.getElementById('rameDown');
+
+    var livraisonBtn = document.getElementById('filterLivraison');
+    var livraisonUp = document.getElementById('livraisonUp');
+    var livraisonDown = document.getElementById('livraisonDown');
+
+    if (rameBtn) {
+        rameBtn.addEventListener('click', function () {
+            rameTri = (rameTri + 1) % 3;
+            livraisonTri = 0;
+            updateChevrons();
+            applySort();
+        });
+    }
+
+    if (livraisonBtn) {
+        livraisonBtn.addEventListener('click', function () {
+            livraisonTri = (livraisonTri + 1) % 3;
+            rameTri = 0;
+            updateChevrons();
+            applySort();
+        });
+    }
+
+    function updateChevrons() {
+        if (rameUp) rameUp.classList.toggle('visible', rameTri === 1);
+        if (rameDown) rameDown.classList.toggle('visible', rameTri === 2);
+        if (livraisonUp) livraisonUp.classList.toggle('visible', livraisonTri === 1);
+        if (livraisonDown) livraisonDown.classList.toggle('visible', livraisonTri === 2);
+    }
+
+    function applySort() {
+        var sorted = tiles.slice();
+
+        if (rameTri > 0) {
+            sorted.sort(function (a, b) {
+                var numA = parseInt(a.dataset.rame.replace(/\D/g, ''), 10);
+                var numB = parseInt(b.dataset.rame.replace(/\D/g, ''), 10);
+                return rameTri === 1 ? numA - numB : numB - numA;
+            });
+        } else if (livraisonTri > 0) {
+            sorted.sort(function (a, b) {
+                var dateA = parseDate(a.dataset.livraison);
+                var dateB = parseDate(b.dataset.livraison);
+                return livraisonTri === 1 ? dateA - dateB : dateB - dateA;
+            });
         } else {
-            tile.classList.add('hidden');
-            // After.5sec, add class 'fullHide' to tile
-            setTimeout(() => {
-                tile.classList.add('fullHide');
-            }, 500);
+            sorted.sort(function (a, b) {
+                return +a.dataset.index - +b.dataset.index;
+            });
         }
-    })
-})
 
+        sorted.forEach(function (tile) {
+            resultsContainer.appendChild(tile);
+        });
+    }
+
+    function parseDate(str) {
+        var parts = str.split('/').map(Number);
+        return new Date(parts[2], parts[1] - 1, parts[0]).getTime();
+    }
+
+    /*
+        Ajout d'un select avec le contenu de la variable livrees dans filterContainer.
+        livrees = ["IDFM", "Carmillon", ...]
+    */
+    if (typeof livrees !== 'undefined' && filterContainer) {
+        var selectLivrees = document.createElement('select');
+        selectLivrees.id = 'filterLivrees';
+        selectLivrees.classList.add('filterSelect');
+        selectLivrees.innerHTML = '<option value="" selected>Tous</option>' +
+            livrees.map(function (livree) {
+                return '<option value="' + livree + '">' + livree + '</option>';
+            }).join('');
+        filterContainer.appendChild(selectLivrees);
+        selectLivrees.addEventListener('change', function (e) {
+            var selectedValue = e.target.value;
+            tiles.forEach(function (tile) {
+                if (selectedValue === '' || tile.dataset.livery === selectedValue) {
+                    tile.classList.remove('fullHide');
+                    setTimeout(function () {
+                        tile.classList.remove('hidden');
+                    }, 500);
+                } else {
+                    tile.classList.add('hidden');
+                    setTimeout(function () {
+                        tile.classList.add('fullHide');
+                    }, 500);
+                }
+            });
+        });
+    }
+
+    /*
+    * Remplissage du champ de recherche avec le parametre 'search' de l'URL.
+    */
+    var urlParams = new URLSearchParams(window.location.search);
+    var search = urlParams.get('search');
+    var homeBar = document.getElementById('homeBar');
+    if (search && homeBar) {
+        homeBar.value = search;
+    }
+
+    /*
+    * Au clic sur une tuile de la liste des trains, on redirige vers detailsTrain.php?id=[id du train].
+    */
+    tiles.forEach(function (tile) {
+        tile.addEventListener('click', function () {
+            var idTrain = tile.dataset.train;
+            window.location.href = 'detailsTrain.php?id=' + idTrain;
+        });
+    });
+})();
 
 /*
 * Au clic sur l'overlay, on retire le focus des inputs du form.filterContainer.
 */
-const overlay = document.getElementById('overlay');
-overlay.addEventListener('click', () => {
-    const inputs = document.querySelectorAll('.filterContainer input')
-    inputs.forEach(input => {
-        input.blur()
-    })
-})
+(function () {
+    var overlay = document.getElementById('overlay');
+    if (!overlay) return;
+    overlay.addEventListener('click', function () {
+        var inputs = document.querySelectorAll('.filterContainer input');
+        inputs.forEach(function (input) {
+            input.blur();
+        });
+    });
+})();
 
 /*
-* Au clic sur une tuile de la liste des trains, on redirige vers detailsTrain.php?id=[id du train].
+* Au clic sur une tuile (page d'accueil), on redirige vers detailsTrain.php?id=[id du train].
+* Exclut les .tileResult deja geres par le bloc resultsContainer.
 */
-document.querySelectorAll('.tile[role="button"]').forEach(tile => {
-    tile.addEventListener('click', () => {
-        const idTrain = tile.dataset.train;
-        window.location.href = "detailsTrain.php?id=" + idTrain;
+(function () {
+    var tiles = document.querySelectorAll('.tile[role="button"]:not(.tileResult)');
+    tiles.forEach(function (tile) {
+        tile.addEventListener('click', function () {
+            var idTrain = tile.dataset.train;
+            window.location.href = 'detailsTrain.php?id=' + idTrain;
+        });
     });
-});
+})();
