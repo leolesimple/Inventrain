@@ -1,6 +1,7 @@
 <?php
 global $conn;
 include "./assets/includes/conn.php";
+include_once "./assets/includes/functions.php";
 
 $sql = "SELECT
   train.idTrain,
@@ -91,39 +92,9 @@ if (count($result) > 0) {
         }
 
         $livree = $row["liveryName"];
-        if ($serie == "mi84" or $serie == "mi79") {
-            $icon_array = $serie . "_*";
-        } elseif ($serie == "B 82500" or $serie == "U52600" or $serie == "U53600" or $serie == "U53700" or $serie == "U53800") {
-            $icon_array = $serie;
-        } else {
-            $icon_array = $serie . "_" . $livree;
-        }
-        $icon_array = strtolower($icon_array);
-        $icon = $lineIcons[$icon_array]['src'] ?? 'default_icon.svg';
+        $icon = $lineIcons[getTrainIconKey($serie, $livree)]['src'] ?? 'default_icon.svg';
 
-        if ($livree == "IDFM") {
-            $badgeLivree = "blueBadge";
-        } elseif ($livree == "STIF/Carmillon") {
-            $badgeLivree = "redBerryBadge";
-        } else if ($livree == "Carmillon") {
-            $badgeLivree = "redBerryBadge";
-        } else if ($livree == "STIF/RATP") {
-            $badgeLivree = "stifRatpBadge";
-        } else if ($livree == "RATP") {
-            $badgeLivree = "ratpBadge";
-        } else if ($livree == "Transilien") {
-            $badgeLivree = "transilienBadge";
-        } else if ($livree == "IDF") {
-            $badgeLivree = "redBadge";
-        } else if ($livree == "STIF/RATP/SNCF") {
-            $badgeLivree = "stifCarmillonRatpBadge";
-        } else if ($livree == "IDFM/RATP/SNCF") {
-            $badgeLivree = "stifCarmillonRatpBadge";
-        } else if ($livree == "IDF/IDFM/RATP/SNCF") {
-            $badgeLivree = "idfmLegerBadge";
-        } else {
-            $badgeLivree = "grayBadge";
-        }
+        $badgeLivree = getBadgeLivreeClass($livree);
 
         $depot = $row["depotName"];
         $date = $row["deliveryDate"];

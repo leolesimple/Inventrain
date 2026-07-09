@@ -1,5 +1,6 @@
 <?php
 include "./assets/includes/conn.php";
+include_once "./assets/includes/functions.php";
 
 $jsonIcons = file_get_contents('./assets/json/serieInfos.json');
 $lineIcons = json_decode($jsonIcons, true);
@@ -78,54 +79,12 @@ if (isset($_GET['id'])) {
             echo '<script>document.title = "' . htmlspecialchars($serie) . ' ' . htmlspecialchars($number) . ' - L\'Inventrain";</script>';
 
             $livree = $row["liveryName"];
-            if ($serie == "mi84" or $serie == "mi79") {
-                $icon_array = $serie . "_*";
-            } elseif ($serie == "B 82500" or $serie == "U52600" or $serie == "U53600" or $serie == "U53700" or $serie == "U53800") {
-                $icon_array = $serie;
-            } else {
-                $icon_array = $serie . "_" . $livree;
-            }
-            $icon_array = strtolower($icon_array);
-            $icon = $lineIcons[$icon_array]['src'] ?? 'default_icon.svg';
+            $icon = $lineIcons[getTrainIconKey($serie, $livree)]['src'] ?? 'default_icon.svg';
 
-            if ($livree == "IDFM") {
-                $badgeLivree = "blueBadge";
-            } elseif ($livree == "STIF/Carmillon") {
-                $badgeLivree = "redBerryBadge";
-            } else if ($livree == "Carmillon") {
-                $badgeLivree = "redBerryBadge";
-            } else if ($livree == "STIF/RATP") {
-                $badgeLivree = "stifRatpBadge";
-            } else if ($livree == "RATP") {
-                $badgeLivree = "ratpBadge";
-            } else if ($livree == "Transilien") {
-                $badgeLivree = "transilienBadge";
-            } else if ($livree == "IDF") {
-                $badgeLivree = "redBadge";
-            } else if ($livree == "STIF/RATP/SNCF") {
-                $badgeLivree = "stifCarmillonRatpBadge";
-            } else if ($livree == "IDFM/RATP/SNCF") {
-                $badgeLivree = "stifCarmillonRatpBadge";
-            } else if ($livree == "IDF/IDFM/RATP/SNCF") {
-                $badgeLivree = "idfmLegerBadge";
-            } else {
-                $badgeLivree = "grayBadge";
-            }
+            $badgeLivree = getBadgeLivreeClass($livree);
 
             $status = $row["state"];
-            if ($status == "En Service") {
-                $statusClass = "greenBadge";
-            } elseif ($status == "Maintenance") {
-                $statusClass = "yellowBadge";
-            } elseif ($status == "Rénovation") {
-                $statusClass = "blueBadge";
-            } elseif ($status == "En Cours de Livraison") {
-                $statusClass = "grayBadge";
-            } elseif ($status == "Radiée") {
-                $statusClass = "redBadge";
-            } else {
-                $statusClass = "grayBadge";
-            }
+            $statusClass = getBadgeStatusClass($status);
 
             $livree = $row["liveryName"];
             $deliveryDate = $row["deliveryDate"];
@@ -154,7 +113,7 @@ if (isset($_GET['id'])) {
                 $incidents = '';
             } else {
                 $incidents = '<h2 class="tableCategory">Commentaires</h2>
-<p>' . $row['incidents'] . '</p>';
+<p>' . htmlspecialchars($row['incidents']) . '</p>';
             }
 
             $htmlIcons = "";
