@@ -1,0 +1,50 @@
+services:
+  inventrain:
+    build: .
+    container_name: inventrain
+    restart: unless-stopped
+    mem_limit: 256m
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - heartbeat-net
+    depends_on:
+      - inventrain-db
+    environment:
+      - TZ=Europe/Paris
+      - DB_HOST=inventrain-db
+      - DB_NAME=inventrain
+      - DB_USER=leo
+      - DB_PASSWORD=${INVENTRAIN_DB_PASSWORD}
+
+  inventrain-db:
+    image: mariadb:12.3
+    container_name: inventrain-db
+    restart: unless-stopped
+    mem_limit: 1g
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - heartbeat-net
+    volumes:
+      - inventrain-db-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      - TZ=Europe/Paris
+      - MYSQL_DATABASE=inventrain
+      - MYSQL_USER=inventrain
+      - MYSQL_PASSWORD=${INVENTRAIN_DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${INVENTRAIN_DB_ROOT_PASSWORD}
+
+networks:
+  heartbeat-net:
+    external: true
+
+volumes:
+  inventrain-db-data:
