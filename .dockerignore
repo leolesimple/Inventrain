@@ -1,0 +1,4 @@
+.env
+*.bak
+init.sql
+assets/conn.php
