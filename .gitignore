@@ -5,3 +5,7 @@
 .htaccess
 /admin/.htaccess
 assets/includes/conn.php
+.env
+*.bak
+init.sql
+assets/conn.php
