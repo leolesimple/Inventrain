@@ -56,13 +56,5 @@ if (!isset($includeMapbox)) {
     <?php foreach ($cssFiles as $css): ?>
     <link rel="stylesheet" href="<?php echo $ext; ?>css/<?php echo $css; ?>">
     <?php endforeach; ?>
-    <?php if ($includeToast): ?>
-    <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
-    <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
-    <?php endif; ?>
-    <?php if ($includeMapbox): ?>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
-    <?php endif; ?>
 
     <title><?php echo htmlspecialchars($pageTitle); ?></title>

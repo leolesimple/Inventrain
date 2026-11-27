@@ -89,6 +89,6 @@ include "./assets/includes/nav.php";
 include "./assets/includes/footer.php";
 ?>
 <script src="./js/app.js"></script>
-<script src="https://kit.fontawesome.com/406b037200.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="./vendor/fontawesome/css/all.min.css">
 </body>
 </html>

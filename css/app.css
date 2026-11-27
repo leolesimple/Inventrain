@@ -254,7 +254,7 @@ ul.bigList li {
     max-height: 500px;
     height: 500px;
     overflow: hidden;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/d/d7/RER_NG_009M.jpg");
+    background-image: url("../img/RER_NG_009M.jpg");
     background-size: cover;
     background-position: center;
     margin-left: calc(50% - 50vw);

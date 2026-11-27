@@ -10,8 +10,7 @@ $ext = "https://linventrain.leolesimple.fr/";
     <meta name="description" content="Page introuvable sur L'Inventrain.">
     <title>Erreur 404 - L'Inventrain</title>
     <link rel="stylesheet" href="<?= $ext ?>css/app.css">
-    <link rel="stylesheet" href="https://leolesimple.com/toastLibrary/toast.css">
-    <script src="https://kit.fontawesome.com/406b037200.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?= $ext ?>vendor/fontawesome/css/all.min.css">
     <style>
         .hugeHeading {
             color: #202025;
@@ -35,6 +34,11 @@ $ext = "https://linventrain.leolesimple.fr/";
     <h1 class="hugeHeading">Erreur 404</h1>
     <h2>Oups... Cette page n'existe pas ou a été déplacée.</h2>
     <a class="seeMoreBtn" href="<?= $ext ?>">Retour à l'accueil <i class="fa-solid fa-chevron-right hoverOnly"></i></a>
+    <nav aria-label="Informations légales">
+        <a href="<?= $ext ?>legal/mentions.php">Mentions légales</a>
+        ·
+        <a href="<?= $ext ?>legal/confidentialite.php">Confidentialité</a>
+    </nav>
 </main>
 <script src="<?= $ext ?>js/app.js"></script>
 </body>

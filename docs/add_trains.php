@@ -14,7 +14,6 @@ $ext = "../";
     ?>
 
     <!--Scripts-->
-    <script src="https://leolesimple.com/toastLibrary/toast.js"></script>
 </head>
 <body>
 <?php
