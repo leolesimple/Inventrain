@@ -50,6 +50,16 @@ include $ext . "assets/includes/nav.php";
             Elles sont soumises à des droits d'auteur et ne peuvent être reproduites sans autorisation préalable à
             l'écrit.
         </p>
+        <p>
+            Exception : la photographie de la page d'accueil (« RER NG 009M ») est l'œuvre d'Adnane, publiée sur
+            <a href="https://commons.wikimedia.org/wiki/File:RER_NG_009M.jpg">Wikimedia Commons</a> sous licence
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC BY-SA 4.0</a>. Elle est hébergée
+            avec le site, dans une version redimensionnée.
+        </p>
+        <p>
+            Icônes : Font Awesome Free (icônes sous licence CC BY 4.0, polices sous licence SIL OFL 1.1, code sous
+            licence MIT), hébergées avec le site.
+        </p>
     </section>
     <section class="legalContent">
         <h2>Logo</h2>
@@ -78,7 +88,7 @@ include $ext . "assets/includes/nav.php";
                         href="./licenses/License_Meshed_Display.pdf">Consulter la license (PDF, 69 ko)</a>.
             </li>
             <li>
-                <strong>IBM Plex Sans</strong> : utilisée pour le texte du site, est soumise à la license SIL Open Font License 1.1 <br> <a
+                <strong>IBM Plex Sans</strong> : utilisée pour le texte du site, est soumise à la license SIL Open Font License 1.1 et hébergée avec le site <br> <a
                         href="./licenses/OFL.txt">Consulter la license OFL (TXT, 5 ko)</a>.
             </li>
             <li><s>

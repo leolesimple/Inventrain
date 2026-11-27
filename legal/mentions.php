@@ -9,7 +9,7 @@ $ext = "../"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Ajouter un train à L'Inventrain via l'espace sécurisé.">
+    <meta name="description" content="Mentions légales de L'Inventrain.">
     <meta name="author" content="Léo LESIMPLE">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#F2F2F2">
@@ -41,38 +41,51 @@ $ext = "../"
 include $ext . "assets/includes/nav.php";
 ?>
 <main class="noCenter" id="content">
-    <h1>Mentions Légales</h1>
+    <h1>Mentions légales</h1>
+    <p>Dernière mise à jour : 27 novembre 2026.</p>
     <section class="legalContent">
-        <h2>Éditeur du site</h2>
+        <h2>Éditeur et hébergeur</h2>
         <p>
-            <strong>Dénomination sociale :</strong> Léo Lesimple
-            <br>
-            <strong>Adresse e-mail :</strong> leo@leolesimple.fr
+            Le site L'Inventrain (accessible à l'adresse https://linventrain.leolesimple.fr) est édité à titre non
+            professionnel par Léo Lesimple, qui l'héberge lui-même sur un serveur personnel.
+        </p>
+        <p>
+            Léo Lesimple<br>
+            53, rue Ledru-Rollin<br>
+            78800 Houilles<br>
+            France
+        </p>
+        <p>Directeur de la publication : Léo Lesimple.</p>
+    </section>
+    <section class="legalContent">
+        <h2>Acheminement du trafic</h2>
+        <p>
+            Le trafic du site transite par Cloudflare, Inc. (101 Townsend Street, San Francisco, CA 94107,
+            États-Unis), qui assure la diffusion, la mise en cache et la protection du site. Cloudflare n'héberge
+            pas le site.
+        </p>
+    </section>
+    <section class="legalContent">
+        <h2>Contact</h2>
+        <p>
+            Pour toute question, demande ou exercice du droit de réponse :
+            <a href="mailto:leo@leolesimple.fr">leo@leolesimple.fr</a>.
         </p>
     </section>
     <section class="legalContent">
         <h2>Propriété intellectuelle</h2>
         <p>
-            Pour plus d'informations sur la propriété intellectuelle, veuillez consulter notre
-            <a href="<?php echo $ext; ?>legal/cgu.php">
-                page "Propriété Intellectuelle</a>.
+            Les illustrations, le logo, les polices et les données utilisées sur le site sont détaillés sur la page
+            <a href="<?php echo $ext; ?>legal/propIntell.php">Propriété intellectuelle</a>.
         </p>
     </section>
     <section class="legalContent">
-        <h2>Hébergement</h2>
+        <h2>Données personnelles</h2>
         <p>
-            Ce site est hébergé sur un serveur personnel appartenant à <strong>Léo Lesimple</strong>, situé en France.
-        </p>
-        <p>
-            Pour toute demande relative à l’hébergement, vous pouvez écrire à l’adresse suivante :
-            <a href="mailto:leo@leolesimple.com">leo@leolesimple.com</a>
+            Les traitements de données réalisés sur ce site sont décrits dans la
+            <a href="<?php echo $ext; ?>legal/confidentialite.php">politique de confidentialité</a>.
         </p>
     </section>
-    <section class="legalContent">
-        <h2>Données Personelles</h2>
-        <p>
-            Aucune donnée personnelle n'est collectée sur ce site.
-        </p>
 </main>
 <?php
 include $ext . "assets/includes/footer.php";

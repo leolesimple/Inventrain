@@ -19,6 +19,7 @@
             </ul>
             <ul>
                 <li><a href="<?= $ext; ?>/legal/mentions.php">Mentions Légales</a></li>
+                <li><a href="<?= $ext; ?>/legal/confidentialite.php">Confidentialité</a></li>
                 <li><a href="<?= $ext; ?>/legal/propIntell.php">Propriété Intellectuelle</a></li>
                 <li><a href="<?= $ext; ?>/about.php">À Propos</a></li>
             </ul>
